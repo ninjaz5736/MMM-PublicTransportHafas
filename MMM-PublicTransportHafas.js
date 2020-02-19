@@ -143,7 +143,7 @@ Module.register("MMM-PublicTransportHafas", {
         this.error = {};
         this.departures = payload.departures;
         this.updateDom(2000);
-
+        this.sendNotification('TRANSPORT_HAFAS', payload.departures)
         break;
 
       case "FETCH_ERROR":
