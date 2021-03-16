@@ -278,7 +278,7 @@ Module.register("MMM-PublicTransportHafas", {
     
       this.updatesIntervalID = setInterval(() => {
         this.sendSocketNotification("FETCH_DEPARTURES", this.identifier);
-    }, interval * 1000);
+      }, interval * 1000);
     
     }
     
