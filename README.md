@@ -36,7 +36,7 @@ For more information see the [Configuration](#configuration) section.
 ## Preconditions
 
 * MagicMirror<sup>2</sup> instance
-* Node.js version >= 7
+* Node.js version >= 10
 * npm
 
 
