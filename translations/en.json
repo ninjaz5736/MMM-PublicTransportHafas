@@ -4,5 +4,6 @@
 
   "PTH_DEPARTURE_TIME": "Time",
   "PTH_LINE": "Line",
-  "PTH_TO": "To"
+  "PTH_TO": "To",
+  "PTH_CANCELLED": "Cancelled"
 }
