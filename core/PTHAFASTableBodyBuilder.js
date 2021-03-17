@@ -247,7 +247,7 @@ class PTHAFASTableBodyBuilder {
 
   getProcessedDirection(direction) {
     let replacements = this.config.replaceInDirections;
-    let processed = direction;
+    let processed = direction.replace("Halle (Saale), ", "").replace("(Tram/Bus)", "");
 
     Object.keys(replacements).forEach((key) => {
       processed = processed.replace(new RegExp(key, "g"), replacements[key]);

@@ -59,6 +59,9 @@ module.exports = NodeHelper.create({
         departures: fetchedDepartures
       };
 
+      // Printing one departure for analysis
+      console.log(payload.departures[1]);
+
       this.sendSocketNotification("DEPARTURES_FETCHED", payload);
     }).catch((error) => {
       let payload = {
