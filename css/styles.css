@@ -35,6 +35,11 @@ them from the rest of the interface.
   white-space: nowrap;
 }
 
+.pthPlatformCell {
+  padding-left: 1ch;
+  padding-right: 1ch;
+}
+
 .pthRulerCell {
   border-bottom: 1px dotted #666;
   border-spacing: 10px;

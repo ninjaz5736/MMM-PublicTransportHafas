@@ -9,7 +9,8 @@ class PTHAFASDomBuilder {
     this.headingSymbols = {
       time: "fa fa-clock-o",
       line: "fa fa-bus",
-      direction: "fa fa-map-marker"
+      direction: "fa fa-exchange",
+      platform: "fa fa-map-marker"
     };
   }
 
@@ -107,7 +108,7 @@ class PTHAFASDomBuilder {
       cssClass: ""
     };
 
-    if (key === "line" || key === "direction") {
+    if (key === "line" || key === "direction" || key === "platform") {
       result.cssClass = "pthTextCenter";
     }
 

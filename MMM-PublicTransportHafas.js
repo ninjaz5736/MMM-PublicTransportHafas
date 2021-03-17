@@ -46,7 +46,7 @@ Module.register("MMM-PublicTransportHafas", {
     showAbsoluteTime: true,             // How should the departure time be displayed? "15:10" (absolute) or "in 5 minutes" (relative)
     showTableHeaders: true,             // Show table headers?
     showTableHeadersAsSymbols: true,    // Table Headers as symbols or written?
-    tableHeaderOrder: [ "time", "line", "direction" ], // In which order should the table headers appear?
+    tableHeaderOrder: [ "time", "line", "direction" ], // In which order should the table headers appear? (add "platform" if you like)
     maxUnreachableDepartures: 0,        // How many unreachable departures should be shown?
     maxReachableDepartures: 7,          // How many reachable departures should be shown?
     fadeUnreachableDepartures: true,

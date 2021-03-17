@@ -110,6 +110,11 @@ class PTHAFASTableBodyBuilder {
         let direction = departure.direction;
         cell = this.getDirectionCell(direction);
         break;
+
+      case "platform":
+        let platform = departure.platform;
+        cell = this.getPlatformCell(platform);
+        break;
     }
 
     return cell;
@@ -251,6 +256,14 @@ class PTHAFASTableBodyBuilder {
     return processed;
   }
 
+
+  getPlatformCell(platform) {
+    let className = "pthPlatformCell pthTextCenter";
+    if (platform == null) {
+      platform = "";
+    }
+    return this.getTableCell(platform, className);
+  }
 
   getRowOpacity(index, departuresCount) {
     if (!this.config.fadeReachableDepartures) {
