@@ -60,9 +60,9 @@ Module.register("MMM-PublicTransportHafas", {
   start: function () {
     Log.info("Starting module: " + this.name + " with identifier: " + this.identifier);
     
-    this.ModulePublicTransportHafasHidden = false; // par défaut on affiche le module (si pas de module carousel ou autre)
-    this.updatesIntervalID = 0;   // to stop and start auto update for each module instance
-    this.lastUpdate = 0;   //timestamp of the last module update. set at 0 at start-up
+    this.ModulePublicTransportHafasHidden = false; // By default we display the module (if no carousel or other module)
+    this.updatesIntervalID = 0;       // To stop and start auto update for each module instance
+    this.lastUpdate = 0;              // Timestamp of the last module update. set at 0 at start-up
 
     this.departures = [];
     this.initialized = false;
@@ -94,41 +94,40 @@ Module.register("MMM-PublicTransportHafas", {
 
   
   //Modif AgP42 - 12/07/2018
-  suspend: function() { //fct core appelée quand le module est caché
-    this.ModulePublicTransportHafasHidden = true; //module hidden
-    //Log.log("Fct suspend - Module PublicTransportHafas caché" + this.config.stationName);
-    this.GestionUpdateIntervalHafas(); //on appele la fonction qui gere tous les cas
+  suspend: function() {  // Core function called when the module is hidden
+    this.ModulePublicTransportHafasHidden = true; // Module hidden
+    // Log.log("Function suspend - Module PublicTransportHafas is hidden " + this.config.stationName);
+    this.GestionUpdateIntervalHafas(); // Call the function which manages all the cases
   },
   
-  resume: function() { //fct core appelée quand le module est affiché
+  resume: function() {  // Core function called when the module is displayed
     this.ModulePublicTransportHafasHidden = false;
-    //Log.log("Fct resume - Module PublicTransportHafas AFFICHE" + this.config.stationName);
+    // Log.log("Function working - Module PublicTransportHafas is displayed " + this.config.stationName);
     this.GestionUpdateIntervalHafas();  
   },
 
   notificationReceived: function(notification, payload) {
-    if (notification === "USER_PRESENCE") { // notification envoyée par le module MMM-PIR-Sensor. Voir sa doc
-      //Log.log("NotificationReceived USER_PRESENCE = " + payload);
+    if (notification === "USER_PRESENCE") { // Notification sent by the MMM-PIR-Sensor module. See its doc.
+      // Log.log("NotificationReceived USER_PRESENCE = " + payload);
       UserPresence = payload;
       this.GestionUpdateIntervalHafas();
     }
   },
   
   GestionUpdateIntervalHafas: function() {
-    if (UserPresence === true && this.ModulePublicTransportHafasHidden === false){ // on s'assure d'avoir un utilisateur présent devant l'écran (sensor PIR) et que le module soit bien affiché
+    if (UserPresence === true && this.ModulePublicTransportHafasHidden === false){ // Make sure to have a user present in front of the screen (PIR sensor) and that the module is displayed
       var self = this;
-      //Log.log(this.config.stationName + " est affiché et user present ! On l'update");
+      // Log.log(this.config.stationName + " is displayed and user present! Update it");
   
-      // update now and start again the update timer
+      // Update now and start again the update timer
       this.startFetchingLoop(this.config.updatesEvery);
 
     }else{ // (UserPresence = false OU ModulePublicTransportHafasHidden = true)
-      //Log.log("Personne regarde : on stop l'update !" + this.config.stationName);
-      clearInterval(this.updatesIntervalID); // on arrete l'intervalle d'update en cours
-      this.updatesIntervalID=0; //on reset la variable
+      // Log.log("No one is watching: Stop the update!" + this.config.stationName);
+      clearInterval(this.updatesIntervalID); // Stop the current update interval
+      this.updatesIntervalID = 0; // Reset the variable
     }
   },
-  //Fin AgP
 
   getDom: function () {
     let domBuilder = new PTHAFASDomBuilder(this.config);
@@ -271,8 +270,8 @@ Module.register("MMM-PublicTransportHafas", {
 
     // ... and then repeat in the given interval
     
-    //Log.log("Hello, update module Transport demandé!! (non récurente)");
-    //this.sendNotification("SHOW_ALERT",{type:"notification",message:"Update Transport Berlin demandée"});
+    // Log.log("Hello, update module Transport requested! (non-recurring)");
+    // this.sendNotification("SHOW_ALERT",{type:"notification",message:"Update Transport Berlin requested"});
     
     if (this.updatesIntervalID === 0){//if this instance as no auto update defined, then we create one. Otherwise : nothing.
     
