@@ -1,7 +1,7 @@
 {
   "name": "MMM-PublicTransportHafas",
-  "version": "1.0.5",
-  "description": "Public transport module for MagicMirror 2 driven by hafas-client data.",
+  "version": "1.0.6",
+  "description": "Public transport module for MagicMirror² driven by hafas-client data.",
   "repository": {
     "type": "git",
     "url": "https://github.com/raywo/MMM-PublicTransportHafas"
@@ -10,8 +10,7 @@
     "magic mirror",
     "magic mirror 2",
     "smart mirror",
-    "public transport",
-    "public transport Leipzig",
+    "public transport"
     "module"
   ],
   "author": {

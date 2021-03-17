@@ -16,6 +16,7 @@ It shows live public transport information in Germany for all stations known to 
 
 This module is intended to replace [MMM-PublicTransportLeipzig](https://github.com/raywo/MMM-PublicTransportLeipzig) since it uses the very unrealiable data provided by the LVB (Leipziger Verkehrsbetriebe). Thus the colors for the tram lines match the pattern used in Leipzig. But you can very easy adapt that to your needs. See [Providing a custom css file](#providing-a-custom-css-file).
 
+To limit the server request only when the module is displayed and/or the user is present, the update will be stopped when no instance of the module are displayed (module hidden by a carousel, or module MMM-Pages, or module Remote-Control, or... ). The update will also be stopped by the use of a PIR sensor using the module MMM-PIR-Sensor (that send the notification 'USER_PRESENCE'). No special configuration is needed for this behaviour. 
 
 ## How it works
 
@@ -29,13 +30,13 @@ For more information see the [Configuration](#configuration) section.
 |![Example: Goerdelerring Leipzig, all directions](img/Goerdelerring_all.png)<br>*Leipzig, Goerdelerring (all directions)*|![Example: Goerdelerring Leipzig, heading to main station](img/Goerdelerring_to_hbf.png)<br>*Leipzig, Goerdelerring (heading to main station)*|
 |---|---|
 |![Example: Hauptbahnhof, Leipzig, only tram](img/Hauptbahnhof_tram_only.png)<br>*Hauptbahnhof, Leipzig (displaying only trams and two unreachable departures)*|![Example: Hauptbahnhof, Leipzig, only regional and national trains](img/Hauptbahnhof_train_only.png)<br>*Hauptbahnhof, Leipzig (displaying only regional and national trains)*|
-|![Example: Leuschner Platz with relative departure time and reorderd columns](img/Leuschner_Platz_relative.png)<br>*Leuschner Platz, Leipzig (displaying departure times in relative format and reordered columns)*||
-
+|![Example: Leuschner Platz with relative departure time and reorderd columns](img/Leuschner_Platz_relative.png)<br>*Leuschner Platz, Leipzig (displaying departure times in relative format and reordered columns)*|
+|![Example: Several instances in Berlin, showing the last update time](img/UpdateTimeDisplayed.png)<br>*Several instances in Berlin, showing the last update time*|
 
 ## Preconditions
 
 * MagicMirror<sup>2</sup> instance
-* Node.js version >= 7
+* Node.js version >= 10
 * npm
 
 
@@ -120,7 +121,7 @@ The module is quite configurable. These are the possible options:
 | `showAbsoluteTime` | <p>A boolean indicating whether the departure time should be displayed as an absolute value or not.</p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `false`<br>**Default Value:** `true`</p><p>**Note:** If set to `true` the departure time would be displayed as “10:15+0”. If set to `false` the departure time would be displayed in a relative manner like so: `in 5 minutes`. The displayed string is determined by your locale. If your locale is set to `de` the string would be `in 5 Minuten`. </p> |
 | `showTableHeaders`                | <p>A boolean indicating whether a table header should be shown or not.</p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `false`<br>**Default Value:** `true`</p><p>**Note:** If set to `false` no table headings like “time” or “direction” will be shown. Also no symbols are shown.</p>|
 | `showTableHeadersAsSymbols`       | <p>A boolean value indicating whether table headers should be shown as symbols or text.</p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `false` <br>**Default Value:** `true` </p><p>**Note:** If set to `true` table headers will use symbols, else text will be shown. This setting is only effective if `showTableHeaders` is set to `true`. The shown text is available in English and German. Feel free to add translations to this project.</p> |
-| `tableHeaderOrder` | <p>An array determining the order of the table headers.</p><p>**Type:** `array` **OPTIONAL** <br>**Example:** `[ "line", "direction", "time" ]` <br>**Default Value:** `[ "time", "line", "direction" ]` </p><p>**Note:** Sort the table headings as you like it. Please keep in mind that you must use the values `"line"`, `"time"` and `"direction"`. These will be the only ones the module recognizes.</p>|
+| `tableHeaderOrder` | <p>An array determining the order of the table headers.</p><p>**Type:** `array` **OPTIONAL** <br>**Example:** `[ "line", "direction", "time" ]` <br>**Default Value:** `[ "time", "line", "direction" ]` </p><p>**Note 1:** If the HAFAS API delivers information about the platforms, you can add here the header `"platform"`.</p><p>**Note 2:** Sort the table headings as you like it. Please keep in mind that you must use the values `"line"`, `"time"`, `"direction"` and `"platform"`. These will be the only ones the module recognizes.</p>|
 | `maxUnreachableDepartures`        | <p>An integer value denoting how many unreachable departures should be displayed.</p><p>**Type:** `integer` **OPTIONAL** <br>**Example:** `3`<br>**Default Value:** `0`</p><p>**Note:** A departure is unreachable if you can't reach the station in time for the departure with respect to your `timeToStation` setting.<br>Sometimes it is useful to set this option to a value greater than `0` if you are the type of person which walks really fast. Maybe other users of the mirror usually take 10 minutes to the station but you take only 5. So you’ll see also departures the other users couldn’t reach.</p>|
 | `maxReachableDepartures`          | <p>An integer value denoting how many reachable departures should be displayed.</p><p>**Type:** `integer` **OPTIONAL** <br>**Example:** `5` <br>**Default Value:** `7` </p><p>**Note:** A departure is reachable if you can make it to the station in time for the departure with respect to your `timeToStation` setting.</p>|
 | `fadeUnreachableDepartures`       | <p>A boolean value indicating whether unreachable departures should be dimmed.</p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `false` <br>**Default Value:** `true` </p>|
@@ -128,7 +129,8 @@ The module is quite configurable. These are the possible options:
 | `fadePointForReachableDepartures` | <p>A floating point value indicating where to start the fading of departure rows.</p><p>**Type:** `float` **OPTIONAL** <br>**Example:** `0.5` (Start fading after half of the rows.)<br>**Default Value:** `0.25` </p><p>**Note:** This value is actually a percentage. The default value of `0.25` denotes that after a quarter of the visible rows set by `maxReachableDepartures` the fading should start. This setting is only effective if `fadeReachableDepartures` is set to `true`. </p>|
 | `customLineStyles`                | <p>A string value describing the name of a custom css file.</p><p>**Type:** `string` **OPTIONAL** <br>**Example:** `"dresden"`<br>**Default Value:** `"leipzig"`</p><p>**Note:** If the setting `showColoredLineSymbols` is `true` the module will try to use colored labels for the line name. Per default it uses the colors used in Leipzig. This style works best if `showOnlyLineNumbers` is set to `true`. If it doesn’t suit your taste you can provide your own settings. See [Providing a custom css file](#providing-a-custom-css-file). </p>|
 | `showOnlyLineNumbers`             | <p>A boolean value denoting whether the line name should be displayed as a number only or the full name should be used. </p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `true` <br>**Default Value:** `false` </p><p>**Note:** If set to `true` the module will try to separate line numbers from the line name and display only these. If the line name is “STR 11” only “11” will be displayed. This only works if there are blanks present in the line name. This setting is only tested with departures in Leipzig. If you encounter problems [let me know](https://github.com/raywo/MMM-PublicTransportHafas/issues).</p>|
-
+| `displayLastUpdate`               | <p>If true this will display the last update time at the end of the task list. See screenshot above</p><p>**Type:** `boolean` **OPTIONAL** <br>**Default Value:** `false`</p></p>|
+| `displayLastUpdateFormat`         | <p>Format to use for the time display if displayLastUpdate:true  </p><p>**Type:** `string` **OPTIONAL** <br>**Example:** `'dd - HH:mm:ss'` <br>**Default Value:** `'dd - HH:mm:ss'` </p>See [Moment.js formats](http://momentjs.com/docs/#/parsing/string-format/) for the other format possibilities. </p>|
 
 
 Here is an example for an entry in `config.js`
@@ -153,13 +155,14 @@ Here is an example for an entry in `config.js`
     maxUnreachableDepartures: 0,      // How many unreachable departures should be shown?
     maxReachableDepartures: 7,        // How many reachable departures should be shown?
     customLineStyles: "",             // Prefix for the name of the custom css file. ex: Leipzig-lines.css (case sensitive)
-    showOnlyLineNumbers: false        // Display only the line number instead of the complete name, i. e. "11" instead of "STR 11"
+    showOnlyLineNumbers: false,       // Display only the line number instead of the complete name, i. e. "11" instead of "STR 11"
+    displayLastUpdate: true           // Display the last time of module update.
   }
 },
 ```
 
 
-## Mulitple instances
+## Multiple instances
 
 It is possible to use multiple instances of this module just by adding another entry of the MMM-PublicTransportHafas module to the `config.js` of your mirror. 
 

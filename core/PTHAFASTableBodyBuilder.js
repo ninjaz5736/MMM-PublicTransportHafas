@@ -110,6 +110,11 @@ class PTHAFASTableBodyBuilder {
         let direction = departure.direction;
         cell = this.getDirectionCell(direction);
         break;
+
+      case "platform":
+        let platform = departure.platform;
+        cell = this.getPlatformCell(platform);
+        break;
     }
 
     return cell;
@@ -120,11 +125,17 @@ class PTHAFASTableBodyBuilder {
     let time = this.getDisplayDepartureTime(departure, delay);
 
     let cell = document.createElement("td");
-    cell.className = "pthTimeCell";
-    cell.appendChild(document.createTextNode(time));
 
-    if (this.config.showAbsoluteTime) {
-      cell.appendChild(this.getDelaySpan(delay));
+    if (moment(departure).isValid()) {
+      cell.className = "pthTimeCell";
+      cell.appendChild(document.createTextNode(time));
+
+      if (this.config.showAbsoluteTime) {
+        cell.appendChild(this.getDelaySpan(delay));
+      }
+    } else {
+      cell.className = "pthTimeCanceled";
+      cell.appendChild(document.createTextNode("Fällt aus"));
     }
 
     return cell;
@@ -137,7 +148,8 @@ class PTHAFASTableBodyBuilder {
 
     let cssClass = "dimmed";
 
-    if (this.config.useColorForRealtimeInfo) {
+// +n === +n --> Test, if n is numeric
+    if (this.config.useColorForRealtimeInfo && (+delay === +delay)) {
       cssClass = delay > 0 ? "pthHasDelay" : "pthIsTooEarly";
     }
 
@@ -146,11 +158,14 @@ class PTHAFASTableBodyBuilder {
     return delaySpan;
   }
 
-
+  // +n === +n --> Test, if n is numeric
   getDelay(delay) {
-    let sign = delay < 0 ? "-" : "+";
-
-    return "&nbsp;" + sign + delay / 60 + "&nbsp;";
+    if (+delay === +delay) {
+      let sign = delay < 0 ? "-" : "+";
+      return "&nbsp;" + sign + delay / 60 + "&nbsp;";
+    } else {
+      return "&nbsp; +? &nbsp;";
+    }
   }
 
 
@@ -241,6 +256,14 @@ class PTHAFASTableBodyBuilder {
     return processed;
   }
 
+
+  getPlatformCell(platform) {
+    let className = "pthPlatformCell pthTextCenter";
+    if (platform == null) {
+      platform = "";
+    }
+    return this.getTableCell(platform, className);
+  }
 
   getRowOpacity(index, departuresCount) {
     if (!this.config.fadeReachableDepartures) {

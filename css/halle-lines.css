@@ -1,0 +1,47 @@
+/*
+  This stylesheet contains the css classes needed to colorize the line
+  labels in the display.
+
+  To customize this use as class name the name of the line without any
+  blanks and all lower case. For instance "Bus N9" becomes ".busn9"
+ */
+
+
+/* Properties for all trams */
+[class^="pthSign str"] {
+  color: white;
+} 
+/* Colors for each tram line */
+.str7 {background-color: rgb(234, 80, 151);}
+.str9 {background-color: rgb(173, 175, 23);}
+.str10 {background-color: rgb(51, 102, 51);}
+
+
+/* Properties for all busses */
+[class^="pthSign bus"] {
+  border-radius: 50%;
+  color: white;
+}
+/* Colors for each bus line */
+.bus21 {background-color: rgb(255, 0, 0);}
+.bus22 {background-color: rgb(9, 146, 184);}
+.bus24 {background-color: rgb(119, 67, 50);}
+.bus27 {background-color: rgb(141, 0, 75);}
+.bus32 {background-color: rgb(153, 153, 0);}
+.bus36 {background-color: rgb(139, 100, 37);}
+.bus43 {background-color: rgb(0, 91, 55);}
+.bus91 {background-color: rgb(184, 67, 11);}
+.bus97 {background-color: rgb(90, 108, 2);}
+
+
+/*
+ * Properties for all S-trains
+ *
+ * All S-trains get the same symbol. A green square with nice round corners.
+ * Sadly we can't use wildcard selectors here, so they are listed with commas separating them.
+ */
+.s1, .s2, .s3, .s4, .s5, .s5x, .s6, .s7 {
+  background-color: #1E944B;
+  border-radius: 25%;
+  color: white;
+}
