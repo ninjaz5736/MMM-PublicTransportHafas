@@ -27,15 +27,15 @@ Module.register("MMM-PublicTransportHafas", {
     headerPrefix: "",
     headerAppendix: "",
 
-   //Display last update time
-  displayLastUpdate: false, //add or not a line after the tasks with the last server update time
-  displayLastUpdateFormat: 'dd - HH:mm:ss', //format to display the last update. See Moment.js documentation for all display possibilities
-    
+    // Display last update time
+    displayLastUpdate: false,           // Add or not a line after the tasks with the last server update time
+    displayLastUpdateFormat: 'dd - HH:mm:ss', // Format to display the last update. See Moment.js documentation for all display possibilities
+
     // Departures options
     direction: "",                      // Show only departures heading to this station. (A station ID.)
     ignoredLines: [],                   // Which lines should be ignored? (comma-separated list of line names)
     excludedTransportationTypes: [],    // Which transportation types should not be shown on the mirror? (comma-separated list of types) possible values: StN for tram, BuN for bus, s for suburban
-    timeToStation: 10,                  // How long do you need to walk to the next Station?
+    timeToStation: 10,                  // How long do you need to walk to the Station? (in minutes)
     timeInFuture: 40,                   // Show departures for the next *timeInFuture* minutes.
 
     // Look and Feel
