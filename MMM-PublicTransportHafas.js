@@ -143,7 +143,8 @@ Module.register("MMM-PublicTransportHafas", {
     let headings = {
       time: this.translate("PTH_DEPARTURE_TIME"),
       line: this.translate("PTH_LINE"),
-      direction: this.translate("PTH_TO")
+      direction: this.translate("PTH_TO"),
+      platform: this.translate("PTH_PLATFORM")
     };
 
     let noDeparturesMessage = this.translate("PTH_NO_DEPARTURES");
