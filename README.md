@@ -45,7 +45,7 @@ For more information see the [Configuration](#configuration) section.
 Just clone the module into your MagicMirror modules folder and execute `npm install` in the module’s directory:
 
 ```bash
-git clone https://github.com/raywo/MMM-PublicTransportHafas.git
+git clone https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas.git
 cd MMM-PublicTransportHafas
 npm install
 ```
