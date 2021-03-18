@@ -4,7 +4,7 @@
   "description": "Public transport module for MagicMirror² driven by hafas-client data.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/raywo/MMM-PublicTransportHafas"
+    "url": "https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas"
   },
   "keywords": [
     "magic mirror",
@@ -14,18 +14,18 @@
     "module"
   ],
   "author": {
-    "name": "raywo",
-    "email": "ray@skillbird.de",
-    "url": "https://github.com/raywo"
+    "name": "Kristjan ESPERANTO",
+    "email": "kristjan.esperanto@gmail.com",
+    "url": "https://github.com/KristjanESPERANTO"
   },
   "contributors": [
-    "https://github.com/raywo/MMM-PublicTransportHafas/graphs/contributors"
+    "https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas/graphs/contributors"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/raywo/MMM-PublicTransportHafas/issues"
+    "url": "https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas/issues"
   },
-  "homepage": "https://github.com/raywo/MMM-PublicTransportHafas",
+  "homepage": "https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas",
   "engines": {
     "node": ">=10"
   },
