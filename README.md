@@ -1,6 +1,6 @@
 # MMM-PublicTransportHafas
 
-MMM-PublicTransportHafas is a module for the [MagicMirror](https://github.com/MichMich/MagicMirror) project by [Michael Teeuw](https://github.com/MichMich).
+MMM-PublicTransportHafas is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror) project by [Michael Teeuw](https://github.com/MichMich).
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/2742abc792b88536f6e2/maintainability)](https://codeclimate.com/github/raywo/MMM-PublicTransportHafas/maintainability) 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2742abc792b88536f6e2/test_coverage)](https://codeclimate.com/github/raywo/MMM-PublicTransportHafas/test_coverage)
@@ -35,7 +35,7 @@ For more information see the [Configuration](#configuration) section.
 
 ## Preconditions
 
-* MagicMirror<sup>2</sup> instance
+* MagicMirror² instance
 * Node.js version >= 10
 * npm
 
