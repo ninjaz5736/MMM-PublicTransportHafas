@@ -5,7 +5,7 @@ const dbProfile = require("hafas-client/p/db");
 const readline = require("readline");
 const arrayUnique = require("array-unique");
 
-const client = createClient(dbProfile);
+const client = createClient(dbProfile, 'MMM-PublicTransportHafas');
 
 const rl = readline.createInterface({
   input: process.stdin,
