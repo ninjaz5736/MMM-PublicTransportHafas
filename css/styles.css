@@ -115,7 +115,7 @@ them from the rest of the interface.
   margin-right: 0.3em;
 }
 
-/* Standards for Deutsche Bahn products. */
+/* Default properties for Deutsche Bahn products. */
 .pthDbStandard {
   border-radius: 5px;
   font-size: 0.8em;
@@ -148,4 +148,16 @@ them from the rest of the interface.
 
 .rbWithProductName:before {
   content: "RB ";
+}
+
+/* Default properties for busses */
+[class^="pthSign bus"] {
+  background-color: rgb(122, 32, 106);
+  color: white;
+}
+
+/* Default properties for trams */
+[class^="pthSign str"] {
+  background-color: rgb(255, 0, 0);
+  color: white;
 }
