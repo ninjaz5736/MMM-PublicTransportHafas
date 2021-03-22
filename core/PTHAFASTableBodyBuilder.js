@@ -208,18 +208,20 @@ class PTHAFASTableBodyBuilder {
 
 
   getColoredCssClass(lineName) {
-    let className = "pthSign ";
+    let className = "pthSign";
     let prefix = lineName.split(" ")[0];
-    let dbProducts = ["RE", "RB", "IC", "ICE"];
+    let dbProducts = ["IC", "ICE", "RE", "RB", "S"];
+    let ignoreShowOnlyLineNumbers = ["IC", "ICE", "RE", "RB", "S", "U"];
 
-    if (dbProducts.includes(prefix)) {
-      className += prefix.toLowerCase() + " pthDbStandard";
+    className += " " + prefix.toLowerCase();
+    className += " " + lineName.replace(/\s/g, "").toLowerCase();
 
-      if (this.config.showOnlyLineNumbers) {
-        className += " " + prefix.toLowerCase() + "WithProductName";
-      }
-    } else {
-      className += lineName.replace(/\s/g, "").toLowerCase();
+    if (dbProducts.includes(prefix)  ) {
+      className += " pthDbStandard";
+    }
+
+    if (ignoreShowOnlyLineNumbers.includes(prefix) && this.config.showOnlyLineNumbers) {
+      className += " " + prefix.toLowerCase() + "WithProductName";
     }
 
     return className;

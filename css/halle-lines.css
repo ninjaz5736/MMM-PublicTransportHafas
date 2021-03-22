@@ -26,10 +26,6 @@
 .str95 {background-color: rgb( 5, 21, 65)}
 .str99 {background-color: rgb( 51, 204, 255)}
 
-
-/* Default properties for all busses */
-[class^="pthSign bus"] {
-  border-radius: 50%;
 }
 /* Colors for each bus line */
 .bus21 {background-color: rgb( 255, 0, 0)}
@@ -59,16 +55,3 @@
 .bus65 {background-color: rgb( 68, 64, 136)}
 .bus91 {background-color: rgb( 184, 67, 11)}
 .bus97 {background-color: rgb( 90, 108, 2)}
-
-
-/*
- * Properties for all S-trains
- *
- * All S-trains get the same symbol. A green square with nice round corners.
- * Sadly we can't use wildcard selectors here, so they are listed with commas separating them.
- */
-.s1, .s2, .s3, .s4, .s5, .s5x, .s6, .s7 {
-  background-color: rgb( 30, 148, 75);
-  border-radius: 25%;
-  color: white;
-}
