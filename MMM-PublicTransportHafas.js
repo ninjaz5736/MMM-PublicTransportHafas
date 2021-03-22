@@ -34,7 +34,7 @@ Module.register("MMM-PublicTransportHafas", {
     // Departures options
     direction: "",                      // Show only departures heading to this station. (A station ID.)
     ignoredLines: [],                   // Which lines should be ignored? (comma-separated list of line names)
-    excludedTransportationTypes: [],    // Which transportation types should not be shown on the mirror? (comma-separated list of types) possible values: StN for tram, BuN for bus, s for suburban
+    excludedTransportationTypes: [],    // Which transportation types should not be shown on the mirror? (comma-separated list of types) possible values: "tram", "bus", "suburban", "subway", "regional" and "national"
     timeToStation: 10,                  // How long do you need to walk to the Station? (in minutes)
     timeInFuture: 40,                   // Show departures for the next *timeInFuture* minutes.
 
@@ -52,7 +52,7 @@ Module.register("MMM-PublicTransportHafas", {
     fadeUnreachableDepartures: true,
     fadeReachableDepartures: true,
     fadePointForReachableDepartures: 0.25,
-    customLineStyles: "leipzig",        // Prefix for the name of the custom css file. ex: Leipzig-lines.css (case sensitive)
+    customLineStyles: "",               // Prefix for the name of the custom css file. ex: Leipzig-lines.css (case sensitive)
     showOnlyLineNumbers: false          // Display only the line number instead of the complete name, i. e. "11" instead of "STR 11"
   },
 

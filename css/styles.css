@@ -99,12 +99,11 @@ them from the rest of the interface.
 .pthSign {
   background-color: #333333;
   color: #666666;
-
+  min-width: 2.5ch;
   font-size: 0.9em;
   font-weight: bold;
   margin: 0.1rem auto;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 0.1rem;
   position: relative;
   text-align: center;
 }
@@ -115,11 +114,10 @@ them from the rest of the interface.
   margin-right: 0.3em;
 }
 
-/* Standards for Deutsche Bahn products. */
+/* Default properties for Deutsche Bahn products. */
 .pthDbStandard {
-  border-radius: 5px;
+  border-radius: 0.25rem;
   font-size: 0.8em;
-  line-height: 1.4em;
 }
 
 .ice, .ic {
@@ -129,10 +127,53 @@ them from the rest of the interface.
 }
 
 .rb, .re {
-  background-color: #F01414;
+  background-color: rgb(31, 131, 50);
   border: 0.5px white solid;
   color: white;
 }
+
+ .s {
+  background-color: rgb(0, 111, 53);
+  border: 0.5px white solid;
+  color: white;
+  width: max-content;
+}
+
+/* Default properties for busses */
+.bus {
+  border-radius: 1em;
+  background-color: rgb(122, 32, 106);
+  color: white;
+  width: max-content;
+}
+
+/* Default properties for "Rufbusse" */
+.ruf:before {
+  content: "☎ ";
+  color: white;
+  font-size: 0.8em;
+}
+.ruf {
+  border-radius: 1rem;
+  background-color: rgb(122, 32, 106);
+  color: white;
+  width: max-content;
+}
+
+/* Default properties for trams */
+.str {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  width: max-content;
+}
+
+/* Default properties for subways */
+.u {
+  background-color: rgb(0,101,173);
+  color: white;
+  width: max-content;
+}
+
 
 .iceWithProductName:before {
   content: "ICE ";
@@ -148,4 +189,12 @@ them from the rest of the interface.
 
 .rbWithProductName:before {
   content: "RB ";
+}
+
+.sWithProductName:before {
+  content: "S";
+}
+
+.uWithProductName:before {
+  content: "U";
 }
