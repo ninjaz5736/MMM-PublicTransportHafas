@@ -52,7 +52,7 @@ Module.register("MMM-PublicTransportHafas", {
     fadeUnreachableDepartures: true,
     fadeReachableDepartures: true,
     fadePointForReachableDepartures: 0.25,
-    customLineStyles: "leipzig",        // Prefix for the name of the custom css file. ex: Leipzig-lines.css (case sensitive)
+    customLineStyles: "",               // Prefix for the name of the custom css file. ex: Leipzig-lines.css (case sensitive)
     showOnlyLineNumbers: false          // Display only the line number instead of the complete name, i. e. "11" instead of "STR 11"
   },
 
