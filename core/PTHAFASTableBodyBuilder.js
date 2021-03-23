@@ -181,11 +181,30 @@ class PTHAFASTableBodyBuilder {
   }
 
 
+
+  getLineId(lineName) {
+    let lineId = lineName;
+    if (lineName.search(" ") == -1) {
+      let lineNameWithoutSpaces = lineName.replace(/\s/g, "");
+      let firstNumberPosition = lineNameWithoutSpaces.search(/\d/);
+      lineId = lineNameWithoutSpaces;
+
+      if (firstNumberPosition > 0) {
+        lineId = lineNameWithoutSpaces.slice(firstNumberPosition);
+      }
+    } else {
+      lineId = lineName.split(" ")[1];
+    }
+    
+    return lineId;
+  }
+
   getLineCell(lineName) {
     let line;
 
-    if (this.config.showOnlyLineNumbers && lineName.indexOf(" ") !== -1) {
-      line = lineName.split(" ")[1];
+    if (this.config.showOnlyLineNumbers) {
+
+      line = this.getLineId(lineName);
     } else {
       line = lineName;
     }
@@ -207,24 +226,62 @@ class PTHAFASTableBodyBuilder {
   }
 
 
+/**
+ * Get product of a line name
+ * 
+ * Some HAFAS interfaces output line names with a space after the product name and
+ * some do not. As an example: `RB50` <->` RB 50`.
+ * This function returns the product name. In the two examples already mentioned
+ * (`RB50` and` RB 50`) the string `RB` would be returned. If there is no product name
+ * (if the line name starts with a digit), `undefined` is returned.
+ *
+ * @param  {String} lineName    The line name as it was delivered by the HAFAS API.
+ * @return {String} product     The product ('RB', 'S', 'U', ...).
+ */
+  getProduct(lineName) {
+    let product = lineName;
+    if (lineName.search(" ") == -1) {
+      let lineNameWithoutSpaces = lineName.replace(/\s/g, "");
+      let firstNumberPosition = lineNameWithoutSpaces.search(/\d/);
+      product = lineNameWithoutSpaces;
+
+      if (firstNumberPosition > 0) {
+        product = lineNameWithoutSpaces.slice(0, firstNumberPosition);
+      }
+    } else {
+      product = lineName.split(" ")[0];
+    }
+
+console.log(product);
+    return product;
+  }
+
+
+  /**
+   * Get css class names
+   * 
+   * Class names are returned depending on the line name. This enables CSS styles
+   * to be defined on the basis of various properties.
+   *
+   * @param  {String} lineName     The linename as it was delivered by the HAFAS API.
+   * @return {String} classNames   Series of class names
+   */
   getColoredCssClass(lineName) {
-    let className = "pthSign";
-    let prefix = lineName.split(" ")[0];
+    let classNames = "pthSign";
+    let product = this.getProduct(lineName);
     let dbProducts = ["IC", "ICE", "RE", "RB", "S"];
     let ignoreShowOnlyLineNumbers = ["IC", "ICE", "RE", "RB", "S", "U"];
 
-    className += " " + prefix.toLowerCase();
-    className += " " + lineName.replace(/\s/g, "").toLowerCase();
-
-    if (dbProducts.includes(prefix)  ) {
-      className += " pthDbStandard";
+    if (dbProducts.includes(product)) {
+      classNames += " pthDbStandard";
     }
-
-    if (ignoreShowOnlyLineNumbers.includes(prefix) && this.config.showOnlyLineNumbers) {
-      className += " " + prefix.toLowerCase() + "WithProductName";
+    if (ignoreShowOnlyLineNumbers.includes(product) && this.config.showOnlyLineNumbers) {
+      classNames += " " + product.toLowerCase() + "WithProductName";
     }
+    classNames += " " + product.toLowerCase();
+    classNames += " " + lineName.replace(/\s/g, "").toLowerCase();
 
-    return className;
+    return classNames;
   }
 
 
