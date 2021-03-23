@@ -236,7 +236,7 @@ class PTHAFASTableBodyBuilder {
     if (this.config.marqueeLongDirections && content.length > truncatePosition) {
       content = document.createElement("span");
       content.innerHTML = this.getProcessedDirection(direction);
-      //className += " pthMarquee";
+      className += " pthMarquee";
     }
 
     if (!this.config.showAbsoluteTime) {
