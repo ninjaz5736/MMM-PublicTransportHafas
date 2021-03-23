@@ -2,7 +2,7 @@
 
 const moment = require("moment");
 const createClient = require("hafas-client");
-const profile = require("hafas-client/p/insa");
+const profile = require("hafas-client/p/db");
 const arrayDiff = require("arr-diff");
 
 
