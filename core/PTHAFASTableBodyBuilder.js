@@ -216,7 +216,7 @@ class PTHAFASTableBodyBuilder {
     className += " " + prefix.toLowerCase();
     className += " " + lineName.replace(/\s/g, "").toLowerCase();
 
-    if (dbProducts.includes(prefix)  ) {
+    if (dbProducts.includes(prefix)) {
       className += " pthDbStandard";
     }
 
@@ -249,7 +249,7 @@ class PTHAFASTableBodyBuilder {
 
   getProcessedDirection(direction) {
     let replacements = this.config.replaceInDirections;
-    let processed = direction.replace("Halle (Saale), ", "").replace("(Tram/Bus)", "");
+    let processed = direction;
 
     Object.keys(replacements).forEach((key) => {
       processed = processed.replace(new RegExp(key, "g"), replacements[key]);

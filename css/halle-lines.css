@@ -3,7 +3,9 @@
   labels in the display.
 
   To customize this use as class name the name of the line without any
-  blanks and all lower case. For instance "Bus N9" becomes ".busn9"
+  blanks and all lower case. For instance "Bus N9" becomes ".busn9".
+  
+  Try to use color attributes only. Like background-color and color.
  */
 
 
