@@ -1,22 +1,19 @@
+[![GitHub issues](https://img.shields.io/github/issues/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/issues)
+[![GitHub forks](https://img.shields.io/github/forks/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/network)
+[![GitHub stars](https://img.shields.io/github/stars/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/stargazers)
+[![GitHub license](https://img.shields.io/github/license/KristjanESPERANTO/mmm-publictransporthafas?style=plastic)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/blob/master/LICENSE)
+
+
 # MMM-PublicTransportHafas
 
 MMM-PublicTransportHafas is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror) project by [Michael Teeuw](https://github.com/MichMich).
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/2742abc792b88536f6e2/maintainability)](https://codeclimate.com/github/raywo/MMM-PublicTransportHafas/maintainability) 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/2742abc792b88536f6e2/test_coverage)](https://codeclimate.com/github/raywo/MMM-PublicTransportHafas/test_coverage)
-[![Known Vulnerabilities](https://snyk.io/test/github/raywo/mmm-publictransporthafas/badge.svg?targetFile=package.json)](https://snyk.io/test/github/raywo/mmm-publictransporthafas?targetFile=package.json)
-[![Greenkeeper badge](https://badges.greenkeeper.io/raywo/MMM-PublicTransportHafas.svg)](https://greenkeeper.io/)
-[![dependency status](https://david-dm.org/raywo/MMM-PublicTransportHafas.svg)](https://david-dm.org/raywo/MMM-PublicTransportHafas)
-[![chat on gitter](https://badges.gitter.im/raywo.svg)](https://gitter.im/raywo)
-
-
-
 
 It shows live public transport information in Germany for all stations known to the Deutsche Bahn system. Most public transportation providers in Germany providing information for that system so the coverage should be quite good. The data is provided by the most beautiful [hafas-client](https://github.com/public-transport/hafas-client) by [Jannis Redmann (derhuerst)](https://github.com/derhuerst). (Please support him on [Patreon](https://www.patreon.com/derhuerst).) Even in other european contries this module should work as HAFAS is widely used throughout Europe.
 
 This module is intended to replace [MMM-PublicTransportLeipzig](https://github.com/raywo/MMM-PublicTransportLeipzig) since it uses the very unrealiable data provided by the LVB (Leipziger Verkehrsbetriebe). Thus the colors for the tram lines match the pattern used in Leipzig. But you can very easy adapt that to your needs. See [Providing a custom css file](#providing-a-custom-css-file).
 
 To limit the server request only when the module is displayed and/or the user is present, the update will be stopped when no instance of the module are displayed (module hidden by a carousel, or module MMM-Pages, or module Remote-Control, or... ). The update will also be stopped by the use of a PIR sensor using the module MMM-PIR-Sensor (that send the notification 'USER_PRESENCE'). No special configuration is needed for this behaviour. 
+
 
 ## How it works
 
@@ -32,6 +29,7 @@ For more information see the [Configuration](#configuration) section.
 |![Example: Hauptbahnhof, Leipzig, only tram](img/Hauptbahnhof_tram_only.png)<br>*Hauptbahnhof, Leipzig (displaying only trams and two unreachable departures)*|![Example: Hauptbahnhof, Leipzig, only regional and national trains](img/Hauptbahnhof_train_only.png)<br>*Hauptbahnhof, Leipzig (displaying only regional and national trains)*|
 |![Example: Leuschner Platz with relative departure time and reorderd columns](img/Leuschner_Platz_relative.png)<br>*Leuschner Platz, Leipzig (displaying departure times in relative format and reordered columns)*|
 |![Example: Several instances in Berlin, showing the last update time](img/UpdateTimeDisplayed.png)<br>*Several instances in Berlin, showing the last update time*|
+
 
 ## Preconditions
 
@@ -128,7 +126,7 @@ The module is quite configurable. These are the possible options:
 | `fadeReachableDepartures`         | <p>A boolean value indicating whether reachable departures should be faded out.</p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `false` <br>**Default Value:** `true` </p><p>**Note:** If set to `true` departures after `fadePointForReachableDepartures` will be gradually faded out so that the last departure is barely visible. </p>|
 | `fadePointForReachableDepartures` | <p>A floating point value indicating where to start the fading of departure rows.</p><p>**Type:** `float` **OPTIONAL** <br>**Example:** `0.5` (Start fading after half of the rows.)<br>**Default Value:** `0.25` </p><p>**Note:** This value is actually a percentage. The default value of `0.25` denotes that after a quarter of the visible rows set by `maxReachableDepartures` the fading should start. This setting is only effective if `fadeReachableDepartures` is set to `true`. </p>|
 | `customLineStyles`                | <p>A string value describing the name of a custom css file.</p><p>**Type:** `string` **OPTIONAL** <br>**Example:** `"dresden"`<br>**Default Value:** `"leipzig"`</p><p>**Note:** If the setting `showColoredLineSymbols` is `true` the module will try to use colored labels for the line name. Per default it uses the colors used in Leipzig. This style works best if `showOnlyLineNumbers` is set to `true`. If it doesn’t suit your taste you can provide your own settings. See [Providing a custom css file](#providing-a-custom-css-file). </p>|
-| `showOnlyLineNumbers`             | <p>A boolean value denoting whether the line name should be displayed as a number only or the full name should be used. </p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `true` <br>**Default Value:** `false` </p><p>**Note:** If set to `true` the module will try to separate line numbers from the line name and display only these. If the line name is “STR 11” only “11” will be displayed. This only works if there are blanks present in the line name. This setting is only tested with departures in Leipzig. If you encounter problems [let me know](https://github.com/raywo/MMM-PublicTransportHafas/issues).</p>|
+| `showOnlyLineNumbers`             | <p>A boolean value denoting whether the line name should be displayed as a number only or the full name should be used. </p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `true` <br>**Default Value:** `false` </p><p>**Note:** If set to `true` the module will try to separate line numbers from the line name and display only these. If the line name is “STR 11” only “11” will be displayed. This only works if there are blanks present in the line name. This setting is only tested with departures in Leipzig. If you encounter problems [let me know](https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas/issues).</p>|
 | `displayLastUpdate`               | <p>If true this will display the last update time at the end of the task list. See screenshot above</p><p>**Type:** `boolean` **OPTIONAL** <br>**Default Value:** `false`</p></p>|
 | `displayLastUpdateFormat`         | <p>Format to use for the time display if displayLastUpdate:true  </p><p>**Type:** `string` **OPTIONAL** <br>**Example:** `'dd - HH:mm:ss'` <br>**Default Value:** `'dd - HH:mm:ss'` </p>See [Moment.js formats](http://momentjs.com/docs/#/parsing/string-format/) for the other format possibilities. </p>|
 
@@ -224,4 +222,4 @@ Delays are displayed as red. No delay or negative delays (the transport will arr
 
 ## Contributing
 
-If you find any problems, bugs or have questions, please [open a GitHub issue](https://github.com/raywo/MMM-PublicTransportHafas/issues) in this repository.
+If you find any problems, bugs or have questions, please [open a GitHub issue](https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas/issues) in this repository.
