@@ -68,7 +68,7 @@ Running the script:
 change to `MagicMirror/modules/MMM-PublicTransportHafas` then start the script by typing
 
 ```bash
-node ./convenience/query_stations.js 
+node ./convenience/query_stations.js
 ```
 
 The following example shows a query for "Leipzig, Wilhelm-Leuschner-Platz". This station is included two times in the result. You have to experiment which ID gives the best results.
@@ -93,7 +93,13 @@ Gefundene Haltestellen für "Leipzig, Wilhelm-Leuschner-Platz":
 > Haltestelle: "Wilhelm-Liebknecht-Platz, Leipzig"
   ID: 000956558
   Verkehrsmittel: Bus, Tram
-``` 
+```
+
+By default, the module uses the `db` profile of the `hafas-client`. In some cases it can be advantageous to use a different profile - e.g. the default profile often does not provide platform information about stops from local transport companies. [Here](https://github.com/public-transport/hafas-client/blob/master/p/readme.md) you can find the name of all supported interfaces. Just add the name as a parameter to the command. Like 'sbb' for the profile of Swiss Railways.
+
+```bash
+node ./convenience/query_stations.js sbb
+```
 
 
 ## Configuration
@@ -102,6 +108,7 @@ The module is quite configurable. These are the possible options:
 
 | Option | Description |
 |--------|-------------|
+| `hafasProfile`                    | <p>The name of the hafas profile.</p><p>**Type:** `string` **OPTIONAL**<br>**Example:** `"insa"`<br>**Default Value:** `"db"`</p><p>**Note:** In most cases you don't need to change the value. You can find supported profiles and there names [here](https://github.com/public-transport/hafas-client/blob/master/p/readme.md).</p><p>Each profile uses its own StaionIDs. So if you change the profile, you have to find out the StationID again.</p>|
 | `stationID`                       | <p>The ID you want to display departures for.</p><p>**Type:** `string` **REQUIRED**<br>**Example:** `"008012202"`<br>**Default Value:** none</p><p>**Note:** How to get the ID is described [here](#how-to-get-the-stationid).</p>|
 | `stationName`                     | <p>The name of the station as it should appear on the display.</p><p>**Type:** `string` **OPTIONAL**<br>**Example:** `"Wilhelm-Leuschner-Platz"`<br>**Default Value:** none</p><p>**Note:** If you leave this setting, `headerPrefix` and `headerAppendix` blank the module will show an empty header.</p>|
 | `headerPrefix`                    | <p>The text to be prepended to the `stationName`.</p><p>**Type:** `string` **OPTIONAL** <br>**Example:** `"von"` (Will result in “von Wilhelm-Leuschner-Platz” being displayed.) <br>**Default Value:** `""`</p><p>**Note:** A blank between `headerPrefix` and `stationName` is automatically inserted.</p>|

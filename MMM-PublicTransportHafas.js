@@ -20,6 +20,7 @@ Module.register("MMM-PublicTransportHafas", {
   defaults: {
     // Module misc
     name: "MMM-PublicTransportHafas",
+    hafasProfile: "db",                 // Which HAFAS profile should be used?
     hidden: false,
     updatesEvery: 120,                  // How often should the table be updated in s?
 
@@ -79,6 +80,7 @@ Module.register("MMM-PublicTransportHafas", {
 
     let fetcherOptions = {
       identifier: this.identifier,
+      hafasProfile: this.config.hafasProfile,
       stationID: this.config.stationID,
       timeToStation: this.config.timeToStation,
       timeInFuture: this.config.timeInFuture,

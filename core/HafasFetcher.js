@@ -2,7 +2,6 @@
 
 const moment = require("moment");
 const createClient = require("hafas-client");
-const profile = require("hafas-client/p/db");
 const arrayDiff = require("arr-diff");
 
 
@@ -13,6 +12,7 @@ module.exports = class HafasFetcher {
    * @param config The configuration used for this fetcher. It has the following format:
    *        config = {
    *          identifier: *a string identifying this fetcher, must be unique for all instances of the module*
+   *          hafasProfile: *a valid hafas-client profile name*, 
    *          stationID: *a valid station id*,
    *          timeToStation: *an integer describing how long it takes to get to the station (in minutes)*,
    *          timeInFuture: *an integer describing how far in the future the departure can lie*
@@ -26,6 +26,7 @@ module.exports = class HafasFetcher {
   constructor(config) {
     this.leadTime = 40; // minutes
     this.config = config;
+    const profile = require("hafas-client/p/"+ this.config.hafasProfile);
     this.hafasClient = createClient(profile, 'MMM-PublicTransportHafas');
 
     // types given by the api
