@@ -6,13 +6,13 @@
 
 # MMM-PublicTransportHafas
 
-MMM-PublicTransportHafas is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror) project by [Michael Teeuw](https://github.com/MichMich).
+MMM-PublicTransportHafas is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror) project.
 
-It shows live public transport information in Germany for all stations known to the Deutsche Bahn system. Most public transportation providers in Germany providing information for that system so the coverage should be quite good. The data is provided by the most beautiful [hafas-client](https://github.com/public-transport/hafas-client) by [Jannis Redmann (derhuerst)](https://github.com/derhuerst). (Please support him on [Patreon](https://www.patreon.com/derhuerst).) Even in other european contries this module should work as HAFAS is widely used throughout Europe.
+It shows live public transport information in Germany for all stations known to the Deutsche Bahn system. Most public transportation providers in Germany providing information for that system so the coverage should be quite good. The data is provided by the fantastic [hafas-client](https://github.com/public-transport/hafas-client). Even in other european contries this module should work as HAFAS is widely used throughout Europe.
 
-This module is intended to replace [MMM-PublicTransportLeipzig](https://github.com/raywo/MMM-PublicTransportLeipzig) since it uses the very unrealiable data provided by the LVB (Leipziger Verkehrsbetriebe). Thus the colors for the tram lines match the pattern used in Leipzig. But you can very easy adapt that to your needs. See [Providing a custom css file](#providing-a-custom-css-file).
+You can very easy adapt the shapes and line colors of your local transport companies. See [Providing a custom css file](#providing-a-custom-css-file).
 
-To limit the server request only when the module is displayed and/or the user is present, the update will be stopped when no instance of the module are displayed (module hidden by a carousel, or module MMM-Pages, or module Remote-Control, or... ). The update will also be stopped by the use of a PIR sensor using the module MMM-PIR-Sensor (that send the notification 'USER_PRESENCE'). No special configuration is needed for this behaviour. 
+To limit the server request only when the module is displayed and/or the user is present, the update will be stopped when no instance of the module are displayed (module hidden e.g. by a [carousel](https://github.com/schramkef/MMM-Carousel), [MMM-Pages](https://github.com/edward-shen/MMM-pages) or [MMM-Remote-Control](https://github.com/Jopyth/MMM-Remote-Control)). The update will also be stopped by the use of a PIR sensor using the module [MMM-PIR-Sensor](https://github.com/paviro/MMM-PIR-Sensor) (that sends the notification 'USER_PRESENCE'). No special configuration is needed for this behaviour. 
 
 
 ## How it works
@@ -95,7 +95,7 @@ Gefundene Haltestellen für "Leipzig, Wilhelm-Leuschner-Platz":
   Verkehrsmittel: Bus, Tram
 ```
 
-By default, the module uses the `db` profile of the `hafas-client`. In some cases it can be advantageous to use a different profile - e.g. the default profile often does not provide platform information about stops from local transport companies. [Here](https://github.com/public-transport/hafas-client/blob/master/p/readme.md) you can find the name of all supported interfaces. Just add the name as a parameter to the command. Like 'sbb' for the profile of Swiss Railways.
+By default, the module uses the `db` profile of the `hafas-client`. In some cases it can be advantageous to use a different profile - e.g. the default profile often does not provide platform information from local transport companies. [Here](https://github.com/public-transport/hafas-client/blob/master/p/readme.md) you can find the name of all supported interfaces. Just add the name as a parameter to the command. Like 'sbb' for the profile of Swiss Railways.
 
 ```bash
 node ./convenience/query_stations.js sbb
@@ -146,22 +146,23 @@ Here is an example for an entry in `config.js`
   position: "bottom_right",
   
   config: {
+    // Departures options
     stationID: "008012202",                   // Replace with your stationID!
     stationName: "Wilhelm-Leuschner-Platz",   // Replace with your station name!
-  
     direction: "",                    // Show only departures heading to this station. (A station ID.)
+    excludedTransportationTypes: [],  // Which transportation types should not be shown on the mirror? (comma-separated list of types) possible values: "tram", "bus", "suburban", "subway", "regional" and "national"
     ignoredLines: [],                 // Which lines should be ignored? (comma-separated list of line names)
-    excludedTransportationTypes: [],  // Which transportation types should not be shown on the mirror? (comma-separated list of types) possible values: StN for tram, BuN for bus, s for suburban
     timeToStation: 10,                // How long do you need to walk to the next Station?
 
-    showColoredLineSymbols: true,     // Want colored line symbols?
-    useColorForRealtimeInfo: true,    // Want colored real time information (timeToStation, early)?
-    showTableHeadersAsSymbols: true,  // Table Headers as symbols or text?
+    // Look and Feel
+    displayLastUpdate: true,           // Display the last time of module update.
     maxUnreachableDepartures: 0,      // How many unreachable departures should be shown?
     maxReachableDepartures: 7,        // How many reachable departures should be shown?
+    showColoredLineSymbols: true,     // Want colored line symbols?
     customLineStyles: "",             // Prefix for the name of the custom css file. ex: Leipzig-lines.css (case sensitive)
     showOnlyLineNumbers: false,       // Display only the line number instead of the complete name, i. e. "11" instead of "STR 11"
-    displayLastUpdate: true           // Display the last time of module update.
+    showTableHeadersAsSymbols: true,  // Table Headers as symbols or text?
+    useColorForRealtimeInfo: true    // Want colored real time information (timeToStation, early)?
   }
 },
 ```
@@ -222,11 +223,15 @@ Delays are displayed as red. No delay or negative delays (the transport will arr
 
 ## Special Thanks
 
-* [Michael Teeuw](https://github.com/MichMich) for inspiring me and many others to build a MagicMirror module.
-* [Jannis Redmann](https://github.com/derhuerst) for creating the most useful [hafas-client](https://github.com/derhuerst/hafas-client) library which provides the data for this module. Please support him on [Patreon](https://www.patreon.com/derhuerst).
+* [Michael Teeuw](https://github.com/MichMich) for creating the inspiring project [MagicMirror²](https://github.com/MichMich/MagicMirror). You can sponsor him and the MagicMirror² project through [GitHub](https://github.com/sponsors/MichMich).
+* [Jannis Redmann](https://github.com/derhuerst) for creating the most useful [hafas-client](https://github.com/derhuerst/hafas-client) library which provides the data for this module. You can sponsor him and a lot of his public transport projects through [GitHub](https://github.com/sponsors/derhuerst) or [Patreon](https://www.patreon.com/derhuerst).
+* [deg0nz](https://github.com/deg0nz) for creating the [MMM-PublicTransportBerlin](https://github.com/deg0nz/MMM-PublicTransportBerlin) module, on which this one is originally based.
+* [Ray Wojciechowski](https://github.com/raywo) for initiating this module and maintaining it until 2018.
 * The community of magicmirror.builders for help in the development process and all contributors for finding and fixing errors in this module.
 
 
 ## Contributing
 
 If you find any problems, bugs or have questions, please [open a GitHub issue](https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas/issues) in this repository.
+
+Pull requests are of course also very welcome 🙂
