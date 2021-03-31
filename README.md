@@ -1,14 +1,29 @@
+[![npm version](https://img.shields.io/npm/v/hafas-client.svg)](https://www.npmjs.com/package/hafas-client)
 [![GitHub issues](https://img.shields.io/github/issues/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/issues)
 [![GitHub forks](https://img.shields.io/github/forks/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/network)
 [![GitHub stars](https://img.shields.io/github/stars/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/stargazers)
 [![GitHub license](https://img.shields.io/github/license/KristjanESPERANTO/mmm-publictransporthafas?style=plastic)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/blob/master/LICENSE)
 
-
 # MMM-PublicTransportHafas
 
-MMM-PublicTransportHafas is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror) project.
+**MMM-PublicTransportHafas is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror) project.**
 
-It shows live public transport information in Germany for all stations known to the Deutsche Bahn system. Most public transportation providers in Germany providing information for that system so the coverage should be quite good. The data is provided by the fantastic [hafas-client](https://github.com/public-transport/hafas-client). Even in other european contries this module should work as HAFAS is widely used throughout Europe.
+- [Description](#description)
+- [How it works](#how-it-works)
+- [Screenshots](#screenshots)
+- [Preconditions](#preconditions)
+- [Installing](#installing)
+- [Updating](#updating)
+- [How to get the `stationID`](#how-to-get-the-stationid)
+- [Configuration](#configuration)
+- [Multiple instances](#multiple-instances)
+- [Providing a custom css file](#providing-a-custom-css-file)
+- [Special Thanks](#special-thanks)
+- [Contributing](#contributing)
+
+## Description
+
+This module shows live public transport information in Germany for all stations known to the Deutsche Bahn system. Most public transportation providers in Germany providing information for that system so the coverage should be quite good. The data is provided by the fantastic [hafas-client](https://github.com/public-transport/hafas-client). Even in other european contries this module should work as HAFAS is widely used throughout Europe.
 
 You can very easy adapt the shapes and line colors of your local transport companies. See [Providing a custom css file](#providing-a-custom-css-file).
 
