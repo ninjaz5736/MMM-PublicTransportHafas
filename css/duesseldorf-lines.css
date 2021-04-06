@@ -1,9 +1,3 @@
-
-.str701, .str706 {
-  background-color: red;
-  color: white;
-}
-
 /* Override default background-color for all busses */
 .bus {
   background-color: #F8C623;
