@@ -4,7 +4,7 @@
   color: white;
 }
 
-.bus835, .bus836, .bus723, .bus827, .bus893 {
+/* Override default background-color for all busses */
+.bus {
   background-color: #F8C623;
-  color: white;
 }
