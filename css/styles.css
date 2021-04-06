@@ -102,8 +102,8 @@ them from the rest of the interface.
   min-width: 2.5ch;
   font-size: 0.9em;
   font-weight: bold;
-  margin: 0.1rem auto;
-  padding: 0.1rem;
+  margin: 0.2rem auto;
+  padding: 0 0.3rem;
   position: relative;
   text-align: center;
 }
