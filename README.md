@@ -18,6 +18,7 @@
 - [Configuration](#configuration)
 - [Multiple instances](#multiple-instances)
 - [Providing a custom css file](#providing-a-custom-css-file)
+- [Technical background details](#technical-background-details)
 - [Special Thanks](#special-thanks)
 - [Contributing](#contributing)
 
@@ -26,8 +27,6 @@
 This module shows live public transport information in Germany for all stations known to the Deutsche Bahn system. Most public transportation providers in Germany providing information for that system so the coverage should be quite good. The data is provided by the fantastic [hafas-client](https://github.com/public-transport/hafas-client). Even in other european contries this module should work as HAFAS is widely used throughout Europe.
 
 You can very easy adapt the shapes and line colors of your local transport companies. See [Providing a custom css file](#providing-a-custom-css-file).
-
-To limit the server request only when the module is displayed and/or the user is present, the update will be stopped when no instance of the module are displayed (module hidden e.g. by a [MMM-Carousel](https://github.com/lawrence-jeff/MMM-Carousel), [MMM-Pages](https://github.com/edward-shen/MMM-pages) or [MMM-Remote-Control](https://github.com/Jopyth/MMM-Remote-Control)). The update will also be stopped by the use of a PIR sensor using the module [MMM-PIR-Sensor](https://github.com/paviro/MMM-PIR-Sensor) (that sends the notification 'USER_PRESENCE'). No special configuration is needed for this behaviour. 
 
 
 ## How it works
@@ -234,6 +233,11 @@ Alongside the departure time a small figure displays the delay as reported by th
 ![Time with delay](img/time_with_delay.png) ![Time without delay](img/time_without_delay.png)
 
 Delays are displayed as red. No delay or negative delays (the transport will arrive early) are displayed in green. If you want to customize that include the classes `pthHasDelay` and `pthIsTooEarly` in your custom css file and make the appropriate settings.
+
+
+## Technical background details
+
+To limit the server request only when the module is displayed and/or the user is present, the update will be stopped when no instance of the module are displayed (module hidden e.g. by a [MMM-Carousel](https://github.com/lawrence-jeff/MMM-Carousel), [MMM-Pages](https://github.com/edward-shen/MMM-pages) or [MMM-Remote-Control](https://github.com/Jopyth/MMM-Remote-Control)). The update will also be stopped by the use of a PIR sensor using the module [MMM-PIR-Sensor](https://github.com/paviro/MMM-PIR-Sensor) (that sends the notification 'USER_PRESENCE'). No special configuration is needed for this behaviour.
 
 
 ## Special Thanks
