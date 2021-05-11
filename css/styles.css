@@ -139,8 +139,8 @@ them from the rest of the interface.
   width: max-content;
 }
 
-/* Default properties for busses */
-.bus {
+/* Default properties for busses (general) and obusses (SVV) */
+.bus, .obus {
   border-radius: 1em;
   background-color: rgb(122, 32, 106);
   color: white;

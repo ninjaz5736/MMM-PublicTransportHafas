@@ -40,7 +40,16 @@ module.exports = class HafasFetcher {
       "suburban",
       "subway",
       "tram",
-      "taxi"
+      "taxi",
+      // for SVV
+      "bahn-s-bahn",
+      "u-bahn",
+      "strassenbahn",
+      "fernbus",
+      "regionalbus",
+      "stadtbus",
+      "seilbahn-zahnradbahn",
+      "schiff",
     ];
 
     this.config.includedTransportationTypes = arrayDiff(this.possibleTypes, this.config.excludedTransportationTypes);
