@@ -50,6 +50,16 @@ module.exports = class HafasFetcher {
       "stadtbus",
       "seilbahn-zahnradbahn",
       "schiff",
+      // for SBB
+      "express-train",
+      "international-train",
+      "interregional-train",
+      "regional-express-train",
+      "watercraft",
+      "suburban-train",
+      "bus-taxi",
+      "gondola",
+      "car-train",
     ];
 
     this.config.includedTransportationTypes = arrayDiff(this.possibleTypes, this.config.excludedTransportationTypes);
