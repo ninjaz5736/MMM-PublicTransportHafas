@@ -161,7 +161,7 @@ them from the rest of the interface.
 }
 
 /* Default properties for trams */
-.str {
+.str, .stb {
   background-color: rgb(255, 0, 0);
   color: white;
   width: max-content;
