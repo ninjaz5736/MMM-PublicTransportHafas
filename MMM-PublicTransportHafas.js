@@ -54,7 +54,8 @@ Module.register("MMM-PublicTransportHafas", {
     fadeReachableDepartures: true,
     fadePointForReachableDepartures: 0.25,
     customLineStyles: "",               // Prefix for the name of the custom css file. ex: Leipzig-lines.css (case sensitive)
-    showOnlyLineNumbers: false          // Display only the line number instead of the complete name, i. e. "11" instead of "STR 11"
+    showOnlyLineNumbers: false,         // Display only the line number instead of the complete name, i. e. "11" instead of "STR 11"
+    animationSpeed: 2000                // Refresh animation speed in milliseconds
   },
 
 
@@ -225,14 +226,14 @@ Module.register("MMM-PublicTransportHafas", {
         // reset error object
         this.error = {};
         this.departures = payload.departures;
-        this.updateDom(2000);
+        this.updateDom(this.config.animationSpeed);
         this.sendNotification('TRANSPORT_HAFAS', payload.departures)
         break;
 
       case "FETCH_ERROR":
         this.error = payload.error;
         this.departures = [];
-        this.updateDom(2000);
+        this.updateDom(this.config.animationSpeed);
 
         break;
     }
