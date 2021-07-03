@@ -12,7 +12,7 @@
 "use strict";
 
 //UserPresence Management (PIR sensor)
-var UserPresence = true; //true by default, so no impact for user without a PIR sensor
+let UserPresence = true; //true by default, so no impact for user without a PIR sensor
 
 Module.register("MMM-PublicTransportHafas", {
 
@@ -55,7 +55,7 @@ Module.register("MMM-PublicTransportHafas", {
     fadePointForReachableDepartures: 0.25,
     customLineStyles: "",               // Prefix for the name of the custom css file. ex: Leipzig-lines.css (case sensitive)
     showOnlyLineNumbers: false,         // Display only the line number instead of the complete name, i. e. "11" instead of "STR 11"
-    animationSpeed: 2000                // Refresh animation speed in milliseconds
+    animationSpeed: 1500                // Refresh animation speed in milliseconds
   },
 
 
@@ -119,7 +119,7 @@ Module.register("MMM-PublicTransportHafas", {
   
   GestionUpdateIntervalHafas: function() {
     if (UserPresence === true && this.ModulePublicTransportHafasHidden === false){ // Make sure to have a user present in front of the screen (PIR sensor) and that the module is displayed
-      var self = this;
+      let self = this;
       // Log.log(this.config.stationName + " is displayed and user present! Update it");
   
       // Update now and start again the update timer
@@ -152,12 +152,12 @@ Module.register("MMM-PublicTransportHafas", {
 
     let noDeparturesMessage = this.translate("PTH_NO_DEPARTURES");
 
-    var wrapper = domBuilder.getDom(this.departures, headings, noDeparturesMessage);
+    let wrapper = domBuilder.getDom(this.departures, headings, noDeparturesMessage);
 
     // display the update time at the end, if defined so by the user config
     if(this.config.displayLastUpdate){
 
-      var updateinfo = document.createElement("div");
+      let updateinfo = document.createElement("div");
       updateinfo.className = "xsmall light align-left";
       updateinfo.innerHTML = "Update: " + moment.unix(this.lastUpdate).format(this.config.displayLastUpdateFormat);
       wrapper.appendChild(updateinfo);
