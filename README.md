@@ -151,6 +151,7 @@ The module is quite configurable. These are the possible options:
 | `showOnlyLineNumbers`             | <p>A boolean value denoting whether the line name should be displayed as a number only or the full name should be used. </p><p>**Type:** `boolean` **OPTIONAL** <br>**Example:** `true` <br>**Default Value:** `false` </p><p>**Note:** If set to `true` the module will try to separate line numbers from the line name and display only these. If the line name is “STR 11” only “11” will be displayed. This only works if there are blanks present in the line name. This setting is only tested with departures in Leipzig. If you encounter problems [let me know](https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas/issues).</p>|
 | `displayLastUpdate`               | <p>If true this will display the last update time at the end of the task list. See screenshot above</p><p>**Type:** `boolean` **OPTIONAL** <br>**Default Value:** `false`</p></p>|
 | `displayLastUpdateFormat`         | <p>Format to use for the time display if displayLastUpdate:true  </p><p>**Type:** `string` **OPTIONAL** <br>**Example:** `'dd - HH:mm:ss'` <br>**Default Value:** `'dd - HH:mm:ss'` </p>See [Moment.js formats](http://momentjs.com/docs/#/parsing/string-format/) for the other format possibilities. </p>|
+| `animationSpeed`                  | <p>Speed of the update animation. (Milliseconds)</p><p>**Type:** `integer` **OPTIONAL** <br>**Possible values:** `0` - `5000` <br>**Default Value:** `2000` </p>|
 
 
 Here is an example for an entry in `config.js`
