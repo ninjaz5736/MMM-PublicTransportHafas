@@ -252,7 +252,6 @@ class PTHAFASTableBodyBuilder {
       product = lineName.split(" ")[0];
     }
 
-console.log(product);
     return product;
   }
 
