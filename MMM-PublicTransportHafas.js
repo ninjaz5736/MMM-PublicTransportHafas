@@ -12,7 +12,7 @@
 "use strict";
 
 //UserPresence Management (PIR sensor)
-let UserPresence = true; //true by default, so no impact for user without a PIR sensor
+var UserPresence = true; //true by default, so no impact for user without a PIR sensor
 
 Module.register("MMM-PublicTransportHafas", {
 
