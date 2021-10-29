@@ -11,7 +11,7 @@ const productMap = {
   bus: "Bus",
   ferry: "Fähre",
   national: "Fernverkehr",
-  nationalExp: "Fernverkehr",
+  nationalExpress: "Fernverkehr",
   regional: "Regionalverkehr",
   suburban: "S-Bahn",
   subway: "U-Bahn",

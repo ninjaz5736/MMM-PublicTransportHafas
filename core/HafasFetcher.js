@@ -35,7 +35,7 @@ module.exports = class HafasFetcher {
       "ferry",
       "express",
       "national",
-      "nationalExp",
+      "nationalExpress",
       "regional",
       "suburban",
       "subway",
