@@ -98,7 +98,16 @@ class PTHAFASTableBodyBuilder {
       case "time":
         let time = departure.when;
         let delay = departure.delay;
+
+        // Use planned time if canceled
+        if (departure.canceled == true) time = departure.plannedWhen;
+
+        // Get time cell
         cell = this.getTimeCell(time, delay);
+
+        // Add class if canceled
+        if (departure.canceled == true) cell.className += " pthCanceled";
+
         break;
 
       case "line":
@@ -113,6 +122,8 @@ class PTHAFASTableBodyBuilder {
 
       case "platform":
         let platform = departure.platform;
+        if (platform == null) platform = departure.plannedPlatform;
+        if (platform == null) platform = "";
         cell = this.getPlatformCell(platform);
         break;
     }
@@ -317,9 +328,6 @@ class PTHAFASTableBodyBuilder {
 
   getPlatformCell(platform) {
     let className = "pthPlatformCell pthTextCenter";
-    if (platform == null) {
-      platform = "";
-    }
     return this.getTableCell(platform, className);
   }
 

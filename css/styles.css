@@ -25,6 +25,10 @@ them from the rest of the interface.
   text-align: left;
 }
 
+.pthCanceled {
+  text-decoration: line-through;
+}
+
 .pthDirectionCell {
   max-width: 24ch;
   min-width: 16ch;
