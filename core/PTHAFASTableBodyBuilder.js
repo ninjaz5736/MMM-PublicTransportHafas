@@ -148,7 +148,7 @@ class PTHAFASTableBodyBuilder {
 
     let cssClass = "dimmed";
 
-// +n === +n --> Test, if n is numeric
+    // +n === +n --> Test, if n is numeric
     if (this.config.useColorForRealtimeInfo && (+delay === +delay)) {
       cssClass = delay > 0 ? "pthHasDelay" : "pthIsTooEarly";
     }
@@ -195,7 +195,7 @@ class PTHAFASTableBodyBuilder {
     } else {
       lineId = lineName.split(" ")[1];
     }
-    
+
     return lineId;
   }
 
@@ -226,18 +226,18 @@ class PTHAFASTableBodyBuilder {
   }
 
 
-/**
- * Get product of a line name
- * 
- * Some HAFAS interfaces output line names with a space after the product name and
- * some do not. As an example: `RB50` <->` RB 50`.
- * This function returns the product name. In the two examples already mentioned
- * (`RB50` and` RB 50`) the string `RB` would be returned. If there is no product name
- * (if the line name starts with a digit), `undefined` is returned.
- *
- * @param  {String} lineName    The line name as it was delivered by the HAFAS API.
- * @return {String} product     The product ('RB', 'S', 'U', ...).
- */
+  /**
+   * Get product of a line name
+   * 
+   * Some HAFAS interfaces output line names with a space after the product name and
+   * some do not. As an example: `RB50` <->` RB 50`.
+   * This function returns the product name. In the two examples already mentioned
+   * (`RB50` and` RB 50`) the string `RB` would be returned. If there is no product name
+   * (if the line name starts with a digit), `undefined` is returned.
+   *
+   * @param  {String} lineName    The line name as it was delivered by the HAFAS API.
+   * @return {String} product     The product ('RB', 'S', 'U', ...).
+   */
   getProduct(lineName) {
     let product = lineName;
     if (lineName.search(" ") == -1) {

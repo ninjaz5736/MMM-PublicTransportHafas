@@ -26,7 +26,7 @@ module.exports = class HafasFetcher {
   constructor(config) {
     this.leadTime = 40; // minutes
     this.config = config;
-    const profile = require("hafas-client/p/"+ this.config.hafasProfile);
+    const profile = require("hafas-client/p/" + this.config.hafasProfile);
     this.hafasClient = createClient(profile, 'MMM-PublicTransportHafas');
 
     // types given by the api
@@ -91,7 +91,6 @@ module.exports = class HafasFetcher {
         filteredDepartures = this.departuresMarkedWithReachability(filteredDepartures);
         filteredDepartures = this.departuresRemovedSurplusUnreachableDepartures(filteredDepartures);
         filteredDepartures = filteredDepartures.slice(0, maxElements);
-
         return filteredDepartures;
       }).catch((e) => {
         throw e;

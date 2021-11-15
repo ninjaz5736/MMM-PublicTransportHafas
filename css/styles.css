@@ -13,7 +13,7 @@ them from the rest of the interface.
   display: table;
 }
 
-.pthTable > thead {
+.pthTable>thead {
   text-align: left;
 }
 
@@ -95,6 +95,7 @@ them from the rest of the interface.
   }
 }
 
+
 /* Styles for line symbols. */
 .pthSign {
   background-color: #333333;
@@ -114,6 +115,7 @@ them from the rest of the interface.
   margin-right: 0.3em;
 }
 
+
 /* Default properties for Deutsche Bahn products. */
 .pthDbStandard {
   border-radius: 0.25rem;
@@ -132,12 +134,13 @@ them from the rest of the interface.
   color: white;
 }
 
- .s {
+.s {
   background-color: rgb(0, 111, 53);
   border: 0.5px white solid;
   color: white;
   width: max-content;
 }
+
 
 /* Default properties for busses (general) and obusses (SVV) */
 .bus, .obus {
@@ -146,6 +149,7 @@ them from the rest of the interface.
   color: white;
   width: max-content;
 }
+
 
 /* Default properties for "Rufbusse" */
 .ruf:before {
@@ -160,6 +164,7 @@ them from the rest of the interface.
   width: max-content;
 }
 
+
 /* Default properties for trams */
 .str, .stb {
   background-color: rgb(255, 0, 0);
@@ -167,9 +172,10 @@ them from the rest of the interface.
   width: max-content;
 }
 
+
 /* Default properties for subways */
 .u {
-  background-color: rgb(0,101,173);
+  background-color: rgb(0, 101, 173);
   color: white;
   width: max-content;
 }
