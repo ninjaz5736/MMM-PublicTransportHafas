@@ -24,6 +24,17 @@ class PTHAFASTableBodyBuilder {
       let row = this.getDeparturesTableRow(departure, index, reachableCount, unreachableCount);
       tBody.appendChild(row);
 
+      if (this.config.showWarningRemarks) {
+        
+        // Next line is for testing if there are no warning remarks - uncomment it to append to every departure a warning remark
+        // departure.remarks.push({ "id": "326169", "type": "warning", "summary": "Meldung für Linie 8", "text": "Es kommt zu betriebsbedingten Fahrtausfällen. \nDie entfallenden Fahrten sind in der App MOOVME sowie unter www.havag.com/fahrtenplaner gekennzeichnet.", "icon": { "type": "HIM3", "title": null }, "priority": 50, "products": { "nationalExpress": true, "national": true, "regional": true, "suburban": true, "tram": true, "bus": true, "tourismTrain": true }, "company": "HAVAG - Hallesche Verkehrs-AG", "categories": [3], "validFrom": "2021-12-03T09:17:00+01:00", "validUntil": "2022-12-31T23:59:00+01:00", "modified": "2021-12-03T09:17:46+01:00" });
+
+        let remarksRow = this.getRemarksTableRow(departure);
+        if (remarksRow.innerText != "") {
+          tBody.appendChild(remarksRow);
+        }
+      }
+
       let nextDeparture = departures[index + 1];
       this.insertRulerIfNecessary(tBody, departure, nextDeparture, noDepartureMessage);
     });
@@ -71,6 +82,38 @@ class PTHAFASTableBodyBuilder {
     return row;
   }
 
+  getRemarksTableRow(departure) {
+    let row = document.createElement("tr");
+    row.className = "";
+
+    let cell = document.createElement("td");
+    cell.colSpan = this.config.tableHeaderOrder.length;
+
+    let cell_Container = document.createElement("div");
+    cell_Container.className = "pthWarningRemarks";
+
+    let marquee = document.createElement("span");
+    marquee.innerText = "";
+
+    departure.remarks.forEach((remark) => {
+      console.log(remark);
+      if (remark.type == "warning") {
+        marquee.innerText += "  ⚠️  " + remark.summary.replaceAll("\n", " ") + ": " + remark.text.replaceAll("\n", " ");
+      }
+    });
+
+    if (marquee.innerText != "") {
+      while (marquee.innerText.length < 3000) {
+        marquee.innerText += marquee.innerText;
+      }
+    }
+
+    cell_Container.appendChild(marquee);
+    cell.appendChild(cell_Container);
+    row.appendChild(cell);
+
+    return row;
+  }
 
   getDeparturesTableRow(departure, index, departuresCount, unreachableCount) {
     let row = document.createElement("tr");
