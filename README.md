@@ -28,13 +28,11 @@ This module shows live public transport information in Germany for all stations 
 
 You can very easy adapt the shapes and line colors of your local transport companies. See [Providing a custom css file](#providing-a-custom-css-file).
 
-
 ## How it works
 
 After you installed MMM-PublicTransportHafas you just configure it to your needs and that’s it. The only config you really need to set is the stationID property. This determines the station you want to display. Everything else is covered by defaults but can be configured by you anyway. For instance you can enter a time you need to get to the station (`timeToStation` in config). The module then only shows departures you can reach respecting the set time.
 
 For more information see the [Configuration](#configuration) section.
-
 
 ## Screenshots
 
@@ -43,15 +41,13 @@ For more information see the [Configuration](#configuration) section.
 |![Example: Hauptbahnhof, Leipzig, only tram](img/Hauptbahnhof_tram_only.png)<br>*Hauptbahnhof, Leipzig (displaying only trams and two unreachable departures)*|![Example: Hauptbahnhof, Leipzig, only regional and national trains](img/Hauptbahnhof_train_only.png)<br>*Hauptbahnhof, Leipzig (displaying only regional and national trains)*|
 |![Example: Leuschner Platz with relative departure time and reorderd columns](img/Leuschner_Platz_relative.png)<br>*Leuschner Platz, Leipzig (displaying departure times in relative format and reordered columns)*|
 
-![Example: Multiple instances in Berlin, showing the last update time](img/UpdateTimeDisplayed.png)<br>*Several instances in Berlin, showing the last update time*
-
+![Example: Multiple instances in Berlin, showing the last update time](img/UpdateTimeDisplayed.png)<br>_Several instances in Berlin, showing the last update time_
 
 ## Preconditions
 
-* MagicMirror² instance
-* Node.js version >= 10
-* npm
-
+- MagicMirror² instance
+- Node.js version >= 10
+- npm
 
 ## Installing
 
@@ -63,7 +59,6 @@ cd MMM-PublicTransportHafas
 npm install
 ```
 
-
 ## Updating
 
 Go to the module’s folder inside MagicMirror modules folder and pull the latest version from GitHub and install:
@@ -72,7 +67,6 @@ Go to the module’s folder inside MagicMirror modules folder and pull the lates
 git pull
 npm install
 ```
-
 
 ## How to get the `stationID`
 
@@ -116,7 +110,6 @@ By default, the module uses the `db` profile of the `hafas-client`. In some case
 node ./convenience/query_stations.js sbb
 ```
 
-
 ## Configuration
 
 The module is quite configurable. These are the possible options:
@@ -154,14 +147,13 @@ The module is quite configurable. These are the possible options:
 | `displayLastUpdateFormat`         | <p>Format to use for the time display if displayLastUpdate:true  </p><p>**Type:** `string` **OPTIONAL** <br>**Example:** `'dd - HH:mm:ss'` <br>**Default Value:** `'dd - HH:mm:ss'` </p>See [Moment.js formats](http://momentjs.com/docs/#/parsing/string-format/) for the other format possibilities. </p>|
 | `animationSpeed`                  | <p>Speed of the update animation. (Milliseconds)</p><p>**Type:** `integer` **OPTIONAL** <br>**Possible values:** `0` - `5000` <br>**Default Value:** `2000` </p>|
 
-
 Here is an example for an entry in `config.js`
 
 ```javascript
 {
   module: "MMM-PublicTransportHafas",
   position: "bottom_right",
-  
+
   config: {
     // Departures options
     stationID: "008012202",                   // Replace with your stationID!
@@ -184,13 +176,11 @@ Here is an example for an entry in `config.js`
 },
 ```
 
-
 ## Multiple instances
 
-It is possible to use multiple instances of this module just by adding another entry of the MMM-PublicTransportHafas module to the `config.js` of your mirror. 
+It is possible to use multiple instances of this module just by adding another entry of the MMM-PublicTransportHafas module to the `config.js` of your mirror.
 
 You can even use the same `stationID` in different instances. So you can display in one instance something like “main station heading eastbound” and in another instance “main station heading westbound”.
-
 
 ## Providing a custom css file
 
@@ -231,26 +221,23 @@ Some night buses in Leipzig use an orange-ish color. All bus symbols are circles
 
 ### Customizing the color for delays
 
-Alongside the departure time a small figure displays the delay as reported by the transport provider. 
+Alongside the departure time a small figure displays the delay as reported by the transport provider.
 
 ![Time with delay](img/time_with_delay.png) ![Time without delay](img/time_without_delay.png)
 
 Delays are displayed as red. No delay or negative delays (the transport will arrive early) are displayed in green. If you want to customize that include the classes `pthHasDelay` and `pthIsTooEarly` in your custom css file and make the appropriate settings.
 
-
 ## Technical background details
 
 To limit the server request only when the module is displayed and/or the user is present, the update will be stopped when no instance of the module are displayed (module hidden e.g. by a [MMM-Carousel](https://github.com/lawrence-jeff/MMM-Carousel), [MMM-Pages](https://github.com/edward-shen/MMM-pages) or [MMM-Remote-Control](https://github.com/Jopyth/MMM-Remote-Control)). The update will also be stopped by the use of a PIR sensor using the module [MMM-PIR-Sensor](https://github.com/paviro/MMM-PIR-Sensor) (that sends the notification 'USER_PRESENCE'). No special configuration is needed for this behaviour.
 
-
 ## Special Thanks
 
-* [Michael Teeuw](https://github.com/MichMich) for creating the inspiring project [MagicMirror²](https://github.com/MichMich/MagicMirror). You can sponsor him and the MagicMirror² project through [GitHub](https://github.com/sponsors/MichMich).
-* [Jannis Redmann](https://github.com/derhuerst) for creating the most useful [hafas-client](https://github.com/derhuerst/hafas-client) library which provides the data for this module. You can sponsor him and a lot of his public transport projects through [GitHub](https://github.com/sponsors/derhuerst) or [Patreon](https://www.patreon.com/derhuerst).
-* [deg0nz](https://github.com/deg0nz) for creating the [MMM-PublicTransportBerlin](https://github.com/deg0nz/MMM-PublicTransportBerlin) module, on which this one is originally based.
-* [Ray Wojciechowski](https://github.com/raywo) for initiating this module and maintaining it until 2018.
-* The community of magicmirror.builders for help in the development process and all contributors for finding and fixing errors in this module.
-
+- [Michael Teeuw](https://github.com/MichMich) for creating the inspiring project [MagicMirror²](https://github.com/MichMich/MagicMirror). You can sponsor him and the MagicMirror² project through [GitHub](https://github.com/sponsors/MichMich).
+- [Jannis Redmann](https://github.com/derhuerst) for creating the most useful [hafas-client](https://github.com/derhuerst/hafas-client) library which provides the data for this module. You can sponsor him and a lot of his public transport projects through [GitHub](https://github.com/sponsors/derhuerst) or [Patreon](https://www.patreon.com/derhuerst).
+- [deg0nz](https://github.com/deg0nz) for creating the [MMM-PublicTransportBerlin](https://github.com/deg0nz/MMM-PublicTransportBerlin) module, on which this one is originally based.
+- [Ray Wojciechowski](https://github.com/raywo) for initiating this module and maintaining it until 2018.
+- The community of magicmirror.builders for help in the development process and all contributors for finding and fixing errors in this module.
 
 ## Contributing
 

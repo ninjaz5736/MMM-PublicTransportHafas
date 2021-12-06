@@ -30,7 +30,7 @@ if (process.argv.length == 3) {
 try {
   profile = require("hafas-client/p/" + profileName);
 }
-catch(err) {
+catch (err) {
   console.error("\n" + err.message + "\n Did you choose the right profile name? \n");
 }
 

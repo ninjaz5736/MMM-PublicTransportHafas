@@ -11,7 +11,7 @@ module.exports = NodeHelper.create({
   },
 
 
-  socketNotificationReceived: function(notification, payload) {
+  socketNotificationReceived: function (notification, payload) {
     switch (notification) {
       case "CREATE_FETCHER":
         this.createFetcher(payload);
