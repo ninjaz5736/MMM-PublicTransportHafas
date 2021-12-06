@@ -96,7 +96,6 @@ class PTHAFASTableBodyBuilder {
     marquee.innerText = "";
 
     departure.remarks.forEach((remark) => {
-      console.log(remark);
       if (remark.type == "warning") {
         marquee.innerText += "  ⚠️  " + remark.summary.replaceAll("\n", " ") + ": " + remark.text.replaceAll("\n", " ");
       }
