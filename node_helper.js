@@ -11,7 +11,7 @@ module.exports = NodeHelper.create({
   },
 
 
-  socketNotificationReceived: function(notification, payload) {
+  socketNotificationReceived: function (notification, payload) {
     switch (notification) {
       case "CREATE_FETCHER":
         this.createFetcher(payload);
@@ -53,20 +53,29 @@ module.exports = NodeHelper.create({
   fetchDepartures(identifier) {
     let fetcher = this.departuresFetchers[identifier];
 
-    fetcher.fetchDepartures().then((fetchedDepartures) => {
-      let payload = {
-        identifier: fetcher.getIdentifier(),
-        departures: fetchedDepartures
-      };
+    if (fetcher) {
+      fetcher.fetchDepartures().then((fetchedDepartures) => {
+        let payload = {
+          identifier: fetcher.getIdentifier(),
+          departures: fetchedDepartures
+        };
 
-      this.sendSocketNotification("DEPARTURES_FETCHED", payload);
-    }).catch((error) => {
-      let payload = {
-        identifier: fetcher.getIdentifier(),
-        error: error
-      };
+        this.sendSocketNotification("DEPARTURES_FETCHED", payload);
+      }).catch((error) => {
+        let payload = {
+          identifier: fetcher.getIdentifier(),
+          error: error
+        };
 
+        this.sendSocketNotification("FETCH_ERROR", payload);
+      });
+    } else {
+      let payload = {
+        identifier: null,
+        error: `fetcher not defined: ${identifier} | ${this.departuresFetchers.join(' ')}`
+      };
+      Log.error(payload)
       this.sendSocketNotification("FETCH_ERROR", payload);
-    });
+    }
   }
 });
