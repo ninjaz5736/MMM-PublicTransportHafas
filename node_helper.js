@@ -74,7 +74,6 @@ module.exports = NodeHelper.create({
         identifier: null,
         error: `fetcher not defined: ${identifier} | ${this.departuresFetchers.join(' ')}`
       };
-      Log.error(payload)
       this.sendSocketNotification("FETCH_ERROR", payload);
     }
   }
