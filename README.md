@@ -82,7 +82,7 @@ node ./convenience/query_stations.js
 
 The following example shows a query for "Leipzig, Wilhelm-Leuschner-Platz". This station is included two times in the result. You have to experiment which ID gives the best results.
 
-```
+```bash
 Geben Sie eine Adresse oder einen Stationsnamen ein: Leipzig, Wilhelm-Leuschner-Platz
 
 Gefundene Haltestellen für "Leipzig, Wilhelm-Leuschner-Platz":
