@@ -19,7 +19,7 @@ const productMap = {
   tram: "Tram"
 };
 
-if (process.argv.length == 3) {
+if (process.argv.length === 3) {
   profileName = process.argv[2];
   console.log("Using hafas-client profile: " + profileName);
 } else {

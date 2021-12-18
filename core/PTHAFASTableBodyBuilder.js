@@ -142,13 +142,13 @@ class PTHAFASTableBodyBuilder {
         let delay = departure.delay;
 
         // Use planned time if canceled
-        if (departure.canceled == true) time = departure.plannedWhen;
+        if (departure.canceled === true) time = departure.plannedWhen;
 
         // Get time cell
         cell = this.getTimeCell(time, delay);
 
         // Add class if canceled
-        if (departure.canceled == true) cell.className += " pthCanceled";
+        if (departure.canceled === true) cell.className += " pthCanceled";
 
         break;
 
