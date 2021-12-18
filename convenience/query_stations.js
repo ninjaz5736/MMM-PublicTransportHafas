@@ -21,9 +21,9 @@ const productMap = {
 
 if (process.argv.length === 3) {
   profileName = process.argv[2];
-  console.log("Using hafas-client profile: " + profileName);
+  console.info("Using hafas-client profile: " + profileName);
 } else {
-  console.log("Using default hafas-client profile: 'db'");
+  console.info("Using default hafas-client profile: 'db'");
   profileName = "db";
 }
 
@@ -52,7 +52,7 @@ if (profile !== "") {
     };
 
     client.locations(answer, opt).then((response) => {
-      console.log("\nGefundene Haltestellen für \"" + answer + "\":\n");
+      console.info("\nGefundene Haltestellen für \"" + answer + "\":\n");
 
       response.forEach((element) => {
         printStationInfo(element);
@@ -70,7 +70,7 @@ function printStationInfo(element) {
   let products = element.products;
 
   if (id && name) {
-    console.log("> Haltestelle: \"" + name + "\"\n  ID: " + id + "\n  " + refineProducts(products) + "\n");
+    console.info("> Haltestelle: \"" + name + "\"\n  ID: " + id + "\n  " + refineProducts(products) + "\n");
   }
 }
 

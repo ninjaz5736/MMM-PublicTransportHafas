@@ -30,13 +30,13 @@ module.exports = NodeHelper.create({
     if (typeof this.departuresFetchers[config.identifier] === "undefined") {
       fetcher = new HafasFetcher(config);
       this.departuresFetchers[config.identifier] = fetcher;
-      console.log("Transportation fetcher for station with id '" + fetcher.getStationID() + "' created.");
+      console.info("Transportation fetcher for station with id '" + fetcher.getStationID() + "' created.");
 
       this.sendFetcherLoaded(fetcher);
 
     } else {
       fetcher = this.departuresFetchers[config.identifier];
-      console.log("Using existing transportation fetcher for station id '" + fetcher.getStationID() + "'.");
+      console.info("Using existing transportation fetcher for station id '" + fetcher.getStationID() + "'.");
 
       this.sendFetcherLoaded(fetcher);
     }
