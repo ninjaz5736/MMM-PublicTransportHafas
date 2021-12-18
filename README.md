@@ -202,7 +202,7 @@ In Leipzig the tram lines 2, 8 and 9 use a yellow color. Since the lines share t
 
 ```css
 .str2, .str8, .str9 {
-  background-color: #F8C623;  /* yellow background */
+  background-color: #f8c623;  /* yellow background */
   color: black;               /* text color black */
   width: 1em;                 /* the width is equal to the font size (the line symbol will be a square) */
 }
@@ -212,7 +212,7 @@ Some night buses in Leipzig use an orange-ish color. All bus symbols are circles
 
 ```css
 .busn1, .busn1e, .busn5, .busn5e, .busn8, .busn8e {
-  background-color: #EE9F2E;  /* orange-ish background */
+  background-color: #ee9f2e;  /* orange-ish background */
   border-radius: 1em;         /* border radius is the same as the width so a circle will appear */
   color: #164585;             /* blue-ish text color */
   width: 1em;                 /* the width is equal to the font size (the line symbol will be a square, or in this case a circle) */
