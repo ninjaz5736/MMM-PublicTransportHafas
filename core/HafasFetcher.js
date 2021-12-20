@@ -59,7 +59,7 @@ module.exports = class HafasFetcher {
       "suburban-train",
       "bus-taxi",
       "gondola",
-      "car-train",
+      "car-train"
     ];
 
     this.config.includedTransportationTypes = arrayDiff(this.possibleTypes, this.config.excludedTransportationTypes);
