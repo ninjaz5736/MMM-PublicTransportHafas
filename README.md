@@ -190,13 +190,13 @@ If you set `showColoredLineSymbols` to `true` the module will try to colorize th
 
 To provide your own classes create a css file in the `css` directory of the module. It must be named like `<your custom name>-lines.css`, where `<your custom name>` can be any valid file name but should not contain blanks or dots. The part `<your custom name>` is then used in the config file as value for the `customLineStyles` property.
 
-#### Example:
+#### Example
 
 In the example above “leipzig” is used as value for the `customLineStyles` property. Therefore there must be a file named `leipzig-lines.css` inside the `css` folder. If this is not the case the module won’t be started and it will not be visible. The browser’s console will show an error.
 
 Basically you can set whatever you want in the css file but it is recommended to only set the foreground and background color and the width. In some cases it is useful to change the border radius too. See the file `css/leipzig-lines.css` for reference and as a guideline.
 
-#### Example:
+#### Example
 
 In Leipzig the tram lines 2, 8 and 9 use a yellow color. Since the lines share the same settings the css class names are listed with commas so that the settings apply to each listed class.
 
