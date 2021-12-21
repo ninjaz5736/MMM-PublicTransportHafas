@@ -29,40 +29,46 @@ if (process.argv.length === 3) {
 
 try {
   profile = require("hafas-client/p/" + profileName);
-}
-catch (err) {
-  console.error("\n" + err.message + "\n Did you choose the right profile name? \n");
+} catch (err) {
+  console.error(
+    "\n" + err.message + "\n Did you choose the right profile name? \n"
+  );
 }
 
 if (profile !== "") {
-  const client = createClient(profile, 'MMM-PublicTransportHafas');
+  const client = createClient(profile, "MMM-PublicTransportHafas");
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
   });
 
-  rl.question("Geben Sie eine Adresse oder einen Stationsnamen ein: ", (answer) => {
-    rl.close();
+  rl.question(
+    "Geben Sie eine Adresse oder einen Stationsnamen ein: ",
+    (answer) => {
+      rl.close();
 
-    const opt = {
-      results: 10,
-      stations: true,
-      adresses: false,
-      poi: false
-    };
+      const opt = {
+        results: 10,
+        stations: true,
+        adresses: false,
+        poi: false
+      };
 
-    client.locations(answer, opt).then((response) => {
-      console.info("\nGefundene Haltestellen für \"" + answer + "\":\n");
+      client
+        .locations(answer, opt)
+        .then((response) => {
+          console.info('\nGefundene Haltestellen für "' + answer + '":\n');
 
-      response.forEach((element) => {
-        printStationInfo(element);
-      });
+          response.forEach((element) => {
+            printStationInfo(element);
+          });
 
-      process.exit(0);
-    }).catch(console.error);
-  });
+          process.exit(0);
+        })
+        .catch(console.error);
+    }
+  );
 }
-
 
 function printStationInfo(element) {
   let id = element.id;
@@ -70,10 +76,17 @@ function printStationInfo(element) {
   let products = element.products;
 
   if (id && name) {
-    console.info("> Haltestelle: \"" + name + "\"\n  ID: " + id + "\n  " + refineProducts(products) + "\n");
+    console.info(
+      '> Haltestelle: "' +
+        name +
+        '"\n  ID: ' +
+        id +
+        "\n  " +
+        refineProducts(products) +
+        "\n"
+    );
   }
 }
-
 
 function refineProducts(products) {
   let result = "Verkehrsmittel: ";
@@ -82,8 +95,10 @@ function refineProducts(products) {
     return result + "keine";
   }
 
-  let availableProducts = Object.keys(products).filter(key => products[key]);
-  let availableProductsReadable = arrayUnique(availableProducts.map(product => productMap[product]));
+  let availableProducts = Object.keys(products).filter((key) => products[key]);
+  let availableProductsReadable = arrayUnique(
+    availableProducts.map((product) => productMap[product])
+  );
 
   return result + availableProductsReadable.join(", ");
 }

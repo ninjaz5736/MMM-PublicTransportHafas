@@ -4,15 +4,13 @@ const moment = require("moment");
 const createClient = require("hafas-client");
 const arrayDiff = require("arr-diff");
 
-
 module.exports = class HafasFetcher {
-
   /**
    *
    * @param config The configuration used for this fetcher. It has the following format:
    *        config = {
    *          identifier: *a string identifying this fetcher, must be unique for all instances of the module*
-   *          hafasProfile: *a valid hafas-client profile name*, 
+   *          hafasProfile: *a valid hafas-client profile name*,
    *          stationID: *a valid station id*,
    *          timeToStation: *an integer describing how long it takes to get to the station (in minutes)*,
    *          timeInFuture: *an integer describing how far in the future the departure can lie*
@@ -27,7 +25,7 @@ module.exports = class HafasFetcher {
     this.leadTime = 40; // minutes
     this.config = config;
     const profile = require("hafas-client/p/" + this.config.hafasProfile);
-    this.hafasClient = createClient(profile, 'MMM-PublicTransportHafas');
+    this.hafasClient = createClient(profile, "MMM-PublicTransportHafas");
 
     // types given by the api
     this.possibleTypes = [
@@ -62,19 +60,19 @@ module.exports = class HafasFetcher {
       "car-train"
     ];
 
-    this.config.includedTransportationTypes = arrayDiff(this.possibleTypes, this.config.excludedTransportationTypes);
+    this.config.includedTransportationTypes = arrayDiff(
+      this.possibleTypes,
+      this.config.excludedTransportationTypes
+    );
   }
-
 
   getIdentifier() {
     return this.config.identifier;
   }
 
-
   getStationID() {
     return this.config.stationID;
   }
-
 
   fetchDepartures() {
     let options = {
@@ -83,20 +81,27 @@ module.exports = class HafasFetcher {
       duration: this.config.timeInFuture
     };
 
-    return this.hafasClient.departures(this.config.stationID, options)
+    return this.hafasClient
+      .departures(this.config.stationID, options)
       .then((departures) => {
-        let maxElements = this.config.maxReachableDepartures + this.config.maxUnreachableDepartures;
+        let maxElements = 
+          this.config.maxReachableDepartures +
+          this.config.maxUnreachableDepartures;
         let filteredDepartures = this.filterByTransportationTypes(departures);
         filteredDepartures = this.filterByIgnoredLines(filteredDepartures);
-        filteredDepartures = this.departuresMarkedWithReachability(filteredDepartures);
-        filteredDepartures = this.departuresRemovedSurplusUnreachableDepartures(filteredDepartures);
+        filteredDepartures =
+          this.departuresMarkedWithReachability(filteredDepartures);
+        filteredDepartures =
+          this.departuresRemovedSurplusUnreachableDepartures(
+            filteredDepartures
+          );
         filteredDepartures = filteredDepartures.slice(0, maxElements);
         return filteredDepartures;
-      }).catch((e) => {
+      })
+      .catch((e) => {
         throw e;
       });
   }
-
 
   getDepartureTime() {
     let departureTime = this.getReachableTime();
@@ -108,11 +113,9 @@ module.exports = class HafasFetcher {
     return departureTime;
   }
 
-
   getReachableTime() {
     return moment().add(this.config.timeToStation, "minutes");
   }
-
 
   filterByTransportationTypes(departures) {
     return departures.filter((departure) => {
@@ -123,7 +126,6 @@ module.exports = class HafasFetcher {
     });
   }
 
-
   filterByIgnoredLines(departures) {
     return departures.filter((departure) => {
       let line = departure.line.name;
@@ -133,7 +135,6 @@ module.exports = class HafasFetcher {
     });
   }
 
-
   departuresMarkedWithReachability(departures) {
     return departures.map((departure) => {
       departure.isReachable = this.isReachable(departure);
@@ -141,13 +142,15 @@ module.exports = class HafasFetcher {
     });
   }
 
-
   departuresRemovedSurplusUnreachableDepartures(departures) {
-    let unreachableDeparturesCount = departures.filter(departure => !departure.isReachable).length;
+    let unreachableDeparturesCount = departures.filter(
+      (departure) => !departure.isReachable
+    ).length;
     let result = departures;
 
     if (unreachableDeparturesCount > this.config.maxUnreachableDepartures) {
-      let toBeRemoved = unreachableDeparturesCount - this.config.maxUnreachableDepartures;
+      let toBeRemoved =
+        unreachableDeparturesCount - this.config.maxUnreachableDepartures;
 
       for (let i = 0; i < toBeRemoved; i++) {
         result.shift();
@@ -157,8 +160,9 @@ module.exports = class HafasFetcher {
     return result;
   }
 
-
   isReachable(departure) {
-    return moment(departure.when).isSameOrAfter(moment(this.getReachableTime()));
+    return moment(departure.when).isSameOrAfter(
+      moment(this.getReachableTime())
+    );
   }
 };

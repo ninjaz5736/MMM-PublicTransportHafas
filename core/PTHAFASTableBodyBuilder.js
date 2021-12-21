@@ -5,7 +5,6 @@ class PTHAFASTableBodyBuilder {
     this.config = config;
   }
 
-
   getDeparturesTableBody(departures, noDepartureMessage) {
     let tBody = document.createElement("tbody");
     tBody.className = "light";
@@ -18,14 +17,20 @@ class PTHAFASTableBodyBuilder {
     }
 
     let reachableCount = departures.length;
-    let unreachableCount = departures.filter(departure => !departure.isReachable).length;
+    let unreachableCount = departures.filter(
+      (departure) => !departure.isReachable
+    ).length;
 
     departures.forEach((departure, index) => {
-      let row = this.getDeparturesTableRow(departure, index, reachableCount, unreachableCount);
+      let row = this.getDeparturesTableRow(
+        departure,
+        index,
+        reachableCount,
+        unreachableCount
+      );
       tBody.appendChild(row);
 
       if (this.config.showWarningRemarks) {
-
         // Next line is for testing if there are no warning remarks - uncomment it to append to every departure a warning remark
         // departure.remarks.push({ "id": "326169", "type": "warning", "summary": "Meldung für Linie 8", "text": "Es kommt zu betriebsbedingten Fahrtausfällen. \nDie entfallenden Fahrten sind in der App MOOVME sowie unter www.havag.com/fahrtenplaner gekennzeichnet.", "icon": { "type": "HIM3", "title": null }, "priority": 50, "products": { "nationalExpress": true, "national": true, "regional": true, "suburban": true, "tram": true, "bus": true, "tourismTrain": true }, "company": "HAVAG - Hallesche Verkehrs-AG", "categories": [3], "validFrom": "2021-12-03T09:17:00+01:00", "validUntil": "2022-12-31T23:59:00+01:00", "modified": "2021-12-03T09:17:46+01:00" });
 
@@ -36,12 +41,16 @@ class PTHAFASTableBodyBuilder {
       }
 
       let nextDeparture = departures[index + 1];
-      this.insertRulerIfNecessary(tBody, departure, nextDeparture, noDepartureMessage);
+      this.insertRulerIfNecessary(
+        tBody,
+        departure,
+        nextDeparture,
+        noDepartureMessage
+      );
     });
 
     return tBody;
   }
-
 
   insertRulerIfNecessary(tBody, departure, nextDeparture, noDepartureMessage) {
     if (nextDeparture && !departure.isReachable && nextDeparture.isReachable) {
@@ -50,10 +59,11 @@ class PTHAFASTableBodyBuilder {
 
     if (!departure.isReachable && !nextDeparture) {
       tBody.appendChild(this.getRulerRow());
-      tBody.appendChild(this.getDeparturesTableNoDeparturesRow(noDepartureMessage));
+      tBody.appendChild(
+        this.getDeparturesTableNoDeparturesRow(noDepartureMessage)
+      );
     }
   }
-
 
   getTableCell(content, cssClass = "") {
     let cell = document.createElement("td");
@@ -67,7 +77,6 @@ class PTHAFASTableBodyBuilder {
 
     return cell;
   }
-
 
   getDeparturesTableNoDeparturesRow(noDepartureMessage) {
     let row = document.createElement("tr");
@@ -97,7 +106,11 @@ class PTHAFASTableBodyBuilder {
 
     departure.remarks.forEach((remark) => {
       if (remark.type == "warning") {
-        marquee.innerText += "  ⚠️  " + remark.summary.replaceAll("\n", " ") + ": " + remark.text.replaceAll("\n", " ");
+        marquee.innerText +=
+          "  ⚠️  " +
+          remark.summary.replaceAll("\n", " ") +
+          ": " +
+          remark.text.replaceAll("\n", " ");
       }
     });
 
@@ -119,9 +132,15 @@ class PTHAFASTableBodyBuilder {
     row.className = "bright";
 
     if (departure.isReachable) {
-      row.style.opacity = this.getRowOpacity(index - unreachableCount, departuresCount);
+      row.style.opacity = this.getRowOpacity(
+        index - unreachableCount,
+        departuresCount
+      );
     } else {
-      row.style.opacity = this.getUnreachableRowOpacity(index, unreachableCount);
+      row.style.opacity = this.getUnreachableRowOpacity(
+        index,
+        unreachableCount
+      );
     }
 
     this.config.tableHeaderOrder.forEach((key) => {
@@ -131,7 +150,6 @@ class PTHAFASTableBodyBuilder {
 
     return row;
   }
-
 
   getCell(key, departure) {
     let cell;
@@ -173,7 +191,6 @@ class PTHAFASTableBodyBuilder {
     return cell;
   }
 
-
   getTimeCell(departure, delay) {
     let time = this.getDisplayDepartureTime(departure, delay);
 
@@ -194,7 +211,6 @@ class PTHAFASTableBodyBuilder {
     return cell;
   }
 
-
   getDelaySpan(delay) {
     let delaySpan = document.createElement("span");
     delaySpan.innerHTML = this.getDelay(delay);
@@ -202,7 +218,7 @@ class PTHAFASTableBodyBuilder {
     let cssClass = "dimmed";
 
     // +n === +n --> Test, if n is numeric
-    if (this.config.useColorForRealtimeInfo && (+delay === +delay)) {
+    if (this.config.useColorForRealtimeInfo && +delay === +delay) {
       cssClass = delay > 0 ? "pthHasDelay" : "pthIsTooEarly";
     }
 
@@ -221,19 +237,15 @@ class PTHAFASTableBodyBuilder {
     }
   }
 
-
   getDisplayDepartureTime(when, delay) {
     if (this.config.showAbsoluteTime) {
       let time = moment(when).subtract(delay, "seconds");
       return time.format("LT");
-
     } else {
       let time = moment(when);
       return time.fromNow();
     }
   }
-
-
 
   getLineId(lineName) {
     let lineId = lineName;
@@ -256,7 +268,6 @@ class PTHAFASTableBodyBuilder {
     let line;
 
     if (this.config.showOnlyLineNumbers) {
-
       line = this.getLineId(lineName);
     } else {
       line = lineName;
@@ -269,7 +280,6 @@ class PTHAFASTableBodyBuilder {
     return this.getTableCell(lineDiv);
   }
 
-
   getLineCssClass(lineName) {
     if (this.config.showColoredLineSymbols) {
       return this.getColoredCssClass(lineName);
@@ -278,18 +288,17 @@ class PTHAFASTableBodyBuilder {
     }
   }
 
-
   /**
    * Get product of a line name
-   * 
+   *
    * Some HAFAS interfaces output line names with a space after the product name and
    * some do not. As an example: `RB50` <->` RB 50`.
    * This function returns the product name. In the two examples already mentioned
    * (`RB50` and` RB 50`) the string `RB` would be returned. If there is no product name
    * (if the line name starts with a digit), `undefined` is returned.
    *
-   * @param  {String} lineName    The line name as it was delivered by the HAFAS API.
-   * @return {String} product     The product ('RB', 'S', 'U', ...).
+   * @param  {string} lineName    The line name as it was delivered by the HAFAS API.
+   * @returns {string} product     The product ('RB', 'S', 'U', ...).
    */
   getProduct(lineName) {
     let product = lineName;
@@ -308,15 +317,14 @@ class PTHAFASTableBodyBuilder {
     return product;
   }
 
-
   /**
    * Get css class names
-   * 
+   *
    * Class names are returned depending on the line name. This enables CSS styles
    * to be defined on the basis of various properties.
    *
-   * @param  {String} lineName     The linename as it was delivered by the HAFAS API.
-   * @return {String} classNames   Series of class names
+   * @param  {string} lineName     The linename as it was delivered by the HAFAS API.
+   * @returns {string} classNames   Series of class names
    */
   getColoredCssClass(lineName) {
     let classNames = "pthSign";
@@ -327,7 +335,10 @@ class PTHAFASTableBodyBuilder {
     if (dbProducts.includes(product)) {
       classNames += " pthDbStandard";
     }
-    if (ignoreShowOnlyLineNumbers.includes(product) && this.config.showOnlyLineNumbers) {
+    if (
+      ignoreShowOnlyLineNumbers.includes(product) &&
+      this.config.showOnlyLineNumbers
+    ) {
       classNames += " " + product.toLowerCase() + "WithProductName";
     }
     classNames += " " + product.toLowerCase();
@@ -336,13 +347,15 @@ class PTHAFASTableBodyBuilder {
     return classNames;
   }
 
-
   getDirectionCell(direction) {
     let truncatePosition = 26;
     let content = this.getProcessedDirection(direction);
     let className = "pthDirectionCell";
 
-    if (this.config.marqueeLongDirections && content.length > truncatePosition) {
+    if (
+      this.config.marqueeLongDirections &&
+      content.length > truncatePosition
+    ) {
       content = document.createElement("span");
       content.innerHTML = this.getProcessedDirection(direction);
       className += " pthMarquee";
@@ -355,7 +368,6 @@ class PTHAFASTableBodyBuilder {
     return this.getTableCell(content, className);
   }
 
-
   getProcessedDirection(direction) {
     let replacements = this.config.replaceInDirections;
     let processed = direction;
@@ -367,7 +379,6 @@ class PTHAFASTableBodyBuilder {
     return processed;
   }
 
-
   getPlatformCell(platform) {
     let className = "pthPlatformCell pthTextCenter";
     return this.getTableCell(platform, className);
@@ -378,11 +389,13 @@ class PTHAFASTableBodyBuilder {
       return 1.0;
     }
 
-    let threshold = departuresCount * this.config.fadePointForReachableDepartures;
+    let threshold =
+      departuresCount * this.config.fadePointForReachableDepartures;
     let opacity = 1;
     let startOpacity = 0.8;
     let endOpacity = 0.2;
-    let opacityDiff = (startOpacity - endOpacity) / (departuresCount - threshold);
+    let opacityDiff =
+      (startOpacity - endOpacity) / (departuresCount - threshold);
 
     if (index > threshold) {
       let fadingIndex = index - threshold;
@@ -392,7 +405,6 @@ class PTHAFASTableBodyBuilder {
 
     return opacity;
   }
-
 
   getUnreachableRowOpacity(index, count) {
     if (!this.config.fadeUnreachableDepartures) {
@@ -409,7 +421,6 @@ class PTHAFASTableBodyBuilder {
       return startOpacity + opacityDiff * index;
     }
   }
-
 
   getRulerRow() {
     let row = document.createElement("tr");
