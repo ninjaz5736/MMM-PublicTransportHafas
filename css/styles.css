@@ -13,7 +13,7 @@ them from the rest of the interface.
   display: table;
 }
 
-.pthTable>thead {
+.pthTable > thead {
   text-align: left;
 }
 
@@ -103,7 +103,7 @@ them from the rest of the interface.
 /* Marquee for the warinig remarks field */
 .pthWarningRemarks {
   white-space: nowrap;
-	overflow: hidden;
+  overflow: hidden;
   font-size: 0.8em;
   width: 80ch;
   display: inline-block;
@@ -116,7 +116,7 @@ them from the rest of the interface.
 }
 
 @keyframes pthWarningRemarks {
-  0%   { transform: translateX(0); }
+  0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
 }
 
@@ -138,7 +138,6 @@ them from the rest of the interface.
   color: #666666;
   margin-right: 0.3em;
 }
-
 
 /* Default properties for Deutsche Bahn products. */
 .pthDbStandard {
@@ -165,7 +164,6 @@ them from the rest of the interface.
   width: max-content;
 }
 
-
 /* Default properties for busses (general) and obusses (SVV) */
 .bus, .obus {
   border-radius: 1em;
@@ -173,7 +171,6 @@ them from the rest of the interface.
   color: white;
   width: max-content;
 }
-
 
 /* Default properties for "Rufbusse" */
 .ruf:before {
@@ -188,7 +185,6 @@ them from the rest of the interface.
   width: max-content;
 }
 
-
 /* Default properties for trams */
 .str, .stb {
   background-color: rgb(255, 0, 0);
@@ -196,14 +192,12 @@ them from the rest of the interface.
   width: max-content;
 }
 
-
 /* Default properties for subways */
 .u {
   background-color: rgb(0, 101, 173);
   color: white;
   width: max-content;
 }
-
 
 .iceWithProductName:before {
   content: "ICE ";
