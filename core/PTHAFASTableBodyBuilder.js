@@ -213,7 +213,7 @@ class PTHAFASTableBodyBuilder {
 
   getDelaySpan(delay) {
     let delaySpan = document.createElement("span");
-    delaySpan.innerHTML = this.getDelay(delay);
+    delaySpan.innerText = this.getDelay(delay);
 
     let cssClass = "dimmed";
 
@@ -274,7 +274,7 @@ class PTHAFASTableBodyBuilder {
     }
 
     let lineDiv = document.createElement("div");
-    lineDiv.innerHTML = line;
+    lineDiv.innerText = line;
     lineDiv.className = this.getLineCssClass(lineName) + " pthTextCenter";
 
     return this.getTableCell(lineDiv);
@@ -357,7 +357,7 @@ class PTHAFASTableBodyBuilder {
       content.length > truncatePosition
     ) {
       content = document.createElement("span");
-      content.innerHTML = this.getProcessedDirection(direction);
+      content.innerText = this.getProcessedDirection(direction);
       className += " pthMarquee";
     }
 
