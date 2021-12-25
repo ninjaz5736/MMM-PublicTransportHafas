@@ -1,13 +1,3 @@
-/*
- * Update by AgP42 the 18/07/2018
- *
- * Modification added:
- * - Management of a PIR sensor with the module MMM-PIR-Sensor (by PaViRo). In case PIR module detect no user,
- * the update of the ToDoIst is stopped and will be requested again at the return of the user
- * - Management of the "module.hidden" by the core system : same behaviour as "User_Presence" by the PIR sensor
- * - Possibility to add the last update time from server at the end of the module.
- * This can be configured using "displayLastUpdate" and "displayLastUpdateFormat"
- * */
 "use strict";
 
 //UserPresence Management (PIR sensor)
