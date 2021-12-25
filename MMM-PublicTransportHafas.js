@@ -8,7 +8,6 @@
  * - Possibility to add the last update time from server at the end of the module.
  * This can be configured using "displayLastUpdate" and "displayLastUpdateFormat"
  * */
-
 "use strict";
 
 //UserPresence Management (PIR sensor)
