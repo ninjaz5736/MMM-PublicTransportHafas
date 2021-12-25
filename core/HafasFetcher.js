@@ -7,7 +7,7 @@ const arrayDiff = require("arr-diff");
 module.exports = class HafasFetcher {
   /**
    *
-   * @param config The configuration used for this fetcher. It has the following format:
+   * @param {object} config The configuration used for this fetcher. It has the following format:
    *        config = {
    *          identifier: *a string identifying this fetcher, must be unique for all instances of the module*
    *          hafasProfile: *a valid hafas-client profile name*,
