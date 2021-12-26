@@ -55,23 +55,29 @@ module.exports = NodeHelper.create({
   fetchDepartures(identifier) {
     let fetcher = this.departuresFetchers[identifier];
 
-    fetcher
-      .fetchDepartures()
-      .then((fetchedDepartures) => {
-        let payload = {
-          identifier: fetcher.getIdentifier(),
-          departures: fetchedDepartures
-        };
+    if (fetcher !== undefined) {
+      fetcher
+        .fetchDepartures()
+        .then((fetchedDepartures) => {
+          let payload = {
+            identifier: fetcher.getIdentifier(),
+            departures: fetchedDepartures
+          };
 
-        this.sendSocketNotification("DEPARTURES_FETCHED", payload);
-      })
-      .catch((error) => {
-        let payload = {
-          identifier: fetcher.getIdentifier(),
-          error: error
-        };
+          this.sendSocketNotification("DEPARTURES_FETCHED", payload);
+        })
+        .catch((error) => {
+          let payload = {
+            identifier: fetcher.getIdentifier(),
+            error: error
+          };
 
-        this.sendSocketNotification("FETCH_ERROR", payload);
-      });
+          this.sendSocketNotification("FETCH_ERROR", payload);
+        });
+    } else {
+      Log.log(
+        "MMM-PublicTransportHafas: fetcher is undefined. If this occurs only sporadically, it is not a problem."
+      );
+    }
   }
 });
