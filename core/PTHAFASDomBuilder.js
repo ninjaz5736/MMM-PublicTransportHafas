@@ -1,18 +1,16 @@
 "use strict";
 
-
 class PTHAFASDomBuilder {
-
   constructor(config) {
     this.config = config;
 
     this.headingSymbols = {
       time: "fa fa-clock-o",
       line: "fa fa-bus",
-      direction: "fa fa-map-marker"
+      direction: "fa fa-exchange",
+      platform: "fa fa-map-marker"
     };
   }
-
 
   getSimpleDom(message) {
     let wrapper = this.getWrapper();
@@ -21,24 +19,31 @@ class PTHAFASDomBuilder {
     return wrapper;
   }
 
-
   getDom(departures, headings, noDeparturesMessage) {
     let wrapper = this.getWrapper();
-    let departuresTable = this.getDeparturesTable(departures, headings, noDeparturesMessage);
+    let departuresTable = this.getDeparturesTable(
+      departures,
+      headings,
+      noDeparturesMessage
+    );
     wrapper.appendChild(departuresTable);
 
     return wrapper;
   }
 
-
   getWrapper() {
     let wrapper = document.createElement("div");
     wrapper.className = "pthWrapper";
-    wrapper.appendChild(this.createHeadingElement(this.config.headerPrefix, this.config.stationName, this.config.headerAppendix));
+    wrapper.appendChild(
+      this.createHeadingElement(
+        this.config.headerPrefix,
+        this.config.stationName,
+        this.config.headerAppendix
+      )
+    );
 
     return wrapper;
   }
-
 
   getDiv(message, cssClasses = "small light dimmed") {
     let messageDiv = document.createElement("div");
@@ -47,7 +52,6 @@ class PTHAFASDomBuilder {
 
     return messageDiv;
   }
-
 
   // Create the module header. Prepend headerPrefix if given.
   createHeadingElement(headerPrefix, stationName, headerAppendix) {
@@ -77,12 +81,14 @@ class PTHAFASDomBuilder {
     }
 
     let tableBodyBuilder = new PTHAFASTableBodyBuilder(this.config);
-    let tableBody = tableBodyBuilder.getDeparturesTableBody(departures, noDepartureMessage);
+    let tableBody = tableBodyBuilder.getDeparturesTableBody(
+      departures,
+      noDepartureMessage
+    );
     table.appendChild(tableBody);
 
     return table;
   }
-
 
   getDeparturesTableHeader(headings) {
     let tHead = document.createElement("thead");
@@ -99,7 +105,6 @@ class PTHAFASDomBuilder {
     return tHead;
   }
 
-
   getHeadingValues(key, headings) {
     let result = {
       text: headings[key],
@@ -107,13 +112,12 @@ class PTHAFASDomBuilder {
       cssClass: ""
     };
 
-    if (key === "line" || key === "direction") {
+    if (key === "line" || key === "direction" || key === "platform") {
       result.cssClass = "pthTextCenter";
     }
 
     return result;
   }
-
 
   getHeaderCell(values) {
     let textContent = values.text;
@@ -127,7 +131,6 @@ class PTHAFASDomBuilder {
       let content = document.createElement("i");
       content.className = symbol;
       cell.appendChild(content);
-
     } else {
       cell.innerHTML = textContent;
     }

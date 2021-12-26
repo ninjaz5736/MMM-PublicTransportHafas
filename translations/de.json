@@ -4,5 +4,7 @@
 
   "PTH_DEPARTURE_TIME": "Abfahrt",
   "PTH_LINE": "Linie",
-  "PTH_TO": "Nach"
+  "PTH_TO": "Nach",
+  "PTH_PLATFORM": "Steig",
+  "PTH_CANCELLED": "Fällt aus"
 }

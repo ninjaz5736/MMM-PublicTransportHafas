@@ -6,15 +6,14 @@
   blanks and all lower case. For instance "Bus N9" becomes ".busn9"
  */
 
-
 /*
   All suburban lines share the same settings so they are listed with commas
   separating them.
   The border radius is slightly bigger than the font size. This will result
   in nice round corners.
  */
-.s1, .s2, .s3, .s4, .s5, .s5x, .s6 {
-  background-color: #1E944B;
+ .s1, .s2, .s3, .s4, .s5, .s5x, .s6 {
+  background-color: #1e944b;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
@@ -26,19 +25,19 @@
   will result in a square symbol.
  */
 .str1, .str3, .str3e {
-  background-color: #5EB246;
+  background-color: #5eb246;
   color: white;
   width: 1em;
 }
 
 .str2, .str8, .str9 {
-  background-color: #F8C623;
+  background-color: #f8c623;
   color: black;
   width: 1em;
 }
 
 .str14 {
-  background-color: #00A8DB;
+  background-color: #00a8db;
   color: black;
   width: 1em;
 }
@@ -50,7 +49,7 @@
 }
 
 .str10, .str11, .str16, .str51, .str56 {
-  background-color: #D8232A;
+  background-color: #d8232a;
   color: white;
   width: 1em;
 }
@@ -63,7 +62,7 @@
 .bus70, .bus72, .bus73, .bus73e, .bus74, .bus74e,
 .bus80, .bus81, .bus82, .bus89,
 .bus90 {
-  background-color: #912A7D;
+  background-color: #912a7d;
   border-radius: 1em;
   color: white;
   width: 1em;
@@ -82,28 +81,28 @@
 .bus412,
 .bus645, .bus690, .bus691,
 .bus724, .bus743 {
-  background-color: #A3A3A2;
+  background-color: #a3a3a2;
   border-radius: 1em;
   color: white;
   width: 1em;
 }
 
 .busn1, .busn1e, .busn5, .busn5e, .busn8, .busn8e {
-  background-color: #EE9F2E;
+  background-color: #ee9f2e;
   border-radius: 1em;
   color: #164585;
   width: 1em;
 }
 
 .busn2, .busn2e, .busn7, .busn7e {
-  background-color: #FBDE89;
+  background-color: #fbde89;
   border-radius: 1em;
   color: #164585;
   width: 1em;
 }
 
 .busn3, .busn3e, .busn4, .busn4e, .busn6, .busn6e, .busn9, .busn9e {
-  background-color: #FCD120;
+  background-color: #fcd120;
   border-radius: 1em;
   color: #164585;
   width: 1em;

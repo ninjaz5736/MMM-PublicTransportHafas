@@ -25,6 +25,10 @@ them from the rest of the interface.
   text-align: left;
 }
 
+.pthCanceled {
+  text-decoration: line-through;
+}
+
 .pthDirectionCell {
   max-width: 24ch;
   min-width: 16ch;
@@ -33,6 +37,11 @@ them from the rest of the interface.
   padding-right: 1ch;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.pthPlatformCell {
+  padding-left: 1ch;
+  padding-right: 1ch;
 }
 
 .pthRulerCell {
@@ -66,6 +75,7 @@ them from the rest of the interface.
   color: green;
 }
 
+/* Marquee for the destination field */
 .pthMarquee {
   box-sizing: border-box;
   margin: 0 auto;
@@ -90,16 +100,35 @@ them from the rest of the interface.
   }
 }
 
+/* Marquee for the warinig remarks field */
+.pthWarningRemarks {
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0.8em;
+  width: 80ch;
+  display: inline-block;
+}
+
+.pthWarningRemarks span {
+  animation: pthWarningRemarks 300s linear infinite;
+  display: inline-block;
+  padding-left: 20%;
+}
+
+@keyframes pthWarningRemarks {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
 /* Styles for line symbols. */
 .pthSign {
   background-color: #333333;
   color: #666666;
-
+  min-width: 2.5ch;
   font-size: 0.9em;
   font-weight: bold;
-  margin: 0.1rem auto;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin: 0.2rem auto;
+  padding: 0 0.3rem;
   position: relative;
   text-align: center;
 }
@@ -110,11 +139,10 @@ them from the rest of the interface.
   margin-right: 0.3em;
 }
 
-/* Standards for Deutsche Bahn products. */
+/* Default properties for Deutsche Bahn products. */
 .pthDbStandard {
-  border-radius: 5px;
+  border-radius: 0.25rem;
   font-size: 0.8em;
-  line-height: 1.4em;
 }
 
 .ice, .ic {
@@ -124,9 +152,51 @@ them from the rest of the interface.
 }
 
 .rb, .re {
-  background-color: #F01414;
+  background-color: rgb(31, 131, 50);
   border: 0.5px white solid;
   color: white;
+}
+
+.s {
+  background-color: rgb(0, 111, 53);
+  border: 0.5px white solid;
+  color: white;
+  width: max-content;
+}
+
+/* Default properties for busses (general) and obusses (SVV) */
+.bus, .obus {
+  border-radius: 1em;
+  background-color: rgb(122, 32, 106);
+  color: white;
+  width: max-content;
+}
+
+/* Default properties for "Rufbusse" */
+.ruf:before {
+  content: "☎ ";
+  color: white;
+  font-size: 0.8em;
+}
+.ruf {
+  border-radius: 1rem;
+  background-color: rgb(122, 32, 106);
+  color: white;
+  width: max-content;
+}
+
+/* Default properties for trams */
+.str, .stb {
+  background-color: rgb(255, 0, 0);
+  color: white;
+  width: max-content;
+}
+
+/* Default properties for subways */
+.u {
+  background-color: rgb(0, 101, 173);
+  color: white;
+  width: max-content;
 }
 
 .iceWithProductName:before {
@@ -143,4 +213,12 @@ them from the rest of the interface.
 
 .rbWithProductName:before {
   content: "RB ";
+}
+
+.sWithProductName:before {
+  content: "S";
+}
+
+.uWithProductName:before {
+  content: "U";
 }
