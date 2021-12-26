@@ -55,7 +55,7 @@ module.exports = NodeHelper.create({
   fetchDepartures(identifier) {
     let fetcher = this.departuresFetchers[identifier];
 
-    if (fetcher !== undefined) {
+    if (typeof fetcher !== "undefined") {
       fetcher
         .fetchDepartures()
         .then((fetchedDepartures) => {
