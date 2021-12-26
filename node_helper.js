@@ -2,6 +2,7 @@
 
 const NodeHelper = require("node_helper");
 const HafasFetcher = require("./core/HafasFetcher");
+const Log = require("logger");
 
 module.exports = NodeHelper.create({
   start: function () {
@@ -26,7 +27,7 @@ module.exports = NodeHelper.create({
     if (typeof this.departuresFetchers[config.identifier] === "undefined") {
       fetcher = new HafasFetcher(config);
       this.departuresFetchers[config.identifier] = fetcher;
-      console.info(
+      Log.info(
         "Transportation fetcher for station with id '" +
           fetcher.getStationID() +
           "' created."
@@ -35,7 +36,7 @@ module.exports = NodeHelper.create({
       this.sendFetcherLoaded(fetcher);
     } else {
       fetcher = this.departuresFetchers[config.identifier];
-      console.info(
+      Log.info(
         "Using existing transportation fetcher for station id '" +
           fetcher.getStationID() +
           "'."
