@@ -33,6 +33,15 @@
   "dependencies": {
     "arr-diff": "^4.0.0",
     "array-unique": "^0.3.2",
-    "hafas-client": "^5.21.1"
+    "hafas-client": "^5.22.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext js",
+    "lint:fix": "eslint --fix"
   }
 }
