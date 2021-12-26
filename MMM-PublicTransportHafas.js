@@ -28,7 +28,7 @@ Module.register("MMM-PublicTransportHafas", {
     showAbsoluteTime: true,             // How should the departure time be displayed? "15:10" (absolute) or "in 5 minutes" (relative)
     showTableHeaders: true,             // Show table headers?
     showTableHeadersAsSymbols: true,    // Table Headers as symbols or written?
-    tableHeaderOrder: [ "time", "line", "direction" ], // In which order should the table headers appear?
+    tableHeaderOrder: ["time", "line", "direction"], // In which order should the table headers appear?
     maxUnreachableDepartures: 0,        // How many unreachable departures should be shown?
     maxReachableDepartures: 7,          // How many reachable departures should be shown?
     fadeUnreachableDepartures: true,
@@ -118,7 +118,7 @@ Module.register("MMM-PublicTransportHafas", {
   },
 
 
-  getTranslations: function() {
+  getTranslations: function () {
     return {
       en: "translations/en.json",
       de: "translations/de.json"
@@ -184,7 +184,7 @@ Module.register("MMM-PublicTransportHafas", {
   },
 
 
-  startFetchingLoop: function(interval) {
+  startFetchingLoop: function (interval) {
     // start immediately ...
     this.sendSocketNotification("FETCH_DEPARTURES", this.identifier);
 
