@@ -63,6 +63,7 @@ them from the rest of the interface.
 }
 
 .pthDelay {
+  padding: 0 15px 0 5px;
   font-size: 0.8em;
   font-weight: bolder;
 }

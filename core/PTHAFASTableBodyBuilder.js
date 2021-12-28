@@ -231,9 +231,9 @@ class PTHAFASTableBodyBuilder {
   getDelay(delay) {
     if (+delay === +delay) {
       let sign = delay < 0 ? "-" : "+";
-      return "&nbsp;" + sign + delay / 60 + "&nbsp;";
+      return sign + delay / 60;
     } else {
-      return "&nbsp; +? &nbsp;";
+      return "+?";
     }
   }
 
