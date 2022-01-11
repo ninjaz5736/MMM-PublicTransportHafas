@@ -220,8 +220,6 @@ Module.register("MMM-PublicTransportHafas", {
               .format(this.config.displayLastUpdateFormat)
         );
 
-        //this.sendNotification("SHOW_ALERT",{type:"notification",message:"Update Transport Berlin recue"});
-
         // reset error object
         this.error = {};
         this.departures = payload.departures;
@@ -269,9 +267,6 @@ Module.register("MMM-PublicTransportHafas", {
     this.sendSocketNotification("FETCH_DEPARTURES", this.identifier);
 
     // ... and then repeat in the given interval
-
-    // Log.log("Hello, update module Transport requested! (non-recurring)");
-    // this.sendNotification("SHOW_ALERT",{type:"notification",message:"Update Transport Berlin requested"});
 
     if (this.updatesIntervalID === 0) {
       //if this instance as no auto update defined, then we create one. Otherwise : nothing.
