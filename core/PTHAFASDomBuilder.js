@@ -48,7 +48,7 @@ class PTHAFASDomBuilder {
   getDiv(message, cssClasses = "small light dimmed") {
     let messageDiv = document.createElement("div");
     messageDiv.className = cssClasses;
-    messageDiv.innerText = message;
+    messageDiv.innerHTML = message;
 
     return messageDiv;
   }
