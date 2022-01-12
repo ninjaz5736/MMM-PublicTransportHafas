@@ -82,7 +82,7 @@ module.exports = class HafasFetcher {
     let options = {
       when: this.getDepartureTime(),
       direction: this.config.direction,
-      duration: this.config.timeInFuture
+      duration: this.getTimeInFuture()
     };
 
     return this.hafasClient
@@ -119,6 +119,15 @@ module.exports = class HafasFetcher {
 
   getReachableTime() {
     return moment().add(this.config.timeToStation, "minutes");
+  }
+
+  getTimeInFuture() {
+    let timeInFuture = this.config.timeInFuture;
+    if (this.config.maxUnreachableDepartures > 0) {
+      timeInFuture = timeInFuture + this.leadTime;
+    }
+
+    return timeInFuture;
   }
 
   filterByTransportationTypes(departures) {
