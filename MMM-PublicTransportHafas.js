@@ -17,7 +17,7 @@ Module.register("MMM-PublicTransportHafas", {
     headerAppendix: "",
 
     // Display last update time
-    displayLastUpdate: false,           // Add or not a line after the tasks with the last server update time
+    displayLastUpdate: true,            // Add line after the tasks with the last server update time
     displayLastUpdateFormat: "dd - HH:mm:ss", // Format to display the last update. See Moment.js documentation for all display possibilities
 
     // Departures options
