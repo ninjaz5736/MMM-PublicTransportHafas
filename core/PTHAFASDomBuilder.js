@@ -48,7 +48,7 @@ class PTHAFASDomBuilder {
   getDiv(message, cssClasses = "small light dimmed") {
     let messageDiv = document.createElement("div");
     messageDiv.className = cssClasses;
-    messageDiv.innerHTML = message;
+    messageDiv.innerText = message;
 
     return messageDiv;
   }
@@ -66,7 +66,7 @@ class PTHAFASDomBuilder {
       heading += " " + headerAppendix;
     }
 
-    headingElement.innerHTML = heading;
+    headingElement.innerText = heading;
 
     return headingElement;
   }
@@ -132,7 +132,7 @@ class PTHAFASDomBuilder {
       content.className = symbol;
       cell.appendChild(content);
     } else {
-      cell.innerHTML = textContent;
+      cell.innerText = textContent;
     }
 
     return cell;

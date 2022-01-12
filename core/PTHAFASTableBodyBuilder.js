@@ -70,7 +70,7 @@ class PTHAFASTableBodyBuilder {
     cell.className = cssClass;
 
     if (typeof content === "string") {
-      cell.innerHTML = content;
+      cell.innerText = content;
     } else {
       cell.appendChild(content);
     }
@@ -84,7 +84,7 @@ class PTHAFASTableBodyBuilder {
 
     let cell = document.createElement("td");
     cell.colSpan = 3;
-    cell.innerHTML = noDepartureMessage;
+    cell.innerText = noDepartureMessage;
 
     row.appendChild(cell);
 

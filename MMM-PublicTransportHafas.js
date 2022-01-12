@@ -157,7 +157,7 @@ Module.register("MMM-PublicTransportHafas", {
     if (this.config.displayLastUpdate) {
       let updateinfo = document.createElement("div");
       updateinfo.className = "xsmall light align-left";
-      updateinfo.innerHTML =
+      updateinfo.innerText =
         "Update: " +
         moment
           .unix(this.lastUpdate)
