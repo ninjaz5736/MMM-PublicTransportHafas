@@ -3,6 +3,7 @@
 const moment = require("moment");
 const createClient = require("hafas-client");
 const arrayDiff = require("arr-diff");
+const pjson = require("../package.json");
 
 module.exports = class HafasFetcher {
   /**
@@ -25,7 +26,10 @@ module.exports = class HafasFetcher {
     this.leadTime = 40; // minutes
     this.config = config;
     const profile = require("hafas-client/p/" + this.config.hafasProfile);
-    this.hafasClient = createClient(profile, "MMM-PublicTransportHafas");
+    this.hafasClient = createClient(
+      profile,
+      "MMM-PublicTransportHafas v" + pjson.version
+    );
 
     // types given by the api
     this.possibleTypes = [
@@ -84,7 +88,7 @@ module.exports = class HafasFetcher {
     return this.hafasClient
       .departures(this.config.stationID, options)
       .then((departures) => {
-        let maxElements = 
+        let maxElements =
           this.config.maxReachableDepartures +
           this.config.maxUnreachableDepartures;
         let filteredDepartures = this.filterByTransportationTypes(departures);
