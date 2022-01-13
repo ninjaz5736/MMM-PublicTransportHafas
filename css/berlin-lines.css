@@ -1,0 +1,236 @@
+/*
+  This stylesheet contains the css classes needed to colorize the line
+  labels in the display for Berlin. Bus, Tram, U-Bahn & S-Bahn.
+ */
+
+/*
+  Bus lines share the same background color and a white text color.
+  The border radius is slightly bigger than the font size. This will result
+  in nice round corners.
+ */
+
+bus {
+  background-color: #981E7B;
+  border-radius: 1em;
+  }
+ 
+/*
+  Some suburban lines share the same settings so they are listed with commas
+  separating them.
+  The border radius is slightly bigger than the font size. This will result
+  in nice round corners.
+  Source: https://en.wikipedia.org/wiki/Berlin_S-Bahn#Routes
+  */
+
+.s1 {
+  background-color: #D96EA2;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+.s2, .s25, .s26 {
+  background-color: #127734;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+.s3 {
+  background-color: #0167AD;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+
+.s41 {
+  background-color: #AD5A37;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+.s42 {
+  background-color: #CB651D;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+.s45, .s46, .s47 {
+  background-color: #127734;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+.s5 {
+  background-color: #EA7619;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+.s7, .s75 {
+  background-color: #816FA5;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+.s8, .s85 {
+  background-color: #6AAA28;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+.s9 {
+  background-color: #992644;
+  border-radius: 1.25rem;
+  color: white;
+  width: 2em;
+  }
+
+
+/*
+  All subways have a diffrent color code and a white text color, except the U4 have a black text color. 
+  The width of the line symbol is pulled from the styles.css of MMM-PublicTransportHafas/css. 
+  It is equal to the font size. This will result in a square symbol.
+  Source: https://en.wikipedia.org/wiki/Berlin_U-Bahn#Routes;
+ */
+
+.u1 {
+  background-color: #80AE50;
+  }
+
+.u2 {
+  background-color: #DA4322;
+  }
+
+.u3 {
+  background-color: #127A5C;
+  }
+
+.u4 {
+  background-color: #F0D732;
+  color: black;
+  }
+
+.u5 {
+  background-color: #7E522E;
+  }
+
+.u6 {
+  background-color: #8C70AB;
+  }
+
+.u7 {
+  background-color: #528EBB;
+  }
+
+.u8 {
+  background-color: #1D4F86;
+  }
+
+.u9 {
+  background-color: #F17B25;
+  }
+
+
+/*
+  All tram lines have a diffrent color code and a white text color. 
+  The width of the line symbol is pulled from the styles.css of MMM-PublicTransportHafas/css. 
+  It is equal to the font size. This will result in a square symbol.
+  Source: https://de.wikipedia.org/wiki/Stra%C3%9Fenbahn_Berlin#Linien%C3%BCbersicht;
+ */
+
+.strm1 {
+  background-color: #78B7E4;
+  }
+
+.strm2 {
+  background-color: #88B744;
+  }
+
+.strm4 {
+  background-color: #BA2D23;
+  }
+
+.strm5 {
+  background-color: #BF8C4A;
+  }
+.strm6 {
+  background-color: #235690;
+  }
+
+.strm8 {
+  background-color: #DE792E;
+  }
+
+.strm10 {
+  background-color: #357943;
+  }
+
+.strm13 {
+  background-color: #479E92;
+  color: white;
+  }
+
+.strm17 {
+  background-color: #9B4932;
+  }
+
+.str12 {
+  background-color: #8471A7;
+  }
+
+.str16 {
+  background-color: #377DA7;
+  }
+
+.str18 {
+  background-color: #377DA7;
+  }
+
+.str21 {
+  background-color: #B693BE;
+  }
+
+.str27 {
+  background-color: #BF6B31;
+  }
+
+.str37 {
+  background-color: #9C4B35;
+  }
+
+.str50 {
+  background-color: #DF9537;
+  }
+
+.str60 {
+  background-color: #449AD4;
+  }
+
+
+.str61 {
+  background-color: #D12F26;
+  }
+
+.str62 {
+  background-color: #205030;
+  }
+
+.str63 {
+  background-color: #DF7A2E;
+  }
+
+.str67 {
+  background-color: #CF73A4;
+  }
+
+.str68 {
+  background-color: #79B245;
+  }
