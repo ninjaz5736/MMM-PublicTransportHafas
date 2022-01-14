@@ -43,12 +43,6 @@ For more information see the [Configuration](#configuration) section.
 
 ![Example: Multiple instances in Berlin, showing the last update time](img/UpdateTimeDisplayed.png)<br>_Several instances in Berlin, showing the last update time_
 
-## Preconditions
-
-- MagicMirror² instance
-- Node.js version >= 10
-- npm
-
 ## Installing
 
 Just clone the module into your MagicMirror modules folder and execute `npm install` in the module’s directory:
