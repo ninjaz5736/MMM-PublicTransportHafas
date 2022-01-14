@@ -156,19 +156,23 @@ module.exports = class HafasFetcher {
   }
 
   departuresRemovedSurplusUnreachableDepartures(departures) {
-    let unreachableDeparturesCount = departures.filter(
+    // Get all unreachable departures
+    let unreachableDepartures = departures.filter(
       (departure) => !departure.isReachable
-    ).length;
-    let result = departures;
+    );
 
-    if (unreachableDeparturesCount > this.config.maxUnreachableDepartures) {
-      let toBeRemoved =
-        unreachableDeparturesCount - this.config.maxUnreachableDepartures;
+    // Remove surplus unreachable departures
+    unreachableDepartures = unreachableDepartures.slice(
+      -this.config.maxUnreachableDepartures
+    );
 
-      for (let i = 0; i < toBeRemoved; i++) {
-        result.shift();
-      }
-    }
+    // Get all reachable departures
+    let reachableDepartures = departures.filter(
+      (departure) => departure.isReachable
+    );
+
+    // Merge unreachable and reachable departures
+    let result = [].concat(unreachableDepartures, reachableDepartures);
 
     return result;
   }
