@@ -23,7 +23,7 @@ module.exports = class HafasFetcher {
    *        }
    */
   constructor(config) {
-    this.leadTime = 40; // minutes
+    this.leadTime = 20; // minutes
     this.config = config;
     const profile = require("hafas-client/p/" + this.config.hafasProfile);
     this.hafasClient = createClient(
@@ -161,6 +161,9 @@ module.exports = class HafasFetcher {
       (departure) => !departure.isReachable
     );
 
+    // Adjust lead time for next request
+    this.adjustLeadTime(unreachableDepartures);
+
     // Remove surplus unreachable departures
     unreachableDepartures = unreachableDepartures.slice(
       -this.config.maxUnreachableDepartures
@@ -175,6 +178,20 @@ module.exports = class HafasFetcher {
     let result = [].concat(unreachableDepartures, reachableDepartures);
 
     return result;
+  }
+
+  adjustLeadTime(unreachableDepartures) {
+    /**
+     * This method dynamically adjusts the lead time. This is only relevant if
+     * 'this.config.maxUnreachableDepartures' is greater than 0. The dynamic
+     * adjustment is useful because there are stops where are many departures
+     * in the lead time and some where are very few.
+     */
+    if (unreachableDepartures.length > this.config.maxUnreachableDepartures) {
+      this.leadTime = Math.round(this.leadTime / 2) + 1;
+    } else if (this.leadTime <= 45) {
+      this.leadTime = this.leadTime + 5;
+    }
   }
 
   isReachable(departure) {
