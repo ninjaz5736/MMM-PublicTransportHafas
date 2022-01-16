@@ -219,6 +219,18 @@ Alongside the departure time a small figure displays the delay as reported by th
 
 Delays are displayed as red. No delay or negative delays (the transport will arrive early) are displayed in green. If you want to customize that include the classes `pthHasDelay` and `pthIsTooEarly` in your custom css file and make the appropriate settings.
 
+## Text To Speech
+
+This function is still in development.
+
+Add script to package.json:
+`"start:tts": "DISPLAY=\"${DISPLAY:=:0}\" ./node_modules/.bin/electron --enable-speech-dispatcher js/electron.js",`
+
+Start with: `npm run start:tts`
+
+Keys:
+  TODO
+
 ## Technical background details
 
 To limit the server request only when the module is displayed and/or the user is present, the update will be stopped when no instance of the module are displayed (module hidden e.g. by a [MMM-Carousel](https://github.com/lawrence-jeff/MMM-Carousel), [MMM-Pages](https://github.com/edward-shen/MMM-pages) or [MMM-Remote-Control](https://github.com/Jopyth/MMM-Remote-Control)). The update will also be stopped by the use of a PIR sensor using the module [MMM-PIR-Sensor](https://github.com/paviro/MMM-PIR-Sensor) (that sends the notification 'USER_PRESENCE'). No special configuration is needed for this behaviour.
