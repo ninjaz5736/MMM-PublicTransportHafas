@@ -16,7 +16,7 @@ function sayDepartures() {
   for (let pthWrapper of pthWrappers) {
     // Station
     let station = pthWrapper.getElementsByTagName("header")[0];
-    speech.text = speech.text + " Haltestelle " + station.innerText;
+    speech.text = speech.text + "\n. Haltestelle " + station.innerText + ".\n";
 
     let pthTable = pthWrapper.getElementsByClassName("pthTable")[0];
 
@@ -43,14 +43,18 @@ function sayDepartures() {
     let rows = pthTable.getElementsByTagName("tr");
     for (let row of rows) {
       speech.text = speech.text + row.innerText.replaceAll("\n", " ") + ",\n";
+      speech.text = speech.text.replaceAll("str.", "straße");
+      speech.text = speech.text.replaceAll("Str.", "Straße");
+      speech.text = speech.text.replaceAll("STR.", "Straße");
     }
 
     speech.text = speech.text.replaceAll("\t", " ").replaceAll("  ", " ");
-    console.log(speech.text);
-
-    // Start Speaking
-    speechSynthesis.speak(speech);
   }
+
+  console.log(speech.text);
+
+  // Start Speaking
+  speechSynthesis.speak(speech);
 }
 
 let speechHello = new SpeechSynthesisUtterance();
