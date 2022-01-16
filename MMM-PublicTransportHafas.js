@@ -183,7 +183,8 @@ Module.register("MMM-PublicTransportHafas", {
     return [
       "moment.js",
       this.file("core/PTHAFASDomBuilder.js"),
-      this.file("core/PTHAFASTableBodyBuilder.js")
+      this.file("core/PTHAFASTableBodyBuilder.js"),
+      this.file("core/PTHAFASTTS.js")
     ];
   },
 
