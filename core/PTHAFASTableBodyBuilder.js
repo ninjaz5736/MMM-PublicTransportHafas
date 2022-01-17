@@ -373,7 +373,7 @@ class PTHAFASTableBodyBuilder {
     let processed = direction;
 
     Object.keys(replacements).forEach((key) => {
-      processed = processed.replace(new RegExp(key, "g"), replacements[key]);
+      processed = processed.replaceAll(key, replacements[key]);
     });
 
     return processed;
