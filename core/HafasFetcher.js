@@ -165,8 +165,8 @@ module.exports = class HafasFetcher {
     this.adjustLeadTime(unreachableDepartures);
 
     // Remove surplus unreachable departures
-    unreachableDepartures = unreachableDepartures.slice(
-      -this.config.maxUnreachableDepartures
+    unreachableDepartures = unreachableDepartures.splice(
+      0, unreachableDepartures.length - this.config.maxUnreachableDepartures
     );
 
     // Get all reachable departures
