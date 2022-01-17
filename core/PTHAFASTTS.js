@@ -53,9 +53,12 @@ function sayDepartures() {
   }
 }
 
-
 let speechHello = new SpeechSynthesisUtterance();
 speechHello.lang = config.language;
+
+speechHello.addEventListener("end", function (event) {
+  sayTime();
+});
 
 function sayHello() {
   let hello = "Guten Tag!";
@@ -73,4 +76,3 @@ function sayTime() {
 }
 
 sayHello();
-sayTime();
