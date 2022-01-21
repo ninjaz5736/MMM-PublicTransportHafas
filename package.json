@@ -43,7 +43,7 @@
   "scripts": {
     "lint:js": "eslint *.js ./core/*.js ./convenience/*.js",
     "lint:fix": "npm run lint:js -- --fix",
-    "test": "npm run lint && npm run test:run",
+    "test": "npm run lint:js && npm run test:run",
     "test:run": "jest"
   }
 }
