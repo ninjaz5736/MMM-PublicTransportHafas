@@ -1,5 +1,7 @@
 "use strict";
 
+/* global PTHAFASDomBuilder */
+
 //UserPresence Management (PIR sensor)
 let UserPresence = true; //true by default, so no impact for user without a PIR sensor
 
