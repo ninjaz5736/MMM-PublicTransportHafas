@@ -7,6 +7,7 @@ let UserPresence = true; //true by default, so no impact for user without a PIR 
 
 Module.register("MMM-PublicTransportHafas", {
   // default values
+  // prettier-ignore
   defaults: {
     // Module misc
     name: "MMM-PublicTransportHafas",
@@ -55,8 +56,8 @@ Module.register("MMM-PublicTransportHafas", {
     );
 
     this.ModulePublicTransportHafasHidden = false; // By default we display the module (if no carousel or other module)
-    this.updatesIntervalID = 0;       // To stop and start auto update for each module instance
-    this.lastUpdate = 0;              // Timestamp of the last module update. set at 0 at start-up
+    this.updatesIntervalID = 0; // To stop and start auto update for each module instance
+    this.lastUpdate = 0; // Timestamp of the last module update. set at 0 at start-up
 
     this.departures = [];
     this.initialized = false;

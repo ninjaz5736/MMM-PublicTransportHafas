@@ -19,6 +19,41 @@ const productMap = {
   tram: "Tram"
 };
 
+function refineProducts(products) {
+  const result = "Verkehrsmittel: ";
+
+  if (!products) {
+    return result + "keine";
+  }
+
+  const availableProducts = Object.keys(products).filter(
+    (key) => products[key]
+  );
+  const availableProductsReadable = arrayUnique(
+    availableProducts.map((product) => productMap[product])
+  );
+
+  return result + availableProductsReadable.join(", ");
+}
+
+function printStationInfo(element) {
+  const id = element.id;
+  const name = element.name;
+  const products = element.products;
+
+  if (id && name) {
+    console.info(
+      "> Haltestelle: '" +
+        name +
+        "'\n  ID: " +
+        id +
+        "\n  " +
+        refineProducts(products) +
+        "\n"
+    );
+  }
+}
+
 if (process.argv.length === 3) {
   profileName = process.argv[2];
   console.info("Using hafas-client profile: " + profileName);
@@ -57,7 +92,7 @@ if (profile !== "") {
       client
         .locations(answer, opt)
         .then((response) => {
-          console.info('\nGefundene Haltestellen für "' + answer + '":\n');
+          console.info("\nGefundene Haltestellen für '" + answer + "':\n");
 
           response.forEach((element) => {
             printStationInfo(element);
@@ -68,37 +103,4 @@ if (profile !== "") {
         .catch(console.error);
     }
   );
-}
-
-function printStationInfo(element) {
-  let id = element.id;
-  let name = element.name;
-  let products = element.products;
-
-  if (id && name) {
-    console.info(
-      '> Haltestelle: "' +
-        name +
-        '"\n  ID: ' +
-        id +
-        "\n  " +
-        refineProducts(products) +
-        "\n"
-    );
-  }
-}
-
-function refineProducts(products) {
-  let result = "Verkehrsmittel: ";
-
-  if (!products) {
-    return result + "keine";
-  }
-
-  let availableProducts = Object.keys(products).filter((key) => products[key]);
-  let availableProductsReadable = arrayUnique(
-    availableProducts.map((product) => productMap[product])
-  );
-
-  return result + availableProductsReadable.join(", ");
 }

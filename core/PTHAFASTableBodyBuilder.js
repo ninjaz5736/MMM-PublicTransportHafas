@@ -156,7 +156,7 @@ class PTHAFASTableBodyBuilder {
     let cell;
 
     switch (key) {
-      case "time":
+      case "time": {
         let time = departure.when;
         const delay = departure.delay;
 
@@ -170,23 +170,24 @@ class PTHAFASTableBodyBuilder {
         if (departure.canceled === true) cell.className += " pthCanceled";
 
         break;
-
-      case "line":
+      }
+      case "line": {
         const line = departure.line.name;
         cell = this.getLineCell(line);
         break;
-
-      case "direction":
+      }
+      case "direction": {
         const direction = departure.direction;
         cell = this.getDirectionCell(direction);
         break;
-
-      case "platform":
+      }
+      case "platform": {
         let platform = departure.platform;
         if (platform === null) platform = departure.plannedPlatform;
         if (platform === null) platform = "";
         cell = this.getPlatformCell(platform);
         break;
+      }
     }
 
     return cell;
