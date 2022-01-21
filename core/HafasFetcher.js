@@ -79,7 +79,7 @@ module.exports = class HafasFetcher {
   }
 
   fetchDepartures() {
-    let options = {
+    const options = {
       when: this.getDepartureTime(),
       direction: this.config.direction,
       duration: this.getTimeInFuture()
@@ -88,7 +88,7 @@ module.exports = class HafasFetcher {
     return this.hafasClient
       .departures(this.config.stationID, options)
       .then((departures) => {
-        let maxElements =
+        const maxElements =
           this.config.maxReachableDepartures +
           this.config.maxUnreachableDepartures;
         let filteredDepartures = this.filterByTransportationTypes(departures);
@@ -132,8 +132,8 @@ module.exports = class HafasFetcher {
 
   filterByTransportationTypes(departures) {
     return departures.filter((departure) => {
-      let product = departure.line.product;
-      let index = this.config.includedTransportationTypes.indexOf(product);
+      const product = departure.line.product;
+      const index = this.config.includedTransportationTypes.indexOf(product);
 
       return index !== -1;
     });
@@ -141,8 +141,8 @@ module.exports = class HafasFetcher {
 
   filterByIgnoredLines(departures) {
     return departures.filter((departure) => {
-      let line = departure.line.name;
-      let index = this.config.ignoredLines.indexOf(line);
+      const line = departure.line.name;
+      const index = this.config.ignoredLines.indexOf(line);
 
       return index === -1;
     });
@@ -157,7 +157,7 @@ module.exports = class HafasFetcher {
 
   departuresRemovedSurplusUnreachableDepartures(departures) {
     // Get all unreachable departures
-    let unreachableDepartures = departures.filter(
+    const unreachableDepartures = departures.filter(
       (departure) => !departure.isReachable
     );
 
@@ -170,12 +170,12 @@ module.exports = class HafasFetcher {
     );
 
     // Get all reachable departures
-    let reachableDepartures = departures.filter(
+    const reachableDepartures = departures.filter(
       (departure) => departure.isReachable
     );
 
     // Merge unreachable and reachable departures
-    let result = [].concat(unreachableDepartures, reachableDepartures);
+    const result = [].concat(unreachableDepartures, reachableDepartures);
 
     return result;
   }

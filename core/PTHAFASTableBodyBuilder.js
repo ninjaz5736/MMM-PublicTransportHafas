@@ -6,23 +6,23 @@ class PTHAFASTableBodyBuilder {
   }
 
   getDeparturesTableBody(departures, noDepartureMessage) {
-    let tBody = document.createElement("tbody");
+    const tBody = document.createElement("tbody");
     tBody.className = "light";
 
     if (departures.length === 0) {
-      let row = this.getDeparturesTableNoDeparturesRow(noDepartureMessage);
+      const row = this.getDeparturesTableNoDeparturesRow(noDepartureMessage);
       tBody.appendChild(row);
 
       return tBody;
     }
 
-    let reachableCount = departures.length;
-    let unreachableCount = departures.filter(
+    const reachableCount = departures.length;
+    const unreachableCount = departures.filter(
       (departure) => !departure.isReachable
     ).length;
 
     departures.forEach((departure, index) => {
-      let row = this.getDeparturesTableRow(
+      const row = this.getDeparturesTableRow(
         departure,
         index,
         reachableCount,
@@ -34,13 +34,13 @@ class PTHAFASTableBodyBuilder {
         // Next line is for testing if there are no warning remarks - uncomment it to append to every departure a warning remark
         // departure.remarks.push({ "id": "326169", "type": "warning", "summary": "Meldung für Linie 8", "text": "Es kommt zu betriebsbedingten Fahrtausfällen. \nDie entfallenden Fahrten sind in der App MOOVME sowie unter www.havag.com/fahrtenplaner gekennzeichnet.", "icon": { "type": "HIM3", "title": null }, "priority": 50, "products": { "nationalExpress": true, "national": true, "regional": true, "suburban": true, "tram": true, "bus": true, "tourismTrain": true }, "company": "HAVAG - Hallesche Verkehrs-AG", "categories": [3], "validFrom": "2021-12-03T09:17:00+01:00", "validUntil": "2022-12-31T23:59:00+01:00", "modified": "2021-12-03T09:17:46+01:00" });
 
-        let remarksRow = this.getRemarksTableRow(departure);
+        const remarksRow = this.getRemarksTableRow(departure);
         if (remarksRow.innerText !== "") {
           tBody.appendChild(remarksRow);
         }
       }
 
-      let nextDeparture = departures[index + 1];
+      const nextDeparture = departures[index + 1];
       this.insertRulerIfNecessary(
         tBody,
         departure,
@@ -66,7 +66,7 @@ class PTHAFASTableBodyBuilder {
   }
 
   getTableCell(content, cssClass = "") {
-    let cell = document.createElement("td");
+    const cell = document.createElement("td");
     cell.className = cssClass;
 
     if (typeof content === "string") {
@@ -79,10 +79,10 @@ class PTHAFASTableBodyBuilder {
   }
 
   getDeparturesTableNoDeparturesRow(noDepartureMessage) {
-    let row = document.createElement("tr");
+    const row = document.createElement("tr");
     row.className = "dimmed";
 
-    let cell = document.createElement("td");
+    const cell = document.createElement("td");
     cell.colSpan = 3;
     cell.innerText = noDepartureMessage;
 
@@ -92,16 +92,16 @@ class PTHAFASTableBodyBuilder {
   }
 
   getRemarksTableRow(departure) {
-    let row = document.createElement("tr");
+    const row = document.createElement("tr");
     row.className = "";
 
-    let cell = document.createElement("td");
+    const cell = document.createElement("td");
     cell.colSpan = this.config.tableHeaderOrder.length;
 
-    let cell_Container = document.createElement("div");
+    const cell_Container = document.createElement("div");
     cell_Container.className = "pthWarningRemarks";
 
-    let marquee = document.createElement("span");
+    const marquee = document.createElement("span");
     marquee.innerText = "";
 
     departure.remarks.forEach((remark) => {
@@ -128,7 +128,7 @@ class PTHAFASTableBodyBuilder {
   }
 
   getDeparturesTableRow(departure, index, departuresCount, unreachableCount) {
-    let row = document.createElement("tr");
+    const row = document.createElement("tr");
     row.className = "bright";
 
     if (departure.isReachable) {
@@ -144,7 +144,7 @@ class PTHAFASTableBodyBuilder {
     }
 
     this.config.tableHeaderOrder.forEach((key) => {
-      let cell = this.getCell(key, departure);
+      const cell = this.getCell(key, departure);
       row.appendChild(cell);
     });
 
@@ -157,7 +157,7 @@ class PTHAFASTableBodyBuilder {
     switch (key) {
       case "time":
         let time = departure.when;
-        let delay = departure.delay;
+        const delay = departure.delay;
 
         // Use planned time if canceled
         if (departure.canceled === true) time = departure.plannedWhen;
@@ -171,12 +171,12 @@ class PTHAFASTableBodyBuilder {
         break;
 
       case "line":
-        let line = departure.line.name;
+        const line = departure.line.name;
         cell = this.getLineCell(line);
         break;
 
       case "direction":
-        let direction = departure.direction;
+        const direction = departure.direction;
         cell = this.getDirectionCell(direction);
         break;
 
@@ -192,9 +192,9 @@ class PTHAFASTableBodyBuilder {
   }
 
   getTimeCell(departure, delay) {
-    let time = this.getDisplayDepartureTime(departure, delay);
+    const time = this.getDisplayDepartureTime(departure, delay);
 
-    let cell = document.createElement("td");
+    const cell = document.createElement("td");
 
     if (moment(departure).isValid()) {
       cell.className = "pthTimeCell";
@@ -212,7 +212,7 @@ class PTHAFASTableBodyBuilder {
   }
 
   getDelaySpan(delay) {
-    let delaySpan = document.createElement("span");
+    const delaySpan = document.createElement("span");
     delaySpan.innerText = this.getDelay(delay);
 
     let cssClass = "dimmed";
@@ -230,7 +230,7 @@ class PTHAFASTableBodyBuilder {
   // +n === +n --> Test, if n is numeric
   getDelay(delay) {
     if (+delay === +delay) {
-      let sign = delay < 0 ? "-" : "+";
+      const sign = delay < 0 ? "-" : "+";
       return sign + delay / 60;
     } else {
       return "+?";
@@ -239,10 +239,10 @@ class PTHAFASTableBodyBuilder {
 
   getDisplayDepartureTime(when, delay) {
     if (this.config.showAbsoluteTime) {
-      let time = moment(when).subtract(delay, "seconds");
+      const time = moment(when).subtract(delay, "seconds");
       return time.format("LT");
     } else {
-      let time = moment(when);
+      const time = moment(when);
       return time.fromNow();
     }
   }
@@ -250,8 +250,8 @@ class PTHAFASTableBodyBuilder {
   getLineId(lineName) {
     let lineId = lineName;
     if (lineName.search(" ") === -1) {
-      let lineNameWithoutSpaces = lineName.replace(/\s/g, "");
-      let firstNumberPosition = lineNameWithoutSpaces.search(/\d/);
+      const lineNameWithoutSpaces = lineName.replace(/\s/g, "");
+      const firstNumberPosition = lineNameWithoutSpaces.search(/\d/);
       lineId = lineNameWithoutSpaces;
 
       if (firstNumberPosition > 0) {
@@ -273,7 +273,7 @@ class PTHAFASTableBodyBuilder {
       line = lineName;
     }
 
-    let lineDiv = document.createElement("div");
+    const lineDiv = document.createElement("div");
     lineDiv.innerText = line;
     lineDiv.className = this.getLineCssClass(lineName) + " pthTextCenter";
 
@@ -303,8 +303,8 @@ class PTHAFASTableBodyBuilder {
   getProduct(lineName) {
     let product = lineName;
     if (lineName.search(" ") === -1) {
-      let lineNameWithoutSpaces = lineName.replace(/\s/g, "");
-      let firstNumberPosition = lineNameWithoutSpaces.search(/\d/);
+      const lineNameWithoutSpaces = lineName.replace(/\s/g, "");
+      const firstNumberPosition = lineNameWithoutSpaces.search(/\d/);
       product = lineNameWithoutSpaces;
 
       if (firstNumberPosition > 0) {
@@ -328,9 +328,9 @@ class PTHAFASTableBodyBuilder {
    */
   getColoredCssClass(lineName) {
     let classNames = "pthSign";
-    let product = this.getProduct(lineName);
-    let dbProducts = ["IC", "ICE", "RE", "RB", "S"];
-    let ignoreShowOnlyLineNumbers = ["IC", "ICE", "RE", "RB", "S", "U"];
+    const product = this.getProduct(lineName);
+    const dbProducts = ["IC", "ICE", "RE", "RB", "S"];
+    const ignoreShowOnlyLineNumbers = ["IC", "ICE", "RE", "RB", "S", "U"];
 
     if (dbProducts.includes(product)) {
       classNames += " pthDbStandard";
@@ -348,7 +348,7 @@ class PTHAFASTableBodyBuilder {
   }
 
   getDirectionCell(direction) {
-    let truncatePosition = 26;
+    const truncatePosition = 26;
     let content = this.getProcessedDirection(direction);
     let className = "pthDirectionCell";
 
@@ -369,7 +369,7 @@ class PTHAFASTableBodyBuilder {
   }
 
   getProcessedDirection(direction) {
-    let replacements = this.config.replaceInDirections;
+    const replacements = this.config.replaceInDirections;
     let processed = direction;
 
     Object.keys(replacements).forEach((key) => {
@@ -380,7 +380,7 @@ class PTHAFASTableBodyBuilder {
   }
 
   getPlatformCell(platform) {
-    let className = "pthPlatformCell pthTextCenter";
+    const className = "pthPlatformCell pthTextCenter";
     return this.getTableCell(platform, className);
   }
 
@@ -389,17 +389,17 @@ class PTHAFASTableBodyBuilder {
       return 1.0;
     }
 
-    let threshold =
+    const threshold =
       departuresCount * this.config.fadePointForReachableDepartures;
     let opacity = 1;
-    let startOpacity = 0.8;
-    let endOpacity = 0.2;
-    let opacityDiff =
+    const startOpacity = 0.8;
+    const endOpacity = 0.2;
+    const opacityDiff =
       (startOpacity - endOpacity) / (departuresCount - threshold);
 
     if (index > threshold) {
-      let fadingIndex = index - threshold;
-      let currentOpacity = fadingIndex * opacityDiff;
+      const fadingIndex = index - threshold;
+      const currentOpacity = fadingIndex * opacityDiff;
       opacity = startOpacity - currentOpacity;
     }
 
@@ -411,9 +411,9 @@ class PTHAFASTableBodyBuilder {
       return 1.0;
     }
 
-    let startOpacity = 0.3;
-    let endOpacity = 0.6;
-    let opacityDiff = (endOpacity - startOpacity) / count;
+    const startOpacity = 0.3;
+    const endOpacity = 0.6;
+    const opacityDiff = (endOpacity - startOpacity) / count;
 
     if (index + 1 === count) {
       return endOpacity;
@@ -423,8 +423,8 @@ class PTHAFASTableBodyBuilder {
   }
 
   getRulerRow() {
-    let row = document.createElement("tr");
-    let cell = document.createElement("td");
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
 
     cell.colSpan = 3;
     cell.className = "pthRulerCell";

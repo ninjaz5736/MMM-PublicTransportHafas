@@ -13,15 +13,15 @@ class PTHAFASDomBuilder {
   }
 
   getSimpleDom(message) {
-    let wrapper = this.getWrapper();
+    const wrapper = this.getWrapper();
     wrapper.appendChild(this.getDiv(message));
 
     return wrapper;
   }
 
   getDom(departures, headings, noDeparturesMessage) {
-    let wrapper = this.getWrapper();
-    let departuresTable = this.getDeparturesTable(
+    const wrapper = this.getWrapper();
+    const departuresTable = this.getDeparturesTable(
       departures,
       headings,
       noDeparturesMessage
@@ -32,7 +32,7 @@ class PTHAFASDomBuilder {
   }
 
   getWrapper() {
-    let wrapper = document.createElement("div");
+    const wrapper = document.createElement("div");
     wrapper.className = "pthWrapper";
     wrapper.appendChild(
       this.createHeadingElement(
@@ -46,7 +46,7 @@ class PTHAFASDomBuilder {
   }
 
   getDiv(message, cssClasses = "small light dimmed") {
-    let messageDiv = document.createElement("div");
+    const messageDiv = document.createElement("div");
     messageDiv.className = cssClasses;
     messageDiv.innerHTML = message;
 
@@ -55,7 +55,7 @@ class PTHAFASDomBuilder {
 
   // Create the module header. Prepend headerPrefix if given.
   createHeadingElement(headerPrefix, stationName, headerAppendix) {
-    let headingElement = document.createElement("header");
+    const headingElement = document.createElement("header");
     let heading = stationName;
 
     if (headerPrefix !== "") {
@@ -72,16 +72,16 @@ class PTHAFASDomBuilder {
   }
 
   getDeparturesTable(departures, headings, noDepartureMessage) {
-    let table = document.createElement("table");
+    const table = document.createElement("table");
     table.className = "pthTable small";
 
     if (this.config.showTableHeaders) {
-      let tableHeader = this.getDeparturesTableHeader(headings);
+      const tableHeader = this.getDeparturesTableHeader(headings);
       table.appendChild(tableHeader);
     }
 
-    let tableBodyBuilder = new PTHAFASTableBodyBuilder(this.config);
-    let tableBody = tableBodyBuilder.getDeparturesTableBody(
+    const tableBodyBuilder = new PTHAFASTableBodyBuilder(this.config);
+    const tableBody = tableBodyBuilder.getDeparturesTableBody(
       departures,
       noDepartureMessage
     );
@@ -91,12 +91,12 @@ class PTHAFASDomBuilder {
   }
 
   getDeparturesTableHeader(headings) {
-    let tHead = document.createElement("thead");
-    let headerRow = document.createElement("tr");
+    const tHead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
     headerRow.className = "bold dimmed";
 
     this.config.tableHeaderOrder.forEach((key) => {
-      let values = this.getHeadingValues(key, headings);
+      const values = this.getHeadingValues(key, headings);
       headerRow.appendChild(this.getHeaderCell(values));
     });
 
@@ -106,7 +106,7 @@ class PTHAFASDomBuilder {
   }
 
   getHeadingValues(key, headings) {
-    let result = {
+    const result = {
       text: headings[key],
       symbol: this.headingSymbols[key],
       cssClass: ""
@@ -120,15 +120,15 @@ class PTHAFASDomBuilder {
   }
 
   getHeaderCell(values) {
-    let textContent = values.text;
-    let symbol = values.symbol;
-    let cssClass = values.cssClass;
+    const textContent = values.text;
+    const symbol = values.symbol;
+    const cssClass = values.cssClass;
 
-    let cell = document.createElement("td");
+    const cell = document.createElement("td");
     cell.className = cssClass;
 
     if (this.config.showTableHeadersAsSymbols) {
-      let content = document.createElement("i");
+      const content = document.createElement("i");
       content.className = symbol;
       cell.appendChild(content);
     } else {
