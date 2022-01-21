@@ -53,13 +53,13 @@ module.exports = NodeHelper.create({
   },
 
   fetchDepartures(identifier) {
-    let fetcher = this.departuresFetchers[identifier];
+    const fetcher = this.departuresFetchers[identifier];
 
     if (typeof fetcher !== "undefined") {
       fetcher
         .fetchDepartures()
         .then((fetchedDepartures) => {
-          let payload = {
+          const payload = {
             identifier: fetcher.getIdentifier(),
             departures: fetchedDepartures
           };
@@ -67,7 +67,7 @@ module.exports = NodeHelper.create({
           this.sendSocketNotification("DEPARTURES_FETCHED", payload);
         })
         .catch((error) => {
-          let payload = {
+          const payload = {
             identifier: fetcher.getIdentifier(),
             error: error
           };

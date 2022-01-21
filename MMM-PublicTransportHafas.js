@@ -1,7 +1,7 @@
 "use strict";
 
 //UserPresence Management (PIR sensor)
-var UserPresence = true; //true by default, so no impact for user without a PIR sensor
+let UserPresence = true; //true by default, so no impact for user without a PIR sensor
 
 Module.register("MMM-PublicTransportHafas", {
   // default values
@@ -69,7 +69,7 @@ Module.register("MMM-PublicTransportHafas", {
       return;
     }
 
-    let fetcherOptions = {
+    const fetcherOptions = {
       identifier: this.identifier,
       hafasProfile: this.config.hafasProfile,
       stationID: this.config.stationID,
@@ -114,7 +114,7 @@ Module.register("MMM-PublicTransportHafas", {
       this.ModulePublicTransportHafasHidden === false
     ) {
       // Make sure to have a user present in front of the screen (PIR sensor) and that the module is displayed
-      let self = this;
+      const self = this;
       // Log.log(this.config.stationName + " is displayed and user present! Update it");
 
       // Update now and start again the update timer
@@ -128,7 +128,7 @@ Module.register("MMM-PublicTransportHafas", {
   },
 
   getDom: function () {
-    let domBuilder = new PTHAFASDomBuilder(this.config);
+    const domBuilder = new PTHAFASDomBuilder(this.config);
 
     if (this.hasErrors()) {
       return domBuilder.getSimpleDom(this.error.message);
@@ -138,16 +138,16 @@ Module.register("MMM-PublicTransportHafas", {
       return domBuilder.getSimpleDom(this.translate("LOADING"));
     }
 
-    let headings = {
+    const headings = {
       time: this.translate("PTH_DEPARTURE_TIME"),
       line: this.translate("PTH_LINE"),
       direction: this.translate("PTH_TO"),
       platform: this.translate("PTH_PLATFORM")
     };
 
-    let noDeparturesMessage = this.translate("PTH_NO_DEPARTURES");
+    const noDeparturesMessage = this.translate("PTH_NO_DEPARTURES");
 
-    let wrapper = domBuilder.getDom(
+    const wrapper = domBuilder.getDom(
       this.departures,
       headings,
       noDeparturesMessage
@@ -155,7 +155,7 @@ Module.register("MMM-PublicTransportHafas", {
 
     // display the update time at the end, if defined so by the user config
     if (this.config.displayLastUpdate) {
-      let updateinfo = document.createElement("div");
+      const updateinfo = document.createElement("div");
       updateinfo.className = "xsmall light align-left";
       updateinfo.innerText =
         "Update: " +
@@ -169,10 +169,10 @@ Module.register("MMM-PublicTransportHafas", {
   },
 
   getStyles: function () {
-    let styles = [this.file("css/styles.css"), "font-awesome.css"];
+    const styles = [this.file("css/styles.css"), "font-awesome.css"];
 
     if (this.config.customLineStyles !== "") {
-      let customStyle = "css/" + this.config.customLineStyles + "-lines.css";
+      const customStyle = "css/" + this.config.customLineStyles + "-lines.css";
       styles.push(this.file(customStyle));
     }
 
