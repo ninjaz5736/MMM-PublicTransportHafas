@@ -116,7 +116,6 @@ Module.register("MMM-PublicTransportHafas", {
       this.ModulePublicTransportHafasHidden === false
     ) {
       // Make sure to have a user present in front of the screen (PIR sensor) and that the module is displayed
-      const self = this;
       // Log.log(this.config.stationName + " is displayed and user present! Update it");
 
       // Update now and start again the update timer
