@@ -11,6 +11,7 @@ module.exports = {
     sourceType: "module"
   },
   rules: {
+    "default-case": "off",
     "prefer-destructuring": "off",
     "prettier/prettier": "error",
     "import/no-unresolved": "off"
