@@ -18,6 +18,12 @@ const productMap = {
   tram: "Tram"
 };
 
+/**
+ * Get proper names for the product keys.
+ *
+ * @param {object} products An object with the available transport products as a keys.
+ * @returns {string} A list of transport products as a string.
+ */
 function refineProducts(products) {
   const result = "Verkehrsmittel: ";
 
@@ -35,12 +41,17 @@ function refineProducts(products) {
   return result + availableProductsReadable.join(", ");
 }
 
-function printStationInfo(element) {
-  if (element.id && element.name) {
+/**
+ * Output the information about the station on the console.
+ *
+ * @param {object} station The station it's about.
+ */
+function printStationInfo(station) {
+  if (station.id && station.name) {
     console.info(
-      `> Haltestelle: '${element.name}'\n  ID: ${
-        element.id
-      }\n  ${refineProducts(element.products)}\n`
+      `> Haltestelle: '${station.name}'\n  ID: ${
+        station.id
+      }\n  ${refineProducts(station.products)}\n`
     );
   }
 }
@@ -83,8 +94,8 @@ if (profile !== "") {
         .then((response) => {
           console.info(`\nGefundene Haltestellen für '${answer}':\n`);
 
-          response.forEach((element) => {
-            printStationInfo(element);
+          response.forEach((station) => {
+            printStationInfo(station);
           });
 
           process.exit(0);
