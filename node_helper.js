@@ -3,11 +3,11 @@ const HafasFetcher = require("./core/HafasFetcher");
 const Log = require("logger");
 
 module.exports = NodeHelper.create({
-  start: function () {
+  start() {
     this.departuresFetchers = [];
   },
 
-  socketNotificationReceived: function (notification, payload) {
+  socketNotificationReceived (notification, payload) {
     switch (notification) {
       case "CREATE_FETCHER":
         this.createFetcher(payload);
@@ -19,7 +19,7 @@ module.exports = NodeHelper.create({
     }
   },
 
-  createFetcher: function (config) {
+  createFetcher(config) {
     let fetcher;
 
     if (typeof this.departuresFetchers[config.identifier] === "undefined") {
@@ -44,7 +44,7 @@ module.exports = NodeHelper.create({
     }
   },
 
-  sendFetcherLoaded: function (fetcher) {
+  sendFetcherLoaded(fetcher) {
     this.sendSocketNotification("FETCHER_INITIALIZED", {
       identifier: fetcher.getIdentifier()
     });
@@ -67,7 +67,7 @@ module.exports = NodeHelper.create({
         .catch((error) => {
           const payload = {
             identifier: fetcher.getIdentifier(),
-            error: error
+            error
           };
 
           this.sendSocketNotification("FETCH_ERROR", payload);

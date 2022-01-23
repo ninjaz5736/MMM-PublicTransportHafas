@@ -48,7 +48,7 @@ Module.register("MMM-PublicTransportHafas", {
     animationSpeed: 1500                // Refresh animation speed in milliseconds
   },
 
-  start: function () {
+  start() {
     Log.info(
       "Starting module: " + this.name + " with identifier: " + this.identifier
     );
@@ -86,21 +86,21 @@ Module.register("MMM-PublicTransportHafas", {
     this.sendSocketNotification("CREATE_FETCHER", fetcherOptions);
   },
 
-  suspend: function () {
+  suspend() {
     // Core function called when the module is hidden
     this.ModulePublicTransportHafasHidden = true; // Module hidden
     // Log.log("Function suspend - Module PublicTransportHafas is hidden " + this.config.stationName);
     this.GestionUpdateIntervalHafas(); // Call the function which manages all the cases
   },
 
-  resume: function () {
+  resume() {
     // Core function called when the module is displayed
     this.ModulePublicTransportHafasHidden = false;
     // Log.log("Function working - Module PublicTransportHafas is displayed " + this.config.stationName);
     this.GestionUpdateIntervalHafas();
   },
 
-  notificationReceived: function (notification, payload) {
+  notificationReceived(notification, payload) {
     if (notification === "USER_PRESENCE") {
       // Notification sent by the MMM-PIR-Sensor module. See its doc.
       // Log.log("NotificationReceived USER_PRESENCE = " + payload);
@@ -109,7 +109,7 @@ Module.register("MMM-PublicTransportHafas", {
     }
   },
 
-  GestionUpdateIntervalHafas: function () {
+  GestionUpdateIntervalHafas() {
     if (
       UserPresence === true &&
       this.ModulePublicTransportHafasHidden === false
@@ -127,7 +127,7 @@ Module.register("MMM-PublicTransportHafas", {
     }
   },
 
-  getDom: function () {
+  getDom() {
     const domBuilder = new PTHAFASDomBuilder(this.config);
 
     if (this.hasErrors()) {
@@ -168,7 +168,7 @@ Module.register("MMM-PublicTransportHafas", {
     return wrapper;
   },
 
-  getStyles: function () {
+  getStyles() {
     const styles = [this.file("css/styles.css"), "font-awesome.css"];
 
     if (this.config.customLineStyles !== "") {
@@ -179,7 +179,7 @@ Module.register("MMM-PublicTransportHafas", {
     return styles;
   },
 
-  getScripts: function () {
+  getScripts() {
     return [
       "moment.js",
       this.file("core/PTHAFASDomBuilder.js"),
@@ -187,14 +187,14 @@ Module.register("MMM-PublicTransportHafas", {
     ];
   },
 
-  getTranslations: function () {
+  getTranslations() {
     return {
       en: "translations/en.json",
       de: "translations/de.json"
     };
   },
 
-  socketNotificationReceived: function (notification, payload) {
+  socketNotificationReceived(notification, payload) {
     if (!this.isForThisStation(payload)) {
       return;
     }
@@ -236,11 +236,11 @@ Module.register("MMM-PublicTransportHafas", {
     }
   },
 
-  isForThisStation: function (payload) {
+  isForThisStation(payload) {
     return payload.identifier === this.identifier;
   },
 
-  sanitzeConfig: function () {
+  sanitzeConfig() {
     if (this.config.updatesEvery < 30) {
       this.config.updatesEvery = 30;
     }
@@ -262,7 +262,7 @@ Module.register("MMM-PublicTransportHafas", {
     }
   },
 
-  startFetchingLoop: function (interval) {
+  startFetchingLoop(interval) {
     // start immediately ...
     this.sendSocketNotification("FETCH_DEPARTURES", this.identifier);
 
@@ -277,7 +277,7 @@ Module.register("MMM-PublicTransportHafas", {
     }
   },
 
-  hasErrors: function () {
+  hasErrors() {
     return Object.keys(this.error).length > 0;
   }
 });
