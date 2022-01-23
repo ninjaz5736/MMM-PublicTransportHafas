@@ -46,29 +46,29 @@ class PTHAFASDomBuilder {
   }
 
   getDiv(message, cssClasses = "small light dimmed") {
-    const messageDiv = document.createElement("div");
-    messageDiv.className = cssClasses;
-    messageDiv.innerHTML = message;
+    this.messageDiv = document.createElement("div");
+    this.messageDiv.className = cssClasses;
+    this.messageDiv.innerHTML = message;
 
-    return messageDiv;
+    return this.messageDiv;
   }
 
   // Create the module header. Prepend headerPrefix if given.
   createHeadingElement(headerPrefix, stationName, headerAppendix) {
-    const headingElement = document.createElement("header");
-    let heading = stationName;
+    this.headingElement = document.createElement("header");
+    this.heading = stationName;
 
     if (headerPrefix !== "") {
-      heading = `${headerPrefix} ${heading}`;
+      this.heading = `${headerPrefix} ${this.heading}`;
     }
 
     if (headerAppendix !== "") {
-      heading += ` ${headerAppendix}`;
+      this.heading += ` ${headerAppendix}`;
     }
 
-    headingElement.innerText = heading;
+    this.headingElement.innerText = this.heading;
 
-    return headingElement;
+    return this.headingElement;
   }
 
   getDeparturesTable(departures, headings, noDepartureMessage) {

@@ -65,29 +65,29 @@ class PTHAFASTableBodyBuilder {
   }
 
   getTableCell(content, cssClass = "") {
-    const cell = document.createElement("td");
-    cell.className = cssClass;
+    this.cell = document.createElement("td");
+    this.cell.className = cssClass;
 
     if (typeof content === "string") {
-      cell.innerText = content;
+      this.cell.innerText = content;
     } else {
-      cell.appendChild(content);
+      this.cell.appendChild(content);
     }
 
-    return cell;
+    return this.cell;
   }
 
   getDeparturesTableNoDeparturesRow(noDepartureMessage) {
-    const row = document.createElement("tr");
-    row.className = "dimmed";
+    this.row = document.createElement("tr");
+    this.row.className = "dimmed";
 
     const cell = document.createElement("td");
     cell.colSpan = 3;
     cell.innerText = noDepartureMessage;
 
-    row.appendChild(cell);
+    this.row.appendChild(cell);
 
-    return row;
+    return this.row;
   }
 
   getRemarksTableRow(departure) {
@@ -152,11 +152,12 @@ class PTHAFASTableBodyBuilder {
 
     switch (key) {
       case "time": {
+        this.time = departure.when;
         // Use planned time if canceled
-        if (departure.canceled === true) departure.when = departure.plannedWhen;
+        if (departure.canceled === true) this.time = departure.plannedWhen;
 
         // Get time cell
-        cell = this.getTimeCell(departure.when, departure.delay);
+        cell = this.getTimeCell(this.time, departure.delay);
 
         // Add class if canceled
         if (departure.canceled === true) cell.className += " pthCanceled";
@@ -219,11 +220,12 @@ class PTHAFASTableBodyBuilder {
   }
 
   getDelay(delay) {
+    this.delayString = "+?";
     if (typeof delay === "number") {
       const sign = delay < 0 ? "-" : "+";
-      return sign + delay / 60;
+      this.delayString = sign + delay / 60;
     }
-    return "+?";
+    return this.delayString;
   }
 
   getDisplayDepartureTime(when, delay) {
@@ -236,20 +238,20 @@ class PTHAFASTableBodyBuilder {
   }
 
   getLineId(lineName) {
-    let lineId = lineName;
+    this.lineId = lineName;
     if (lineName.search(" ") === -1) {
       const lineNameWithoutSpaces = lineName.replace(/\s/g, "");
       const firstNumberPosition = lineNameWithoutSpaces.search(/\d/);
-      lineId = lineNameWithoutSpaces;
+      this.lineId = lineNameWithoutSpaces;
 
       if (firstNumberPosition > 0) {
-        lineId = lineNameWithoutSpaces.slice(firstNumberPosition);
+        this.lineId = lineNameWithoutSpaces.slice(firstNumberPosition);
       }
     } else {
-      lineId = lineName.split(" ")[1];
+      this.lineId = lineName.split(" ")[1];
     }
 
-    return lineId;
+    return this.lineId;
   }
 
   getLineCell(lineName) {
@@ -288,20 +290,20 @@ class PTHAFASTableBodyBuilder {
    * @returns {string} product     The product ('RB', 'S', 'U', ...).
    */
   getProduct(lineName) {
-    let product = lineName;
+    this.product = lineName;
     if (lineName.search(" ") === -1) {
       const lineNameWithoutSpaces = lineName.replace(/\s/g, "");
       const firstNumberPosition = lineNameWithoutSpaces.search(/\d/);
-      product = lineNameWithoutSpaces;
+      this.product = lineNameWithoutSpaces;
 
       if (firstNumberPosition > 0) {
-        product = lineNameWithoutSpaces.slice(0, firstNumberPosition);
+        this.product = lineNameWithoutSpaces.slice(0, firstNumberPosition);
       }
     } else {
-      product = lineName.split(" ")[0];
+      this.product = lineName.split(" ")[0];
     }
 
-    return product;
+    return this.product;
   }
 
   /**
@@ -409,13 +411,13 @@ class PTHAFASTableBodyBuilder {
   }
 
   getRulerRow() {
-    const row = document.createElement("tr");
-    const cell = document.createElement("td");
+    this.row = document.createElement("tr");
+    this.cell = document.createElement("td");
 
-    cell.colSpan = 3;
-    cell.className = "pthRulerCell";
-    row.appendChild(cell);
+    this.cell.colSpan = 3;
+    this.cell.className = "pthRulerCell";
+    this.row.appendChild(this.cell);
 
-    return row;
+    return this.row;
   }
 }

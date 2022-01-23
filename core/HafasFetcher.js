@@ -149,8 +149,9 @@ module.exports = class HafasFetcher {
 
   departuresMarkedWithReachability(departures) {
     return departures.map((departure) => {
-      departure.isReachable = this.isReachable(departure);
-      return departure;
+      this.departure = departure;
+      this.departure.isReachable = this.isReachable(departure);
+      return this.departure;
     });
   }
 
