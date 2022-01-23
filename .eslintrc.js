@@ -12,8 +12,10 @@ module.exports = {
   },
   rules: {
     "default-case": "off",
+    "global-require": "off",
     "prefer-destructuring": "off",
     "prettier/prettier": "error",
+    "import/no-dynamic-require": "off",
     "import/no-unresolved": "off"
   }
 };
