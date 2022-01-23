@@ -64,7 +64,7 @@ class PTHAFASTableBodyBuilder {
     }
   }
 
-  static getTableCell(content, cssClass = "") {
+  getTableCell(content, cssClass = "") {
     const cell = document.createElement("td");
     cell.className = cssClass;
 
@@ -77,7 +77,7 @@ class PTHAFASTableBodyBuilder {
     return cell;
   }
 
-  static getDeparturesTableNoDeparturesRow(noDepartureMessage) {
+  getDeparturesTableNoDeparturesRow(noDepartureMessage) {
     const row = document.createElement("tr");
     row.className = "dimmed";
 
@@ -152,12 +152,11 @@ class PTHAFASTableBodyBuilder {
 
     switch (key) {
       case "time": {
-        this.time = departure.when;
         // Use planned time if canceled
-        if (departure.canceled === true) this.time = departure.plannedWhen;
+        if (departure.canceled === true) departure.when = departure.plannedWhen;
 
         // Get time cell
-        cell = this.getTimeCell(this.time, departure.delay);
+        cell = this.getTimeCell(departure.when, departure.delay);
 
         // Add class if canceled
         if (departure.canceled === true) cell.className += " pthCanceled";
@@ -219,7 +218,7 @@ class PTHAFASTableBodyBuilder {
     return delaySpan;
   }
 
-  static getDelay(delay) {
+  getDelay(delay) {
     if (typeof delay === "number") {
       const sign = delay < 0 ? "-" : "+";
       return sign + delay / 60;
@@ -236,7 +235,7 @@ class PTHAFASTableBodyBuilder {
     return time.fromNow();
   }
 
-  static getLineId(lineName) {
+  getLineId(lineName) {
     let lineId = lineName;
     if (lineName.search(" ") === -1) {
       const lineNameWithoutSpaces = lineName.replace(/\s/g, "");
@@ -288,7 +287,7 @@ class PTHAFASTableBodyBuilder {
    * @param  {string} lineName    The line name as it was delivered by the HAFAS API.
    * @returns {string} product     The product ('RB', 'S', 'U', ...).
    */
-  static getProduct(lineName) {
+  getProduct(lineName) {
     let product = lineName;
     if (lineName.search(" ") === -1) {
       const lineNameWithoutSpaces = lineName.replace(/\s/g, "");
@@ -409,7 +408,7 @@ class PTHAFASTableBodyBuilder {
     return startOpacity + opacityDiff * index;
   }
 
-  static getRulerRow() {
+  getRulerRow() {
     const row = document.createElement("tr");
     const cell = document.createElement("td");
 
