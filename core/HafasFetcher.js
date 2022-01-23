@@ -130,8 +130,9 @@ module.exports = class HafasFetcher {
 
   filterByTransportationTypes(departures) {
     return departures.filter((departure) => {
-      const product = departure.line.product;
-      const index = this.config.includedTransportationTypes.indexOf(product);
+      const index = this.config.includedTransportationTypes.indexOf(
+        departure.line.product
+      );
 
       return index !== -1;
     });

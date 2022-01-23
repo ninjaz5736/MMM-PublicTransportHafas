@@ -152,14 +152,11 @@ class PTHAFASTableBodyBuilder {
 
     switch (key) {
       case "time": {
-        let time = departure.when;
-        const delay = departure.delay;
-
         // Use planned time if canceled
-        if (departure.canceled === true) time = departure.plannedWhen;
+        if (departure.canceled === true) departure.when = departure.plannedWhen;
 
         // Get time cell
-        cell = this.getTimeCell(time, delay);
+        cell = this.getTimeCell(departure.when, departure.delay);
 
         // Add class if canceled
         if (departure.canceled === true) cell.className += " pthCanceled";
@@ -167,13 +164,11 @@ class PTHAFASTableBodyBuilder {
         break;
       }
       case "line": {
-        const line = departure.line.name;
-        cell = this.getLineCell(line);
+        cell = this.getLineCell(departure.line.name);
         break;
       }
       case "direction": {
-        const direction = departure.direction;
-        cell = this.getDirectionCell(direction);
+        cell = this.getDirectionCell(departure.direction);
         break;
       }
       case "platform": {

@@ -120,19 +120,15 @@ class PTHAFASDomBuilder {
   }
 
   getHeaderCell(values) {
-    const textContent = values.text;
-    const symbol = values.symbol;
-    const cssClass = values.cssClass;
-
     const cell = document.createElement("td");
-    cell.className = cssClass;
+    cell.className = values.cssClass;
 
     if (this.config.showTableHeadersAsSymbols) {
       const content = document.createElement("i");
-      content.className = symbol;
+      content.className = values.symbol;
       cell.appendChild(content);
     } else {
-      cell.innerText = textContent;
+      cell.innerText = values.text;
     }
 
     return cell;
