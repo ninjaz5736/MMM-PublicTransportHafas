@@ -50,7 +50,7 @@ Module.register("MMM-PublicTransportHafas", {
 
   start() {
     Log.info(
-      "Starting module: " + this.name + " with identifier: " + this.identifier
+      `Starting module: ${this.name} with identifier: ${this.identifier}`
     );
 
     this.ModulePublicTransportHafasHidden = false; // By default we display the module (if no carousel or other module)
@@ -64,7 +64,7 @@ Module.register("MMM-PublicTransportHafas", {
     this.sanitzeConfig();
 
     if (!this.config.stationID) {
-      Log.error("stationID not set! " + this.config.stationID);
+      Log.error(`stationID not set! ${this.config.stationID}`);
       this.error.message = this.translate("NO_STATION_ID_SET");
 
       return;
@@ -157,11 +157,9 @@ Module.register("MMM-PublicTransportHafas", {
     if (this.config.displayLastUpdate) {
       const updateinfo = document.createElement("div");
       updateinfo.className = "xsmall light align-left";
-      updateinfo.innerText =
-        "Update: " +
-        moment
-          .unix(this.lastUpdate)
-          .format(this.config.displayLastUpdateFormat);
+      updateinfo.innerText = `Update: ${moment
+        .unix(this.lastUpdate)
+        .format(this.config.displayLastUpdateFormat)}`;
       wrapper.appendChild(updateinfo);
     }
 
@@ -172,7 +170,7 @@ Module.register("MMM-PublicTransportHafas", {
     const styles = [this.file("css/styles.css"), "font-awesome.css"];
 
     if (this.config.customLineStyles !== "") {
-      const customStyle = "css/" + this.config.customLineStyles + "-lines.css";
+      const customStyle = `css/${this.config.customLineStyles}-lines.css`;
       styles.push(this.file(customStyle));
     }
 
@@ -199,6 +197,7 @@ Module.register("MMM-PublicTransportHafas", {
       return;
     }
 
+    // eslint-disable-next-line default-case
     switch (notification) {
       case "FETCHER_INITIALIZED":
         this.initialized = true;
@@ -212,12 +211,11 @@ Module.register("MMM-PublicTransportHafas", {
         }
 
         Log.log(
-          "TransportHafas update OK, station : " +
-            this.config.stationName +
-            " at : " +
-            +moment
-              .unix(this.lastUpdate)
-              .format(this.config.displayLastUpdateFormat)
+          `TransportHafas update OK, station : ${
+            this.config.stationName
+          } at : ${+moment
+            .unix(this.lastUpdate)
+            .format(this.config.displayLastUpdateFormat)}`
         );
 
         // reset error object

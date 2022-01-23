@@ -59,11 +59,11 @@ class PTHAFASDomBuilder {
     let heading = stationName;
 
     if (headerPrefix !== "") {
-      heading = headerPrefix + " " + heading;
+      heading = `${headerPrefix} ${heading}`;
     }
 
     if (headerAppendix !== "") {
-      heading += " " + headerAppendix;
+      heading += ` ${headerAppendix}`;
     }
 
     headingElement.innerText = heading;

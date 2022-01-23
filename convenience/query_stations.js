@@ -21,7 +21,7 @@ function refineProducts(products) {
   const result = "Verkehrsmittel: ";
 
   if (!products) {
-    return result + "keine";
+    return `${result} keine`;
   }
 
   const availableProducts = Object.keys(products).filter(
@@ -41,31 +41,23 @@ function printStationInfo(element) {
 
   if (id && name) {
     console.info(
-      "> Haltestelle: '" +
-        name +
-        "'\n  ID: " +
-        id +
-        "\n  " +
-        refineProducts(products) +
-        "\n"
+      `> Haltestelle: '${name}'\n  ID: ${id}\n  ${refineProducts(products)}\n`
     );
   }
 }
 
 if (process.argv.length === 3) {
   profileName = process.argv[2];
-  console.info("Using hafas-client profile: " + profileName);
+  console.info(`Using hafas-client profile: ${profileName}`);
 } else {
   console.info("Using default hafas-client profile: 'db'");
   profileName = "db";
 }
 
 try {
-  profile = require("hafas-client/p/" + profileName);
+  profile = require(`hafas-client/p/${profileName}`);
 } catch (err) {
-  console.error(
-    "\n" + err.message + "\n Did you choose the right profile name? \n"
-  );
+  console.error(`\n${err.message}\n Did you choose the right profile name? \n`);
 }
 
 if (profile !== "") {
@@ -90,7 +82,7 @@ if (profile !== "") {
       client
         .locations(answer, opt)
         .then((response) => {
-          console.info("\nGefundene Haltestellen für '" + answer + "':\n");
+          console.info(`\nGefundene Haltestellen für '${answer}':\n`);
 
           response.forEach((element) => {
             printStationInfo(element);

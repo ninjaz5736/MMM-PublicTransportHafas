@@ -26,18 +26,14 @@ module.exports = NodeHelper.create({
       fetcher = new HafasFetcher(config);
       this.departuresFetchers[config.identifier] = fetcher;
       Log.info(
-        "Transportation fetcher for station with id '" +
-          fetcher.getStationID() +
-          "' created."
+        `Transportation fetcher for station with id '${fetcher.getStationID()}' created.`
       );
 
       this.sendFetcherLoaded(fetcher);
     } else {
       fetcher = this.departuresFetchers[config.identifier];
       Log.info(
-        "Using existing transportation fetcher for station id '" +
-          fetcher.getStationID() +
-          "'."
+        `Using existing transportation fetcher for station id '${fetcher.getStationID()}'.`
       );
 
       this.sendFetcherLoaded(fetcher);

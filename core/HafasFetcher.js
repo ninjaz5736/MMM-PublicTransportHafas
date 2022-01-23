@@ -23,10 +23,10 @@ module.exports = class HafasFetcher {
   constructor(config) {
     this.leadTime = 20; // minutes
     this.config = config;
-    const profile = require("hafas-client/p/" + this.config.hafasProfile);
+    const profile = require(`hafas-client/p/${this.config.hafasProfile}`);
     this.hafasClient = createClient(
       profile,
-      "MMM-PublicTransportHafas v" + pjson.version
+      `MMM-PublicTransportHafas v${pjson.version}`
     );
 
     // types given by the api

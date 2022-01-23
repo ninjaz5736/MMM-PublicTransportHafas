@@ -105,11 +105,8 @@ class PTHAFASTableBodyBuilder {
 
     departure.remarks.forEach((remark) => {
       if (remark.type === "warning") {
-        marquee.innerText +=
-          "  ⚠️  " +
-          remark.summary.replaceAll("\n", " ") +
-          ": " +
-          remark.text.replaceAll("\n", " ");
+        marquee.innerText += `  ⚠️  ${remark.summary.replaceAll("\n", " ")}:
+          ${remark.text.replaceAll("\n", " ")}`;
       }
     });
 
@@ -222,7 +219,7 @@ class PTHAFASTableBodyBuilder {
       cssClass = delay > 0 ? "pthHasDelay" : "pthIsTooEarly";
     }
 
-    delaySpan.className = "pthDelay " + cssClass;
+    delaySpan.className = `pthDelay ${cssClass}`;
 
     return delaySpan;
   }
@@ -275,7 +272,7 @@ class PTHAFASTableBodyBuilder {
 
     const lineDiv = document.createElement("div");
     lineDiv.innerText = line;
-    lineDiv.className = this.getLineCssClass(lineName) + " pthTextCenter";
+    lineDiv.className = `${this.getLineCssClass(lineName)} pthTextCenter`;
 
     return this.getTableCell(lineDiv);
   }
@@ -339,10 +336,10 @@ class PTHAFASTableBodyBuilder {
       ignoreShowOnlyLineNumbers.includes(product) &&
       this.config.showOnlyLineNumbers
     ) {
-      classNames += " " + product.toLowerCase() + "WithProductName";
+      classNames += ` ${product.toLowerCase()}WithProductName`;
     }
-    classNames += " " + product.toLowerCase();
-    classNames += " " + lineName.replace(/\s/g, "").toLowerCase();
+    classNames += ` ${product.toLowerCase()}`;
+    classNames += ` ${lineName.replace(/\s/g, "").toLowerCase()}`;
 
     return classNames;
   }
