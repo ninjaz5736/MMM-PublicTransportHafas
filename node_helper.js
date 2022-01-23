@@ -1,5 +1,3 @@
-"use strict";
-
 const NodeHelper = require("node_helper");
 const HafasFetcher = require("./core/HafasFetcher");
 const Log = require("logger");

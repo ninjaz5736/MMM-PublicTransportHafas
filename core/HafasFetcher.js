@@ -1,5 +1,3 @@
-"use strict";
-
 const moment = require("moment");
 const createClient = require("hafas-client");
 const arrayDiff = require("arr-diff");

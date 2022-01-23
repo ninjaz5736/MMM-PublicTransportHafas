@@ -1,5 +1,3 @@
-"use strict";
-
 /* global PTHAFASDomBuilder */
 
 //UserPresence Management (PIR sensor)

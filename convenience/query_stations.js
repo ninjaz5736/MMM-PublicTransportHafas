@@ -1,5 +1,3 @@
-"use strict";
-
 const createClient = require("hafas-client");
 const readline = require("readline");
 const arrayUnique = require("array-unique");

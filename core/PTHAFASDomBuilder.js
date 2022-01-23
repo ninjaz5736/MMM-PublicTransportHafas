@@ -1,5 +1,3 @@
-"use strict";
-
 /* global PTHAFASTableBodyBuilder */
 // eslint-disable-next-line no-unused-vars
 class PTHAFASDomBuilder {
