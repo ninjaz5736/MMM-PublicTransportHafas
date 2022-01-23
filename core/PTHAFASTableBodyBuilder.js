@@ -222,19 +222,17 @@ class PTHAFASTableBodyBuilder {
     if (typeof delay === "number") {
       const sign = delay < 0 ? "-" : "+";
       return sign + delay / 60;
-    } else {
-      return "+?";
     }
+    return "+?";
   }
 
   getDisplayDepartureTime(when, delay) {
     if (this.config.showAbsoluteTime) {
       const time = moment(when).subtract(delay, "seconds");
       return time.format("LT");
-    } else {
-      const time = moment(when);
-      return time.fromNow();
     }
+    const time = moment(when);
+    return time.fromNow();
   }
 
   getLineId(lineName) {
@@ -273,9 +271,8 @@ class PTHAFASTableBodyBuilder {
   getLineCssClass(lineName) {
     if (this.config.showColoredLineSymbols) {
       return this.getColoredCssClass(lineName);
-    } else {
-      return "pthSign pthBWLineSign";
     }
+    return "pthSign pthBWLineSign";
   }
 
   /**
@@ -407,9 +404,8 @@ class PTHAFASTableBodyBuilder {
 
     if (index + 1 === count) {
       return endOpacity;
-    } else {
-      return startOpacity + opacityDiff * index;
     }
+    return startOpacity + opacityDiff * index;
   }
 
   getRulerRow() {
