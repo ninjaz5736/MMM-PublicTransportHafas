@@ -45,7 +45,7 @@ class PTHAFASDomBuilder {
     return wrapper;
   }
 
-  getDiv(message, cssClasses = "small light dimmed") {
+  static getDiv(message, cssClasses = "small light dimmed") {
     const messageDiv = document.createElement("div");
     messageDiv.className = cssClasses;
     messageDiv.innerHTML = message;
@@ -54,7 +54,7 @@ class PTHAFASDomBuilder {
   }
 
   // Create the module header. Prepend headerPrefix if given.
-  createHeadingElement(headerPrefix, stationName, headerAppendix) {
+  static createHeadingElement(headerPrefix, stationName, headerAppendix) {
     const headingElement = document.createElement("header");
     let heading = stationName;
 
