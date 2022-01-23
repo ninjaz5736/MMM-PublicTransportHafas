@@ -97,8 +97,8 @@ class PTHAFASTableBodyBuilder {
     const cell = document.createElement("td");
     cell.colSpan = this.config.tableHeaderOrder.length;
 
-    const cell_Container = document.createElement("div");
-    cell_Container.className = "pthWarningRemarks";
+    const cellContainer = document.createElement("div");
+    cellContainer.className = "pthWarningRemarks";
 
     const marquee = document.createElement("span");
     marquee.innerText = "";
@@ -116,8 +116,8 @@ class PTHAFASTableBodyBuilder {
       }
     }
 
-    cell_Container.appendChild(marquee);
-    cell.appendChild(cell_Container);
+    cellContainer.appendChild(marquee);
+    cell.appendChild(cellContainer);
     row.appendChild(cell);
 
     return row;
