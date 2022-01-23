@@ -209,8 +209,7 @@ class PTHAFASTableBodyBuilder {
 
     let cssClass = "dimmed";
 
-    // +n === +n --> Test, if n is numeric
-    if (this.config.useColorForRealtimeInfo && +delay === +delay) {
+    if (this.config.useColorForRealtimeInfo && typeof delay === "number") {
       cssClass = delay > 0 ? "pthHasDelay" : "pthIsTooEarly";
     }
 
@@ -219,9 +218,8 @@ class PTHAFASTableBodyBuilder {
     return delaySpan;
   }
 
-  // +n === +n --> Test, if n is numeric
   getDelay(delay) {
-    if (+delay === +delay) {
+    if (typeof delay === "number") {
       const sign = delay < 0 ? "-" : "+";
       return sign + delay / 60;
     } else {
