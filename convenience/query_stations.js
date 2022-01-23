@@ -37,7 +37,9 @@ function refineProducts(products) {
 function printStationInfo(element) {
   if (element.id && element.name) {
     console.info(
-      `> Haltestelle: '${element.name}'\n  ID: ${element.id}\n  ${refineProducts(element.products)}\n`
+      `> Haltestelle: '${element.name}'\n  ID: ${
+        element.id
+      }\n  ${refineProducts(element.products)}\n`
     );
   }
 }

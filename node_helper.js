@@ -1,13 +1,13 @@
 const NodeHelper = require("node_helper");
-const HafasFetcher = require("./core/HafasFetcher");
 const Log = require("logger");
+const HafasFetcher = require("./core/HafasFetcher");
 
 module.exports = NodeHelper.create({
   start() {
     this.departuresFetchers = [];
   },
 
-  socketNotificationReceived (notification, payload) {
+  socketNotificationReceived(notification, payload) {
     switch (notification) {
       case "CREATE_FETCHER":
         this.createFetcher(payload);
