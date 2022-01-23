@@ -1,7 +1,7 @@
 /* global PTHAFASDomBuilder */
 
-//UserPresence Management (PIR sensor)
-let UserPresence = true; //true by default, so no impact for user without a PIR sensor
+// UserPresence Management (PIR sensor)
+let UserPresence = true; // true by default, so no impact for user without a PIR sensor
 
 Module.register("MMM-PublicTransportHafas", {
   // default values
@@ -208,7 +208,7 @@ Module.register("MMM-PublicTransportHafas", {
 
       case "DEPARTURES_FETCHED":
         if (this.config.displayLastUpdate) {
-          this.lastUpdate = Date.now() / 1000; //save the timestamp of the last update to be able to display it
+          this.lastUpdate = Date.now() / 1000; // save the timestamp of the last update to be able to display it
         }
 
         Log.log(
@@ -269,7 +269,7 @@ Module.register("MMM-PublicTransportHafas", {
     // ... and then repeat in the given interval
 
     if (this.updatesIntervalID === 0) {
-      //if this instance as no auto update defined, then we create one. Otherwise : nothing.
+      // if this instance as no auto update defined, then we create one. Otherwise : nothing.
 
       this.updatesIntervalID = setInterval(() => {
         this.sendSocketNotification("FETCH_DEPARTURES", this.identifier);
