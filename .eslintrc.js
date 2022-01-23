@@ -5,18 +5,13 @@ module.exports = {
     commonjs: true,
     es2021: true
   },
-  extends: ["prettier", "eslint:recommended"],
+  extends: ["airbnb-base", "prettier"],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module"
   },
-  plugins: ["prettier"],
   rules: {
     "prettier/prettier": "error",
-    quotes: ["error", "double"],
-    "no-var": "error",
-    "no-multi-spaces": ["error", { ignoreEOLComments: true }],
-    "prefer-const": "error",
-    "no-use-before-define": "error"
+    "import/no-unresolved": "off"
   }
 };
