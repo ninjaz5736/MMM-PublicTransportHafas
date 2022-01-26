@@ -11,7 +11,6 @@
 - [Description](#description)
 - [How it works](#how-it-works)
 - [Screenshots](#screenshots)
-- [Preconditions](#preconditions)
 - [Installing](#installing)
 - [Updating](#updating)
 - [How to get the `stationID`](#how-to-get-the-stationid)
