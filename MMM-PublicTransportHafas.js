@@ -1,7 +1,10 @@
 /* global PTHAFASDomBuilder Module Log moment */
 
 // UserPresence Management (PIR sensor)
-let UserPresence = true; // true by default, so no impact for user without a PIR sensor
+// (This variable must currently still be declared with var, as several modules use this
+// variable. If someone wants to change this, they would have to adapt the other modules as well.)
+// eslint-disable-next-line no-var
+var UserPresence = true; // true by default, so no impact for user without a PIR sensor
 
 Module.register("MMM-PublicTransportHafas", {
   // default values
