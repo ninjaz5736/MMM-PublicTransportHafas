@@ -23,9 +23,7 @@
   color: rgb(247, 163, 60);
   border-color: rgb(247, 163, 60);
   border-style: solid;
-  border-width: 0.2rem;
-  height: 3.8rem !important;
-  min-width: 3.8rem !important;
+  border-width: 2px;
 }
 .str9 { background-color: rgb(0, 133, 69); }
 .str10 { background-color: rgb(2, 138, 192); }
