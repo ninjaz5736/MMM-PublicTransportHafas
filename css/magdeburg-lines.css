@@ -1,0 +1,59 @@
+/*
+ This stylesheet contains the css classes needed to colorize the line
+ labels in the display.
+
+ To customize this use as class name the name of the line without any
+ blanks and all lower case. For instance "Bus N9" becomes ".busn9".
+
+ Try to use color attributes only. Like background-color and color.
+ */
+
+/* Colors for each tram line */
+.str1 { background-color: rgb(202, 53, 109); }
+.str2 { background-color: rgb(1, 142, 74); }
+.str3 {
+  background-color: rgb(255, 205, 42);
+  color: rgb(0, 0, 0);
+}
+.str4 { background-color: rgb(90, 181, 138); }
+.str5 { background-color: rgb(184, 111, 46); }
+.str6 { background-color: rgb(1, 142, 74); }
+.str8 {
+  background-color: rgb(254, 254, 254);
+  color: rgb(247, 163, 60);
+  border-color: rgb(247, 163, 60);
+  border-style: solid;
+  border-width: 0.2rem;
+  height: 3.8rem !important;
+  min-width: 3.8rem !important;
+}
+.str9 { background-color: rgb(0, 133, 69); }
+.str10 { background-color: rgb(2, 138, 192); }
+.str13 { background-color: rgb(0, 133, 69); }
+
+.strn1 { background-color: rgb(188, 13, 49); }
+.strn2 { background-color: rgb(119, 90, 162); }
+.strn3 { background-color: rgb(213, 17, 48); }
+.strn4 { background-color: rgb(0, 120, 88); }
+.strn6 { background-color: rgb(245, 156, 0); }
+
+/* Colors for each bus line */
+.bus46 { background-color: rgb(71, 37, 130); }
+.bus51 { background-color: rgb(73, 110, 177); }
+.bus52 { background-color: rgb(248, 159, 50); }
+.bus53 {
+  background-color: rgb(251, 253, 252);
+  color: rgb(0, 0, 0);
+}
+.bus54 { background-color: rgb(120, 193, 79); }
+.bus56 { background-color: rgb(213, 191, 59); }
+.bus57 { background-color: rgb(224, 41, 143); }
+.bus58 { background-color: rgb(0, 171, 166); }
+.bus59 { background-color: rgb(13, 116, 98); }
+.bus66 { background-color: rgb(176, 53, 6); }
+.bus69 { background-color: rgb(81, 62, 148); }
+.bus71 { background-color: rgb(218, 52, 73); }
+.bus72 { background-color: rgb(60, 100, 173); }
+.bus73 { background-color: rgb(69, 73, 68); }
+
+.busn9 { background-color: rgb(231, 64, 17); }
