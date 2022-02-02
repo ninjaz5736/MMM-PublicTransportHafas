@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "arr-diff": "^4.0.0",
-    "array-unique": "^0.3.2",
     "hafas-client": "^5.22.2",
     "moment": "^2.29.1"
   },

@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 const createClient = require("hafas-client");
 const readline = require("readline");
-const arrayUnique = require("array-unique");
 
 let profileName = "";
 let profile = "";
@@ -54,6 +53,16 @@ function printStationInfo(station) {
       }\n  ${refineProducts(station.products)}\n`
     );
   }
+}
+
+/**
+ * Create an array without values that occur multiple times.
+ *
+ * @param {array} array An array that could have duplicate values.
+ * @returns {array} An array without duplicate values.
+ */
+function arrayUnique(array) {
+  return [...new Set(array)];
 }
 
 if (process.argv.length === 3) {
