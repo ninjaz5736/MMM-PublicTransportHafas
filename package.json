@@ -31,7 +31,6 @@
     "node": ">=10"
   },
   "dependencies": {
-    "arr-diff": "^4.0.0",
     "hafas-client": "^5.22.2",
     "moment": "^2.29.1"
   },

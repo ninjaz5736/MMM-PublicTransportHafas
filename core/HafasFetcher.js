@@ -1,7 +1,17 @@
 const moment = require("moment");
 const createClient = require("hafas-client");
-const arrayDiff = require("arr-diff");
 const pjson = require("../package.json");
+
+/**
+ * Helper function to determine the difference between two arrays.
+ *
+ * @param {array} arrayA
+ * @param {array} arrayB
+ * @returns {array} An array that contains the elements from arrayA that are not contained in arrayB.
+ */
+function getArrayDiff(arrayA, arrayB) {
+  return arrayA.filter((element) => !arrayB.includes(element));
+}
 
 module.exports = class HafasFetcher {
   /**
@@ -62,7 +72,7 @@ module.exports = class HafasFetcher {
       "car-train"
     ];
 
-    this.config.includedTransportationTypes = arrayDiff(
+    this.config.includedTransportationTypes = getArrayDiff(
       this.possibleTypes,
       this.config.excludedTransportationTypes
     );
