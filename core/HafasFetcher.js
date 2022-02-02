@@ -101,6 +101,7 @@ module.exports = class HafasFetcher {
           this.config.maxUnreachableDepartures;
         let filteredDepartures = this.filterByTransportationTypes(departures);
         filteredDepartures = this.filterByIgnoredLines(filteredDepartures);
+        filteredDepartures = this.filterByStopId(filteredDepartures);
         filteredDepartures =
           this.departuresMarkedWithReachability(filteredDepartures);
         filteredDepartures =
@@ -155,6 +156,29 @@ module.exports = class HafasFetcher {
 
       return index === -1;
     });
+  }
+
+  /**
+   * Filter departures from the related stations.
+   *
+   * Some stations have related stations. By default, their departures are also displayed. The hafas-client
+   * has the option to deactivate this via `includeRelatedStations:false`, unfortunately not all endpoints
+   * support this option. That is why there is this filter instead of the hafas-client option.
+   * (This was noticed with the endpoint insa and the stationID 7393 (Magdeburg, Hauptbahnhof/Nord)).
+   *
+   * @param {any} departures
+   * @returns {any} Filtered departures.
+   */
+  filterByStopId(departures) {
+    if (this.config.ignoreRelatedStations) {
+      return departures.filter((departure) => {
+        const stopId = departure.stop.id;
+        const index = this.config.stationID.indexOf(stopId);
+
+        return index !== -1;
+      });
+    }
+    return departures;
   }
 
   departuresMarkedWithReachability(departures) {

@@ -27,6 +27,7 @@ Module.register("MMM-PublicTransportHafas", {
     // Departures options
     direction: "",                      // Show only departures heading to this station. (A station ID.)
     ignoredLines: [],                   // Which lines should be ignored? (comma-separated list of line names)
+    ignoreRelatedStations: false,       // For some stations there are related stations. By default, their departures are also displayed.
     excludedTransportationTypes: [],    // Which transportation types should not be shown on the mirror? (comma-separated list of types) possible values: "tram", "bus", "suburban", "subway", "regional" and "national"
     timeToStation: 10,                  // How long do you need to walk to the Station? (in minutes)
     timeInFuture: 40,                   // Show departures for the next *timeInFuture* minutes.
@@ -81,6 +82,7 @@ Module.register("MMM-PublicTransportHafas", {
       timeInFuture: this.config.timeInFuture,
       direction: this.config.direction,
       ignoredLines: this.config.ignoredLines,
+      ignoreRelatedStations: this.config.ignoreRelatedStations,
       excludedTransportationTypes: this.config.excludedTransportationTypes,
       maxReachableDepartures: this.config.maxReachableDepartures,
       maxUnreachableDepartures: this.config.maxUnreachableDepartures
