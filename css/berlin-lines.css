@@ -9,11 +9,11 @@
   in nice round corners.
  */
 
-bus {
-  background-color: #981E7B;
+.bus {
+  background-color: #981e7b;
   border-radius: 1em;
-  }
- 
+}
+
 /*
   Some suburban lines share the same settings so they are listed with commas
   separating them.
@@ -23,76 +23,80 @@ bus {
   */
 
 .s1 {
-  background-color: #D96EA2;
+  background-color: #d96ea2;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
+}
 
-.s2, .s25, .s26 {
+.s2,
+.s25,
+.s26 {
   background-color: #127734;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
+}
 
 .s3 {
-  background-color: #0167AD;
+  background-color: #0167ad;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
-
+}
 
 .s41 {
-  background-color: #AD5A37;
+  background-color: #ad5a37;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
+}
 
 .s42 {
-  background-color: #CB651D;
+  background-color: #cb651d;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
+}
 
-.s45, .s46, .s47 {
+.s45,
+.s46,
+.s47 {
   background-color: #127734;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
+}
 
 .s5 {
-  background-color: #EA7619;
+  background-color: #ea7619;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
+}
 
-.s7, .s75 {
-  background-color: #816FA5;
+.s7,
+.s75 {
+  background-color: #816fa5;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
+}
 
-.s8, .s85 {
-  background-color: #6AAA28;
+.s8,
+.s85 {
+  background-color: #6aaa28;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
+}
 
 .s9 {
   background-color: #992644;
   border-radius: 1.25rem;
   color: white;
   width: 2em;
-  }
-
+}
 
 /*
   All subways have a diffrent color code and a white text color, except the U4 have a black text color. 
@@ -102,42 +106,41 @@ bus {
  */
 
 .u1 {
-  background-color: #80AE50;
-  }
+  background-color: #80ae50;
+}
 
 .u2 {
-  background-color: #DA4322;
-  }
+  background-color: #da4322;
+}
 
 .u3 {
-  background-color: #127A5C;
-  }
+  background-color: #127a5c;
+}
 
 .u4 {
-  background-color: #F0D732;
+  background-color: #f0d732;
   color: black;
-  }
+}
 
 .u5 {
-  background-color: #7E522E;
-  }
+  background-color: #7e522e;
+}
 
 .u6 {
-  background-color: #8C70AB;
-  }
+  background-color: #8c70ab;
+}
 
 .u7 {
-  background-color: #528EBB;
-  }
+  background-color: #528ebb;
+}
 
 .u8 {
-  background-color: #1D4F86;
-  }
+  background-color: #1d4f86;
+}
 
 .u9 {
-  background-color: #F17B25;
-  }
-
+  background-color: #f17b25;
+}
 
 /*
   All tram lines have a diffrent color code and a white text color. 
@@ -147,90 +150,90 @@ bus {
  */
 
 .strm1 {
-  background-color: #78B7E4;
-  }
+  background-color: #78b7e4;
+}
 
 .strm2 {
-  background-color: #88B744;
-  }
+  background-color: #88b744;
+}
 
 .strm4 {
-  background-color: #BA2D23;
-  }
+  background-color: #ba2d23;
+}
 
 .strm5 {
-  background-color: #BF8C4A;
-  }
+  background-color: #bf8c4a;
+}
+
 .strm6 {
   background-color: #235690;
-  }
+}
 
 .strm8 {
-  background-color: #DE792E;
-  }
+  background-color: #de792e;
+}
 
 .strm10 {
   background-color: #357943;
-  }
+}
 
 .strm13 {
-  background-color: #479E92;
+  background-color: #479e92;
   color: white;
-  }
+}
 
 .strm17 {
-  background-color: #9B4932;
-  }
+  background-color: #9b4932;
+}
 
 .str12 {
-  background-color: #8471A7;
-  }
+  background-color: #8471a7;
+}
 
 .str16 {
-  background-color: #377DA7;
-  }
+  background-color: #377da7;
+}
 
 .str18 {
-  background-color: #377DA7;
-  }
+  background-color: #377da7;
+}
 
 .str21 {
-  background-color: #B693BE;
-  }
+  background-color: #b693be;
+}
 
 .str27 {
-  background-color: #BF6B31;
-  }
+  background-color: #bf6b31;
+}
 
 .str37 {
-  background-color: #9C4B35;
-  }
+  background-color: #9c4b35;
+}
 
 .str50 {
-  background-color: #DF9537;
-  }
+  background-color: #df9537;
+}
 
 .str60 {
-  background-color: #449AD4;
-  }
-
+  background-color: #449ad4;
+}
 
 .str61 {
-  background-color: #D12F26;
-  }
+  background-color: #d12f26;
+}
 
 .str62 {
   background-color: #205030;
-  }
+}
 
 .str63 {
-  background-color: #DF7A2E;
-  }
+  background-color: #df7a2e;
+}
 
 .str67 {
-  background-color: #CF73A4;
-  }
+  background-color: #cf73a4;
+}
 
 .str68 {
-  background-color: #79B245;
-  }
+  background-color: #79b245;
+}
