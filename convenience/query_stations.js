@@ -18,6 +18,16 @@ const productMap = {
 };
 
 /**
+ * Create an array without values that occur multiple times.
+ *
+ * @param {array} array An array that could have duplicate values.
+ * @returns {array} An array without duplicate values.
+ */
+function arrayUnique(array) {
+  return [...new Set(array)];
+}
+
+/**
  * Get proper names for the product keys.
  *
  * @param {object} products An object with the available transport products as a keys.
@@ -53,16 +63,6 @@ function printStationInfo(station) {
       }\n  ${refineProducts(station.products)}\n`
     );
   }
-}
-
-/**
- * Create an array without values that occur multiple times.
- *
- * @param {array} array An array that could have duplicate values.
- * @returns {array} An array without duplicate values.
- */
-function arrayUnique(array) {
-  return [...new Set(array)];
 }
 
 if (process.argv.length === 3) {
