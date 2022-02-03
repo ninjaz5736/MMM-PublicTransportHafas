@@ -33,15 +33,15 @@ them from the MagicMirror² core system and other modules.
   max-width: 24ch;
   min-width: 16ch;
   overflow: hidden;
-  padding-left: 1ch;
-  padding-right: 1ch;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .mmm-pth-platform-cell {
-  padding-left: 1ch;
-  padding-right: 1ch;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
 }
 
 .mmm-pth-ruler-cell {
@@ -134,8 +134,8 @@ them from the MagicMirror² core system and other modules.
   min-width: 2.5ch;
   font-size: 0.9em;
   font-weight: bold;
-  margin: 0.2rem auto;
-  padding: 0 0.3rem;
+  margin: 0.1rem auto;
+  padding: 0.2rem;
   position: relative;
   text-align: center;
 }
