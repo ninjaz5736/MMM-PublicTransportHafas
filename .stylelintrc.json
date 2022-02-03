@@ -3,7 +3,7 @@
 	"plugins": ["stylelint-prettier"],
 	"root": true,
   "rules": {
-		"prettier/prettier": true,
+    "prettier/prettier": true,
     "rule-empty-line-before": null
 	}
 }

@@ -99,7 +99,7 @@ class PTHAFASTableBodyBuilder {
     cell.colSpan = this.config.tableHeaderOrder.length;
 
     const cellContainer = document.createElement("div");
-    cellContainer.className = "pthWarningRemarks";
+    cellContainer.className = "mmm-pth-warning-remarks";
 
     const marquee = document.createElement("span");
     marquee.innerText = "";
@@ -161,7 +161,7 @@ class PTHAFASTableBodyBuilder {
         cell = this.getTimeCell(this.time, departure.delay);
 
         // Add class if canceled
-        if (departure.canceled === true) cell.className += " pthCanceled";
+        if (departure.canceled === true) cell.className += " mmm-pth-canceled";
 
         break;
       }
@@ -191,7 +191,7 @@ class PTHAFASTableBodyBuilder {
     const cell = document.createElement("td");
 
     if (moment(departure).isValid()) {
-      cell.className = "pthTimeCell";
+      cell.className = "mmm-pth-time-cell";
       cell.appendChild(document.createTextNode(time));
 
       if (this.config.showAbsoluteTime) {
@@ -212,10 +212,10 @@ class PTHAFASTableBodyBuilder {
     let cssClass = "dimmed";
 
     if (this.config.useColorForRealtimeInfo && typeof delay === "number") {
-      cssClass = delay > 0 ? "pthHasDelay" : "pthIsTooEarly";
+      cssClass = delay > 0 ? "mmm-pth-has-delay" : "mmm-pth-to-early";
     }
 
-    delaySpan.className = `pthDelay ${cssClass}`;
+    delaySpan.className = `mmm-pth-delay ${cssClass}`;
 
     return delaySpan;
   }
@@ -266,7 +266,7 @@ class PTHAFASTableBodyBuilder {
 
     const lineDiv = document.createElement("div");
     lineDiv.innerText = line;
-    lineDiv.className = `${this.getLineCssClass(lineName)} pthTextCenter`;
+    lineDiv.className = `${this.getLineCssClass(lineName)} mmm-pth-text-center`;
 
     return this.getTableCell(lineDiv);
   }
@@ -275,7 +275,7 @@ class PTHAFASTableBodyBuilder {
     if (this.config.showColoredLineSymbols) {
       return this.getColoredCssClass(lineName);
     }
-    return "pthSign pthBWLineSign";
+    return "mmm-pth-sign mmm-pth-bwl-line-sign";
   }
 
   /**
@@ -317,19 +317,19 @@ class PTHAFASTableBodyBuilder {
    * @returns {string} classNames   Series of class names
    */
   getColoredCssClass(lineName) {
-    let classNames = "pthSign";
+    let classNames = "mmm-pth-sign";
     const product = this.getProduct(lineName);
     const dbProducts = ["IC", "ICE", "RE", "RB", "S"];
     const ignoreShowOnlyLineNumbers = ["IC", "ICE", "RE", "RB", "S", "U"];
 
     if (dbProducts.includes(product)) {
-      classNames += " pthDbStandard";
+      classNames += " mmm-pth-db-standard";
     }
     if (
       ignoreShowOnlyLineNumbers.includes(product) &&
       this.config.showOnlyLineNumbers
     ) {
-      classNames += ` ${product.toLowerCase()}WithProductName`;
+      classNames += ` mmm-pth-${product.toLowerCase()}-with-product-name`;
     }
     classNames += ` ${product.toLowerCase()}`;
     classNames += ` ${lineName.replace(/\s/g, "").toLowerCase()}`;
@@ -340,7 +340,7 @@ class PTHAFASTableBodyBuilder {
   getDirectionCell(direction) {
     const truncatePosition = 26;
     let content = this.getProcessedDirection(direction);
-    let className = "pthDirectionCell";
+    let className = "mmm-pth-direction-cell";
 
     if (
       this.config.marqueeLongDirections &&
@@ -348,11 +348,11 @@ class PTHAFASTableBodyBuilder {
     ) {
       content = document.createElement("span");
       content.innerText = this.getProcessedDirection(direction);
-      className += " pthMarquee";
+      className += " mmm-pth-marquee";
     }
 
     if (!this.config.showAbsoluteTime) {
-      className += " pthTextLeft";
+      className += " mmm-pth-text-left";
     }
 
     return this.getTableCell(content, className);
@@ -370,7 +370,7 @@ class PTHAFASTableBodyBuilder {
   }
 
   getPlatformCell(platform) {
-    const className = "pthPlatformCell pthTextCenter";
+    const className = "mmm-pth-platform-cell mmm-pth-text-center";
     return this.getTableCell(platform, className);
   }
 
@@ -416,7 +416,7 @@ class PTHAFASTableBodyBuilder {
     this.cell = document.createElement("td");
 
     this.cell.colSpan = 3;
-    this.cell.className = "pthRulerCell";
+    this.cell.className = "mmm-pth-ruler-cell";
     this.row.appendChild(this.cell);
 
     return this.row;

@@ -33,7 +33,7 @@ class PTHAFASDomBuilder {
 
   getWrapper() {
     const wrapper = document.createElement("div");
-    wrapper.className = "pthWrapper";
+    wrapper.className = "mmm-pth-wrapper";
     wrapper.appendChild(
       this.createHeadingElement(
         this.config.headerPrefix,
@@ -73,7 +73,7 @@ class PTHAFASDomBuilder {
 
   getDeparturesTable(departures, headings, noDepartureMessage) {
     const table = document.createElement("table");
-    table.className = "pthTable small";
+    table.className = "mmm-pth-table small";
 
     if (this.config.showTableHeaders) {
       const tableHeader = this.getDeparturesTableHeader(headings);
@@ -113,7 +113,7 @@ class PTHAFASDomBuilder {
     };
 
     if (key === "line" || key === "direction" || key === "platform") {
-      result.cssClass = "pthTextCenter";
+      result.cssClass = "mmm-pth-text-center";
     }
 
     return result;
