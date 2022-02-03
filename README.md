@@ -181,6 +181,7 @@ You can even use the same `stationID` in different instances. So you can display
 ## Providing a custom css file
 
 **Note:** For some cities, separate CSS files have already been created that contain the local line colours. You can look them up in the `css` folder. If you create a file for another city, feel free to send it to us.
+
 ### Colored line labels
 
 If you set `showColoredLineSymbols` to `true` the module will try to colorize the line symbols. This is done by appending a css class to the line symbol. This class is named after the line name but blanks are left out and all letters are lower case. So if the line name is “STR 11” the appended css class name is `.str11`.
