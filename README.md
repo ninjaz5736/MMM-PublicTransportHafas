@@ -44,12 +44,12 @@ For more information see the [Configuration](#configuration) section.
 
 ## Installing
 
-Just clone the module into your MagicMirror modules folder and execute `npm ci` in the module’s directory:
+Just clone the module into your MagicMirror modules folder and execute `npm install --omit=dev` in the module’s directory:
 
 ```bash
 git clone https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas
 cd MMM-PublicTransportHafas
-npm ci
+npm install --omit=dev
 ```
 
 ## Updating
@@ -58,7 +58,7 @@ Go to the module’s folder inside MagicMirror modules folder and pull the lates
 
 ```bash
 git pull
-npm ci
+npm install --omit=dev
 ```
 
 ## How to get the `stationID`
