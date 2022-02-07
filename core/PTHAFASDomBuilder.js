@@ -1,5 +1,5 @@
-"use strict";
-
+/* global PTHAFASTableBodyBuilder */
+// eslint-disable-next-line no-unused-vars
 class PTHAFASDomBuilder {
   constructor(config) {
     this.config = config;
@@ -13,15 +13,15 @@ class PTHAFASDomBuilder {
   }
 
   getSimpleDom(message) {
-    let wrapper = this.getWrapper();
+    const wrapper = this.getWrapper();
     wrapper.appendChild(this.getDiv(message));
 
     return wrapper;
   }
 
   getDom(departures, headings, noDeparturesMessage) {
-    let wrapper = this.getWrapper();
-    let departuresTable = this.getDeparturesTable(
+    const wrapper = this.getWrapper();
+    const departuresTable = this.getDeparturesTable(
       departures,
       headings,
       noDeparturesMessage
@@ -32,8 +32,8 @@ class PTHAFASDomBuilder {
   }
 
   getWrapper() {
-    let wrapper = document.createElement("div");
-    wrapper.className = "pthWrapper";
+    const wrapper = document.createElement("div");
+    wrapper.className = "mmm-pth-wrapper";
     wrapper.appendChild(
       this.createHeadingElement(
         this.config.headerPrefix,
@@ -46,42 +46,42 @@ class PTHAFASDomBuilder {
   }
 
   getDiv(message, cssClasses = "small light dimmed") {
-    let messageDiv = document.createElement("div");
-    messageDiv.className = cssClasses;
-    messageDiv.innerHTML = message;
+    this.messageDiv = document.createElement("div");
+    this.messageDiv.className = cssClasses;
+    this.messageDiv.innerHTML = message;
 
-    return messageDiv;
+    return this.messageDiv;
   }
 
   // Create the module header. Prepend headerPrefix if given.
   createHeadingElement(headerPrefix, stationName, headerAppendix) {
-    let headingElement = document.createElement("header");
-    let heading = stationName;
+    this.headingElement = document.createElement("header");
+    this.heading = stationName;
 
     if (headerPrefix !== "") {
-      heading = headerPrefix + " " + heading;
+      this.heading = `${headerPrefix} ${this.heading}`;
     }
 
     if (headerAppendix !== "") {
-      heading += " " + headerAppendix;
+      this.heading += ` ${headerAppendix}`;
     }
 
-    headingElement.innerText = heading;
+    this.headingElement.innerText = this.heading;
 
-    return headingElement;
+    return this.headingElement;
   }
 
   getDeparturesTable(departures, headings, noDepartureMessage) {
-    let table = document.createElement("table");
-    table.className = "pthTable small";
+    const table = document.createElement("table");
+    table.className = "mmm-pth-table small";
 
     if (this.config.showTableHeaders) {
-      let tableHeader = this.getDeparturesTableHeader(headings);
+      const tableHeader = this.getDeparturesTableHeader(headings);
       table.appendChild(tableHeader);
     }
 
-    let tableBodyBuilder = new PTHAFASTableBodyBuilder(this.config);
-    let tableBody = tableBodyBuilder.getDeparturesTableBody(
+    const tableBodyBuilder = new PTHAFASTableBodyBuilder(this.config);
+    const tableBody = tableBodyBuilder.getDeparturesTableBody(
       departures,
       noDepartureMessage
     );
@@ -91,12 +91,12 @@ class PTHAFASDomBuilder {
   }
 
   getDeparturesTableHeader(headings) {
-    let tHead = document.createElement("thead");
-    let headerRow = document.createElement("tr");
+    const tHead = document.createElement("thead");
+    const headerRow = document.createElement("tr");
     headerRow.className = "bold dimmed";
 
     this.config.tableHeaderOrder.forEach((key) => {
-      let values = this.getHeadingValues(key, headings);
+      const values = this.getHeadingValues(key, headings);
       headerRow.appendChild(this.getHeaderCell(values));
     });
 
@@ -106,33 +106,29 @@ class PTHAFASDomBuilder {
   }
 
   getHeadingValues(key, headings) {
-    let result = {
+    const result = {
       text: headings[key],
       symbol: this.headingSymbols[key],
       cssClass: ""
     };
 
     if (key === "line" || key === "direction" || key === "platform") {
-      result.cssClass = "pthTextCenter";
+      result.cssClass = "mmm-pth-text-center";
     }
 
     return result;
   }
 
   getHeaderCell(values) {
-    let textContent = values.text;
-    let symbol = values.symbol;
-    let cssClass = values.cssClass;
-
-    let cell = document.createElement("td");
-    cell.className = cssClass;
+    const cell = document.createElement("td");
+    cell.className = values.cssClass;
 
     if (this.config.showTableHeadersAsSymbols) {
-      let content = document.createElement("i");
-      content.className = symbol;
+      const content = document.createElement("i");
+      content.className = values.symbol;
       cell.appendChild(content);
     } else {
-      cell.innerText = textContent;
+      cell.innerText = values.text;
     }
 
     return cell;

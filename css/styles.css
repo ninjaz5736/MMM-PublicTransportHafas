@@ -1,83 +1,83 @@
 /*
-All classes used by this module use the prefix "pth" (PublicTransportHafas) to separate
-them from the rest of the interface.
+All classes used by this module use the prefix "mmm-pth-" (MMM-PublicTransportHafas) to separate
+them from the MagicMirror² core system and other modules.
  */
 
-.pthWrapper {
+.mmm-pth-wrapper {
   position: relative;
 }
 
-.pthTable {
+.mmm-pth-table {
   border-collapse: collapse;
   border-spacing: 1px;
   display: table;
 }
 
-.pthTable > thead {
+.mmm-pth-table > thead {
   text-align: left;
 }
 
-.pthTable td {
+.mmm-pth-table td {
   vertical-align: middle;
 }
 
-.pthTimeCell {
+.mmm-pth-time-cell {
   text-align: left;
 }
 
-.pthCanceled {
+.mmm-pth-canceled {
   text-decoration: line-through;
 }
 
-.pthDirectionCell {
+.mmm-pth-direction-cell {
   max-width: 24ch;
   min-width: 16ch;
   overflow: hidden;
-  padding-left: 1ch;
-  padding-right: 1ch;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.pthPlatformCell {
-  padding-left: 1ch;
-  padding-right: 1ch;
+.mmm-pth-platform-cell {
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
 }
 
-.pthRulerCell {
+.mmm-pth-ruler-cell {
   border-bottom: 1px dotted #666;
   border-spacing: 10px;
   line-height: 0;
 }
 
-.pthTextLeft {
+.mmm-pth-text-left {
   text-align: left;
 }
 
-.pthTextRight {
+.mmm-pth-text-right {
   text-align: right;
 }
 
-.pthTextCenter {
+.mmm-pth-text-center {
   text-align: center;
 }
 
-.pthDelay {
+.mmm-pth-delay {
   padding: 0 15px 0 5px;
   font-size: 0.8em;
   font-weight: bolder;
 }
 
-.pthHasDelay {
+.mmm-pth-has-delay {
   color: red;
 }
 
-.pthIsTooEarly {
+.mmm-pth-to-early {
   color: green;
 }
 
 /* Marquee for the destination field */
-.pthMarquee {
+.mmm-pth-marquee {
   box-sizing: border-box;
   margin: 0 auto;
   overflow: hidden;
@@ -85,24 +85,26 @@ them from the rest of the interface.
   white-space: nowrap;
 }
 
-.pthMarquee span {
-  animation: pthMarquee 3s linear infinite alternate;
+.mmm-pth-marquee span {
+  animation: mmm-pth-marquee 3s linear infinite alternate;
   display: inline-block;
   white-space: nowrap;
 }
 
-@keyframes pthMarquee {
+@keyframes mmm-pth-marquee {
   /* Two keyframe positions each to generate a little delay between animations. */
-  0%, 30% {
+  0%,
+  30% {
     transform: translate(0%, 0);
   }
-  95%, 100% {
+  95%,
+  100% {
     transform: translate(-35%, 0);
   }
 }
 
 /* Marquee for the warinig remarks field */
-.pthWarningRemarks {
+.mmm-pth-warning-remarks {
   white-space: nowrap;
   overflow: hidden;
   font-size: 0.8em;
@@ -110,116 +112,124 @@ them from the rest of the interface.
   display: inline-block;
 }
 
-.pthWarningRemarks span {
-  animation: pthWarningRemarks 300s linear infinite;
+.mmm-pth-warning-remarks span {
+  animation: mmm-pth-warning-remarks 300s linear infinite;
   display: inline-block;
   padding-left: 20%;
 }
 
-@keyframes pthWarningRemarks {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+@keyframes mmm-pth-warning-remarks {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 /* Styles for line symbols. */
-.pthSign {
-  background-color: #333333;
-  color: #666666;
+.mmm-pth-sign {
+  background-color: #333;
+  color: #666;
   min-width: 2.5ch;
   font-size: 0.9em;
   font-weight: bold;
-  margin: 0.2rem auto;
-  padding: 0 0.3rem;
+  margin: 0.1rem auto;
+  padding: 0.2rem;
   position: relative;
   text-align: center;
 }
 
-.pthBWLineSign {
-  background-color: #333333;
-  color: #666666;
+.mmm-pth-bwl-line-sign {
+  background-color: #333;
+  color: #666;
   margin-right: 0.3em;
 }
 
 /* Default properties for Deutsche Bahn products. */
-.pthDbStandard {
+.mmm-pth-db-standard {
   border-radius: 0.25rem;
   font-size: 0.8em;
 }
 
-.ice, .ic {
+.ice,
+.ic {
   background-color: white;
-  border-bottom: 4px #F01414 solid;
-  color: #F01414;
+  border-bottom: 4px #f01414 solid;
+  color: #f01414;
 }
 
-.rb, .re {
-  background-color: rgb(31, 131, 50);
+.rb,
+.re {
+  background-color: rgb(31 131 50);
   border: 0.5px white solid;
   color: white;
 }
 
 .s {
-  background-color: rgb(0, 111, 53);
+  background-color: rgb(0 111 53);
   border: 0.5px white solid;
   color: white;
   width: max-content;
 }
 
 /* Default properties for busses (general) and obusses (SVV) */
-.bus, .obus {
+.bus,
+.obus {
   border-radius: 1em;
-  background-color: rgb(122, 32, 106);
+  background-color: rgb(122 32 106);
   color: white;
   width: max-content;
 }
 
 /* Default properties for "Rufbusse" */
-.ruf:before {
+.ruf::before {
   content: "☎ ";
   color: white;
   font-size: 0.8em;
 }
 .ruf {
   border-radius: 1rem;
-  background-color: rgb(122, 32, 106);
+  background-color: rgb(122 32 106);
   color: white;
   width: max-content;
 }
 
 /* Default properties for trams */
-.str, .stb {
-  background-color: rgb(255, 0, 0);
+.str,
+.stb {
+  background-color: rgb(255 0 0);
   color: white;
   width: max-content;
 }
 
 /* Default properties for subways */
 .u {
-  background-color: rgb(0, 101, 173);
+  background-color: rgb(0 101 173);
   color: white;
   width: max-content;
 }
 
-.iceWithProductName:before {
+.mmm-pth-ice-with-product-name::before {
   content: "ICE ";
 }
 
-.icWithProductName:before {
+.mmm-pth-ic-with-product-name::before {
   content: "IC ";
 }
 
-.reWithProductName:before {
+.mmm-pth-re-with-product-name::before {
   content: "RE ";
 }
 
-.rbWithProductName:before {
+.mmm-pth-rb-with-product-name::before {
   content: "RB ";
 }
 
-.sWithProductName:before {
+.mmm-pth-s-with-product-name::before {
   content: "S";
 }
 
-.uWithProductName:before {
+.mmm-pth-u-with-product-name::before {
   content: "U";
 }

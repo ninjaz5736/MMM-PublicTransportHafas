@@ -1,8 +1,6 @@
-"use strict";
-
+/* eslint-disable no-console */
 const createClient = require("hafas-client");
 const readline = require("readline");
-const arrayUnique = require("array-unique");
 
 let profileName = "";
 let profile = "";
@@ -19,20 +17,66 @@ const productMap = {
   tram: "Tram"
 };
 
+/**
+ * Create an array without values that occur multiple times.
+ *
+ * @param {array} array An array that could have duplicate values.
+ * @returns {array} An array without duplicate values.
+ */
+function arrayUnique(array) {
+  return [...new Set(array)];
+}
+
+/**
+ * Get proper names for the product keys.
+ *
+ * @param {object} products An object with the available transport products as a keys.
+ * @returns {string} A list of transport products as a string.
+ */
+function refineProducts(products) {
+  const result = "Verkehrsmittel: ";
+
+  if (!products) {
+    return `${result} keine`;
+  }
+
+  const availableProducts = Object.keys(products).filter(
+    (key) => products[key]
+  );
+  const availableProductsReadable = arrayUnique(
+    availableProducts.map((product) => productMap[product])
+  );
+
+  return result + availableProductsReadable.join(", ");
+}
+
+/**
+ * Output the information about the station on the console.
+ *
+ * @param {object} station The station it's about.
+ */
+function printStationInfo(station) {
+  if (station.id && station.name) {
+    console.info(
+      `> Haltestelle: '${station.name}'\n  ID: ${
+        station.id
+      }\n  ${refineProducts(station.products)}\n`
+    );
+  }
+}
+
 if (process.argv.length === 3) {
   profileName = process.argv[2];
-  console.info("Using hafas-client profile: " + profileName);
+  console.info(`Using hafas-client profile: ${profileName}`);
 } else {
   console.info("Using default hafas-client profile: 'db'");
   profileName = "db";
 }
 
 try {
-  profile = require("hafas-client/p/" + profileName);
+  profile = require(`hafas-client/p/${profileName}`);
 } catch (err) {
-  console.error(
-    "\n" + err.message + "\n Did you choose the right profile name? \n"
-  );
+  console.error(`\n${err.message}\n Did you choose the right profile name? \n`);
 }
 
 if (profile !== "") {
@@ -57,10 +101,10 @@ if (profile !== "") {
       client
         .locations(answer, opt)
         .then((response) => {
-          console.info('\nGefundene Haltestellen für "' + answer + '":\n');
+          console.info(`\nGefundene Haltestellen für '${answer}':\n`);
 
-          response.forEach((element) => {
-            printStationInfo(element);
+          response.forEach((station) => {
+            printStationInfo(station);
           });
 
           process.exit(0);
@@ -68,37 +112,4 @@ if (profile !== "") {
         .catch(console.error);
     }
   );
-}
-
-function printStationInfo(element) {
-  let id = element.id;
-  let name = element.name;
-  let products = element.products;
-
-  if (id && name) {
-    console.info(
-      '> Haltestelle: "' +
-        name +
-        '"\n  ID: ' +
-        id +
-        "\n  " +
-        refineProducts(products) +
-        "\n"
-    );
-  }
-}
-
-function refineProducts(products) {
-  let result = "Verkehrsmittel: ";
-
-  if (!products) {
-    return result + "keine";
-  }
-
-  let availableProducts = Object.keys(products).filter((key) => products[key]);
-  let availableProductsReadable = arrayUnique(
-    availableProducts.map((product) => productMap[product])
-  );
-
-  return result + availableProductsReadable.join(", ");
 }

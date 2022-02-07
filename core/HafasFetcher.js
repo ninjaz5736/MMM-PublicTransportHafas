@@ -1,9 +1,17 @@
-"use strict";
-
 const moment = require("moment");
 const createClient = require("hafas-client");
-const arrayDiff = require("arr-diff");
 const pjson = require("../package.json");
+
+/**
+ * Helper function to determine the difference between two arrays.
+ *
+ * @param {array} arrayA
+ * @param {array} arrayB
+ * @returns {array} An array that contains the elements from arrayA that are not contained in arrayB.
+ */
+function getArrayDiff(arrayA, arrayB) {
+  return arrayA.filter((element) => !arrayB.includes(element));
+}
 
 module.exports = class HafasFetcher {
   /**
@@ -25,10 +33,10 @@ module.exports = class HafasFetcher {
   constructor(config) {
     this.leadTime = 20; // minutes
     this.config = config;
-    const profile = require("hafas-client/p/" + this.config.hafasProfile);
+    const profile = require(`hafas-client/p/${this.config.hafasProfile}`);
     this.hafasClient = createClient(
       profile,
-      "MMM-PublicTransportHafas v" + pjson.version
+      `MMM-PublicTransportHafas v${pjson.version}`
     );
 
     // types given by the api
@@ -64,7 +72,7 @@ module.exports = class HafasFetcher {
       "car-train"
     ];
 
-    this.config.includedTransportationTypes = arrayDiff(
+    this.config.includedTransportationTypes = getArrayDiff(
       this.possibleTypes,
       this.config.excludedTransportationTypes
     );
@@ -79,7 +87,7 @@ module.exports = class HafasFetcher {
   }
 
   fetchDepartures() {
-    let options = {
+    const options = {
       when: this.getDepartureTime(),
       direction: this.config.direction,
       duration: this.getTimeInFuture()
@@ -88,11 +96,12 @@ module.exports = class HafasFetcher {
     return this.hafasClient
       .departures(this.config.stationID, options)
       .then((departures) => {
-        let maxElements =
+        const maxElements =
           this.config.maxReachableDepartures +
           this.config.maxUnreachableDepartures;
         let filteredDepartures = this.filterByTransportationTypes(departures);
         filteredDepartures = this.filterByIgnoredLines(filteredDepartures);
+        filteredDepartures = this.filterByStopId(filteredDepartures);
         filteredDepartures =
           this.departuresMarkedWithReachability(filteredDepartures);
         filteredDepartures =
@@ -124,7 +133,7 @@ module.exports = class HafasFetcher {
   getTimeInFuture() {
     let timeInFuture = this.config.timeInFuture;
     if (this.config.maxUnreachableDepartures > 0) {
-      timeInFuture = timeInFuture + this.leadTime;
+      timeInFuture += this.leadTime;
     }
 
     return timeInFuture;
@@ -132,8 +141,9 @@ module.exports = class HafasFetcher {
 
   filterByTransportationTypes(departures) {
     return departures.filter((departure) => {
-      let product = departure.line.product;
-      let index = this.config.includedTransportationTypes.indexOf(product);
+      const index = this.config.includedTransportationTypes.indexOf(
+        departure.line.product
+      );
 
       return index !== -1;
     });
@@ -141,23 +151,47 @@ module.exports = class HafasFetcher {
 
   filterByIgnoredLines(departures) {
     return departures.filter((departure) => {
-      let line = departure.line.name;
-      let index = this.config.ignoredLines.indexOf(line);
+      const line = departure.line.name;
+      const index = this.config.ignoredLines.indexOf(line);
 
       return index === -1;
     });
   }
 
+  /**
+   * Filter departures from the related stations.
+   *
+   * Some stations have related stations. By default, their departures are also displayed. The hafas-client
+   * has the option to deactivate this via `includeRelatedStations:false`, unfortunately not all endpoints
+   * support this option. That is why there is this filter instead of the hafas-client option.
+   * (This was noticed with the endpoint insa and the stationID 7393 (Magdeburg, Hauptbahnhof/Nord)).
+   *
+   * @param {any} departures
+   * @returns {any} Filtered departures.
+   */
+  filterByStopId(departures) {
+    if (this.config.ignoreRelatedStations) {
+      return departures.filter((departure) => {
+        const stopId = departure.stop.id;
+        const index = this.config.stationID.indexOf(stopId);
+
+        return index !== -1;
+      });
+    }
+    return departures;
+  }
+
   departuresMarkedWithReachability(departures) {
     return departures.map((departure) => {
-      departure.isReachable = this.isReachable(departure);
-      return departure;
+      this.departure = departure;
+      this.departure.isReachable = this.isReachable(departure);
+      return this.departure;
     });
   }
 
   departuresRemovedSurplusUnreachableDepartures(departures) {
     // Get all unreachable departures
-    let unreachableDepartures = departures.filter(
+    const unreachableDepartures = departures.filter(
       (departure) => !departure.isReachable
     );
 
@@ -170,12 +204,12 @@ module.exports = class HafasFetcher {
     );
 
     // Get all reachable departures
-    let reachableDepartures = departures.filter(
+    const reachableDepartures = departures.filter(
       (departure) => departure.isReachable
     );
 
     // Merge unreachable and reachable departures
-    let result = [].concat(unreachableDepartures, reachableDepartures);
+    const result = [].concat(unreachableDepartures, reachableDepartures);
 
     return result;
   }
@@ -190,7 +224,7 @@ module.exports = class HafasFetcher {
     if (unreachableDepartures.length > this.config.maxUnreachableDepartures) {
       this.leadTime = Math.round(this.leadTime / 2) + 1;
     } else if (this.leadTime <= 45) {
-      this.leadTime = this.leadTime + 5;
+      this.leadTime += 5;
     }
   }
 

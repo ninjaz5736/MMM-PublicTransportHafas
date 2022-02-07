@@ -12,7 +12,13 @@
   The border radius is slightly bigger than the font size. This will result
   in nice round corners.
  */
- .s1, .s2, .s3, .s4, .s5, .s5x, .s6 {
+.s1,
+.s2,
+.s3,
+.s4,
+.s5,
+.s5x,
+.s6 {
   background-color: #1e944b;
   border-radius: 1.25rem;
   color: white;
@@ -24,13 +30,17 @@
   text color. The width of the line symbol is equal to the font size. This
   will result in a square symbol.
  */
-.str1, .str3, .str3e {
+.str1,
+.str3,
+.str3e {
   background-color: #5eb246;
   color: white;
   width: 1em;
 }
 
-.str2, .str8, .str9 {
+.str2,
+.str8,
+.str9 {
   background-color: #f8c623;
   color: black;
   width: 1em;
@@ -42,13 +52,20 @@
   width: 1em;
 }
 
-.str4, .str7, .str12, .str15 {
+.str4,
+.str7,
+.str12,
+.str15 {
   background-color: #174489;
   color: white;
   width: 1em;
 }
 
-.str10, .str11, .str16, .str51, .str56 {
+.str10,
+.str11,
+.str16,
+.str51,
+.str56 {
   background-color: #d8232a;
   color: white;
   width: 1em;
@@ -59,8 +76,16 @@
   border-radius are both 1em.
  */
 .bus65,
-.bus70, .bus72, .bus73, .bus73e, .bus74, .bus74e,
-.bus80, .bus81, .bus82, .bus89,
+.bus70,
+.bus72,
+.bus73,
+.bus73e,
+.bus74,
+.bus74e,
+.bus80,
+.bus81,
+.bus82,
+.bus89,
 .bus90 {
   background-color: #912a7d;
   border-radius: 1em;
@@ -68,40 +93,85 @@
   width: 1em;
 }
 
-.bus61, .bus63,
-.bus75, .bus79,
-.bus83, .bus86, .bus87, .bus88,
-.bus91, .bus91e,
-.bus100, .bus105, .bus106, .bus107, .bus108,
-.bus120, .bus130, .bus131, .bus135, .bus141, .bus145,
-.bus161, .bus163, .bus164, .bus165,
-.bus172, .bus175, .bus176,
-.bus190, .bus191, .bus192, .bus195, .bus196, .bus197,
-.bus202, .bus207, .bus215,
+.bus61,
+.bus63,
+.bus75,
+.bus79,
+.bus83,
+.bus86,
+.bus87,
+.bus88,
+.bus91,
+.bus91e,
+.bus100,
+.bus105,
+.bus106,
+.bus107,
+.bus108,
+.bus120,
+.bus130,
+.bus131,
+.bus135,
+.bus141,
+.bus145,
+.bus161,
+.bus163,
+.bus164,
+.bus165,
+.bus172,
+.bus175,
+.bus176,
+.bus190,
+.bus191,
+.bus192,
+.bus195,
+.bus196,
+.bus197,
+.bus202,
+.bus207,
+.bus215,
 .bus412,
-.bus645, .bus690, .bus691,
-.bus724, .bus743 {
+.bus645,
+.bus690,
+.bus691,
+.bus724,
+.bus743 {
   background-color: #a3a3a2;
   border-radius: 1em;
   color: white;
   width: 1em;
 }
 
-.busn1, .busn1e, .busn5, .busn5e, .busn8, .busn8e {
+.busn1,
+.busn1e,
+.busn5,
+.busn5e,
+.busn8,
+.busn8e {
   background-color: #ee9f2e;
   border-radius: 1em;
   color: #164585;
   width: 1em;
 }
 
-.busn2, .busn2e, .busn7, .busn7e {
+.busn2,
+.busn2e,
+.busn7,
+.busn7e {
   background-color: #fbde89;
   border-radius: 1em;
   color: #164585;
   width: 1em;
 }
 
-.busn3, .busn3e, .busn4, .busn4e, .busn6, .busn6e, .busn9, .busn9e {
+.busn3,
+.busn3e,
+.busn4,
+.busn4e,
+.busn6,
+.busn6e,
+.busn9,
+.busn9e {
   background-color: #fcd120;
   border-radius: 1em;
   color: #164585;

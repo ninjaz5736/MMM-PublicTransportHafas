@@ -2,7 +2,7 @@
 ** Unlike in other cities, subways in Stuttgart are
 ** classified as light rail (Stadtbahn, stb).
 */
-[class^="pthSign stb stbu"] {
-  background-color: rgb(0, 101, 173);
+[class^="mmm-pth-sign stb stbu"] {
+  background-color: rgb(0 101 173);
   color: white;
 }
