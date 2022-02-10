@@ -1,4 +1,4 @@
-name: Run Automated Tests
+name: Automated Tests
 on:
   push:
     branches: [main, develop, test]
