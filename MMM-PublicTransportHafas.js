@@ -1,4 +1,4 @@
-/* global PTHAFASDomBuilder Module Log moment */
+/* global PTHAFASDomBuilder Module Log moment config */
 
 // UserPresence Management (PIR sensor)
 // (This variable must currently still be declared with var, as several modules use this
@@ -89,6 +89,9 @@ Module.register("MMM-PublicTransportHafas", {
     };
 
     this.sendSocketNotification("CREATE_FETCHER", fetcherOptions);
+
+    // Set locale (Necessary if the default clock module is not used.)
+    moment.locale(config.language);
   },
 
   suspend() {
