@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/hafas-client.svg)](https://www.npmjs.com/package/hafas-client)
 [![GitHub issues](https://img.shields.io/github/issues/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/issues)
+![Run test](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/actions/workflows/automated-tests.yml/badge.svg)
 [![GitHub forks](https://img.shields.io/github/forks/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/network)
 [![GitHub stars](https://img.shields.io/github/stars/KristjanESPERANTO/mmm-publictransporthafas)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/stargazers)
 [![GitHub license](https://img.shields.io/github/license/KristjanESPERANTO/mmm-publictransporthafas?style=plastic)](https://github.com/KristjanESPERANTO/mmm-publictransporthafas/blob/master/LICENSE)
@@ -227,13 +228,21 @@ Delays are displayed as red. No delay or negative delays (the transport will arr
 
 This function is still in development.
 
+To use it, you have to three option:
+
+1. Adapt `package.json`:
 Add script to package.json:
 `"start:tts": "DISPLAY=\"${DISPLAY:=:0}\" ./node_modules/.bin/electron --enable-speech-dispatcher js/electron.js",`
 
 Start with: `npm run start:tts`
 
-Keys:
-  TODO
+2. Run server mode and use Browser with tts
+
+3. Run `npm run start -- --enable-speech-dispatcher` instead of `npm run start`
+
+TODO:
+- Build separat module for tts function
+- The PTH module only gets the functions which returns the strings
 
 ## Technical background details
 
