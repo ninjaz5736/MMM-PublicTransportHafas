@@ -1,10 +1,10 @@
 /* eslint-disable no-restricted-syntax */
 /* global config Log */
 // Initialize new SpeechSynthesisUtterance object
-const speechHello = new SpeechSynthesisUtterance();
+const speech = new SpeechSynthesisUtterance();
 
 // Set speech Language
-speechHello.lang = config.language;
+speech.lang = config.language;
 
 function getTimeAnnouncementString() {
   const time = new Date();
@@ -14,16 +14,16 @@ function getTimeAnnouncementString() {
 
 function speak(text) {
   speechSynthesis.cancel();
-  speechHello.text = text;
+  speech.text = text;
   Log.log(text);
-  speechSynthesis.speak(speechHello);
+  speechSynthesis.speak(speech);
 }
 
 function getDesparturesString() {
-  let allDesparturesString;
+  let announcementText;
 
   // Time
-  allDesparturesString = getTimeAnnouncementString();
+  announcementText = getTimeAnnouncementString();
 
   // Set the text property with the value of the textarea
   const pthWrappers = document.getElementsByClassName("mmm-pth-wrapper");
@@ -33,7 +33,7 @@ function getDesparturesString() {
 
     // Station
     const station = pthWrapperClone.getElementsByTagName("header")[0];
-    allDesparturesString += `\nHaltestelle ${station.innerText}.\n`;
+    announcementText += `\nHaltestelle ${station.innerText}.\n`;
 
     const pthTable = pthWrapperClone.getElementsByClassName("mmm-pth-table")[0];
     const thead = pthWrapperClone.querySelector("thead");
@@ -65,10 +65,10 @@ function getDesparturesString() {
     }
 
     const rows = pthTable.getElementsByTagName("tr");
-    allDesparturesString += `Es gibt ${rows.length} Abfahrten.\n`;
 
     if (rows.length > 0) {
       let departureCounter = 0;
+      let allDesparturesString = "";
 
       for (const row of rows) {
         let departureString;
@@ -85,15 +85,15 @@ function getDesparturesString() {
           .replaceAll("STR.", "Straße");
         allDesparturesString += `${departureString}.\n`;
       }
-
-      allDesparturesString = allDesparturesString
+      announcementText += `Es gibt ${departureCounter} Abfahrten.\n`;
+      announcementText += allDesparturesString
         .replaceAll("\t", " ")
         .replaceAll("  ", " ");
     }
   }
 
   // Start Speaking
-  return allDesparturesString;
+  return announcementText;
 }
 
 function getGreetingString() {
@@ -114,4 +114,4 @@ setTimeout(() => {
   let firstTextToSpeech = getGreetingString();
   firstTextToSpeech += getDesparturesString();
   speak(firstTextToSpeech);
-}, 5000);
+}, 7000);
