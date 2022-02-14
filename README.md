@@ -232,13 +232,13 @@ To use it, you have to three option:
 
 1. Adapt `package.json`:
 Add script to package.json:
-`"start:tts": "DISPLAY=\"${DISPLAY:=:0}\" ./node_modules/.bin/electron --enable-speech-dispatcher js/electron.js",`
+`"speech-dispatcher -s -t 0 & start:tts": "DISPLAY=\"${DISPLAY:=:0}\" ./node_modules/.bin/electron --enable-speech-dispatcher js/electron.js",`
 
 Start with: `npm run start:tts`
 
 2. Run server mode and use Browser with tts
 
-3. Run `npm run start -- --enable-speech-dispatcher` instead of `npm run start`
+3. Run `speech-dispatcher -s -t 0 & npm run start -- --enable-speech-dispatcher` instead of `npm run start`
 
 TODO:
 - Build separat module for tts function
