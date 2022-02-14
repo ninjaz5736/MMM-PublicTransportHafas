@@ -114,4 +114,4 @@ setTimeout(() => {
   let firstTextToSpeech = getGreetingString();
   firstTextToSpeech += getDesparturesString();
   speak(firstTextToSpeech);
-}, 7000);
+}, 5000);
