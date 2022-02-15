@@ -232,7 +232,7 @@ To use it, you have to three option:
 
 1. Adapt `package.json`:
 Add script to package.json:
-`"speech-dispatcher -s -t 0 & start:tts": "DISPLAY=\"${DISPLAY:=:0}\" ./node_modules/.bin/electron --enable-speech-dispatcher js/electron.js",`
+`"start:tts": "speech-dispatcher -s -t 0 & DISPLAY=\"${DISPLAY:=:0}\" ./node_modules/.bin/electron --enable-speech-dispatcher js/electron.js",`
 
 Start with: `npm run start:tts`
 
