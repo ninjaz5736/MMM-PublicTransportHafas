@@ -8,7 +8,7 @@ speech.lang = config.language;
 
 function getTimeAnnouncementString() {
   const time = new Date();
-  const timeString = `Es ist ${time.getHours()} Uhr ${time.getMinutes()}.\n`;
+  const timeString = `Es ist ${time.getHours()} Uhr ${time.getMinutes()} .\n`;
   return timeString;
 }
 
@@ -44,7 +44,10 @@ function getDesparturesString() {
     // Line
     const lines = pthTable.getElementsByClassName("mmm-pth-sign");
     for (const line of lines) {
-      line.innerText = `Linie ${line.innerText} `;
+      const isLineWithoutPrefix = /^[0-9]$/.test(line.innerText[0]);
+      if (isLineWithoutPrefix) {
+        line.innerText = `Linie ${line.innerText} `;
+      }
     }
 
     // Direction
@@ -110,8 +113,19 @@ function getGreetingString() {
   return greetingsString;
 }
 
-setTimeout(() => {
-  let firstTextToSpeech = getGreetingString();
-  firstTextToSpeech += getDesparturesString();
-  speak(firstTextToSpeech);
-}, 10000);
+if (true) {
+  setTimeout(() => {
+    let firstTextToSpeech = getGreetingString();
+    firstTextToSpeech += getTimeAnnouncementString();
+    speak(firstTextToSpeech);
+  }, 10000);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "d") {
+      speak(getDesparturesString());
+    }
+    if (event.key === "s") {
+      speak("Ansage angehalten");
+    }
+  });
+}
