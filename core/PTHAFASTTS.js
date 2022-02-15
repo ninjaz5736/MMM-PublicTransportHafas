@@ -102,9 +102,9 @@ function getGreetingString() {
   let greetingsString;
   if (hour > 18) {
     greetingsString = "Guten Abend. ";
-  } else if (hour > 0 < 10) {
+  } else if (hour < 10) {
     greetingsString = "Guten Morgen. ";
-  } else if (hour > 10 < 18) {
+  } else {
     greetingsString = "Guten Tag. ";
   }
   return greetingsString;
@@ -114,4 +114,4 @@ setTimeout(() => {
   let firstTextToSpeech = getGreetingString();
   firstTextToSpeech += getDesparturesString();
   speak(firstTextToSpeech);
-}, 5000);
+}, 10000);
