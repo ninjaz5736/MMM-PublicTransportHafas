@@ -97,6 +97,7 @@ them from the MagicMirror² core system and other modules.
   30% {
     transform: translate(0%, 0);
   }
+
   95%,
   100% {
     transform: translate(-35%, 0);
@@ -122,6 +123,7 @@ them from the MagicMirror² core system and other modules.
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -188,6 +190,7 @@ them from the MagicMirror² core system and other modules.
   color: white;
   font-size: 0.8em;
 }
+
 .ruf {
   border-radius: 1rem;
   background-color: rgb(122 32 106);
