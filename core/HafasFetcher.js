@@ -1,5 +1,8 @@
+/* global config */
+
 const moment = require("moment");
 const createClient = require("hafas-client");
+const Log = require("logger");
 const pjson = require("../package.json");
 
 /**
@@ -207,6 +210,11 @@ module.exports = class HafasFetcher {
     const reachableDepartures = departures.filter(
       (departure) => departure.isReachable
     );
+
+    // Output reachableDepartures for debugging
+    if (config.logLevel.includes("DEBUG")) {
+      Log.log(reachableDepartures);
+    }
 
     // Merge unreachable and reachable departures
     const result = [].concat(unreachableDepartures, reachableDepartures);
