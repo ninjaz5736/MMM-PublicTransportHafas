@@ -28,5 +28,8 @@ jobs:
         uses: github/super-linter@v4
         env:
           DEFAULT_BRANCH: main
-          CSS_FILE_NAME: .stylelintrc.json
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSS_FILE_NAME: .stylelintrc.json
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
