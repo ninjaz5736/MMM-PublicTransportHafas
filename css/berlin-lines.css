@@ -143,8 +143,8 @@
 }
 
 /*
-  All tram lines have a diffrent color code and a white text color. 
-  The width of the line symbol is pulled from the styles.css of MMM-PublicTransportHafas/css. 
+  All tram lines have a diffrent color code and a white text color.
+  The width of the line symbol is pulled from the styles.css of MMM-PublicTransportHafas/css.
   It is equal to the font size. This will result in a square symbol.
   Source: https://de.wikipedia.org/wiki/Stra%C3%9Fenbahn_Berlin#Linien%C3%BCbersicht;
  */
