@@ -17,7 +17,7 @@
 - [How to get the `stationID`](#how-to-get-the-stationid)
 - [Configuration](#configuration)
 - [Multiple instances](#multiple-instances)
-- [Providing a custom css file](#providing-a-custom-css-file)
+- [Providing a custom CSS file](#providing-a-custom-css-file)
 - [Technical background details](#technical-background-details)
 - [Special Thanks](#special-thanks)
 - [Contributing](#contributing)
@@ -26,7 +26,7 @@
 
 This module shows live public transport information in Germany for all stations known to the Deutsche Bahn system. Most public transportation providers in Germany providing information for that system so the coverage should be quite good. The data is provided by the fantastic [hafas-client](https://github.com/public-transport/hafas-client). Even in other european contries this module should work as HAFAS is widely used throughout Europe.
 
-You can very easy adapt the shapes and line colors of your local transport companies. See [Providing a custom css file](#providing-a-custom-css-file).
+You can very easy adapt the shapes and line colors of your local transport companies. See [Providing a custom CSS file](#providing-a-custom-css-file).
 
 ## How it works
 
@@ -126,8 +126,8 @@ These are the possible options:
 | `timeInFuture`                    | <p>An integer indicating how far in the future a departure can be to be still included in the shown departures.</p><p>**Type:** `integer`<br>**Example:** `60` (Show departures for the next hour.)<br>**Default value:** `40`<br>**Unit:** `minutes`</p><p>**Note:** Use this setting on stations where there is a big time gap between departures. This way you will see more than one or two departures. **Don’t use** this setting to limit the amount of displayed departures! The module will set this value to be at least `timeToStation + 30` anyway. Use the option `maxReachableDepartures` to limit the displayed departures.</p>|
 | `marqueeLongDirections`           | <p>A boolean value indicating whether you want scrolling long destination name or not.</p><p>**Type:** `boolean`<br>**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` destination names longer than 24 characters will scroll through the display. If set to `false` names will be truncated at 24 characters.</p>|
 | `replaceInDirections`             | <p>An object defining strings which are to be replaced in the displayed directions.</p><p>**Type:** `object`<br>**Example:** `{ "Leipzig": "LE", "\\(Saale\\)": "", "Hbf": "" }`<br>**Default value:** `{}`</p><p>**Note:** The strings which appear as the keys of the object will be replaced by their values. Given a direction `"Leipzig, Hbf"` and the above mentioned example setting the displayed direction will be `"LE,"`. `"Leipzig"` was replaced by `"LE"` and `"Hbf"` was replaced by the empty string. If you want to replace special symbols like `"("`, `")"` or `"-"` you must escape these characters by placing **two** `"\"` in front of the character (see example above).</p>|
-| `showColoredLineSymbols`          | <p>A boolean value indicating whether the line symbols should be colored or black and white.</p><p>**Type:** `boolean`<br>**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` it is possible to decorate the line labels with the colors which are used in your town. This module comes with decorations for Leipzig. To provide your own colors see [Providing a custom css file](#providing-a-custom-css-file).</p>|
-| `useColorForRealtimeInfo`         | <p>A boolean value indicating whether delays should be displayed in color.</p><p>**Type:** `boolean`**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` a delay will be displayed in red. Values `<= 0` (transport arrives in time or early) will be displayed in green. If you want to customize that see [Providing a custom css file](#customizing-the-color-for-delays).</p>|
+| `showColoredLineSymbols`          | <p>A boolean value indicating whether the line symbols should be colored or black and white.</p><p>**Type:** `boolean`<br>**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` it is possible to decorate the line labels with the colors which are used in your town. This module comes with decorations for Leipzig. To provide your own colors see [Providing a custom CSS file](#providing-a-custom-css-file).</p>|
+| `useColorForRealtimeInfo`         | <p>A boolean value indicating whether delays should be displayed in color.</p><p>**Type:** `boolean`**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` a delay will be displayed in red. Values `<= 0` (transport arrives in time or early) will be displayed in green. If you want to customize that see [Providing a custom CSS file](#customizing-the-color-for-delays).</p>|
 | `showAbsoluteTime`                | <p>A boolean indicating whether the departure time should be displayed as an absolute value or not.</p><p>**Type:** `boolean`<br>**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` the departure time would be displayed as “10:15+0”. If set to `false` the departure time would be displayed in a relative manner like so: `in 5 minutes`. The displayed string is determined by your locale. If your locale is set to `de` the string would be `in 5 Minuten`.</p> |
 | `showTableHeaders`                | <p>A boolean indicating whether a table header should be shown or not.</p><p>**Type:** `boolean`<br>**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `false` no table headings like “time” or “direction” will be shown. Also no symbols are shown.</p>|
 | `showTableHeadersAsSymbols`       | <p>A boolean value indicating whether table headers should be shown as symbols or text.</p><p>**Type:** `boolean`<br>**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` table headers will use symbols, else text will be shown. This setting is only effective if `showTableHeaders` is set to `true`. The shown text is available in English and German. Feel free to add translations to this project.</p> |
@@ -138,7 +138,7 @@ These are the possible options:
 | `fadeUnreachableDepartures`       | <p>A boolean value indicating whether unreachable departures should be dimmed.</p><p>**Type:** `boolean`<br>**Example:** `false`<br>**Default value:** `true`</p>|
 | `fadeReachableDepartures`         | <p>A boolean value indicating whether reachable departures should be faded out.</p><p>**Type:** `boolean`<br>**Default value:** `true`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` departures after `fadePointForReachableDepartures` will be gradually faded out so that the last departure is barely visible.</p>|
 | `fadePointForReachableDepartures` | <p>A floating point value indicating where to start the fading of departure rows.</p><p>**Type:** `float`<br>**Example:** `0.5` (Start fading after half of the rows.)<br>**Default value:** `0.25`</p><p>**Note:** This value is actually a percentage. The Default value of `0.25` denotes that after a quarter of the visible rows set by `maxReachableDepartures` the fading should start. This setting is only effective if `fadeReachableDepartures` is set to `true`.</p>|
-| `customLineStyles`                | <p>A string value describing the name of a custom css file.</p><p>**Type:** `string`<br>**Example:** `"dresden"`<br>**Default value:** `"leipzig"`</p><p>**Note:** If the setting `showColoredLineSymbols` is `true` the module will try to use colored labels for the line name. Per default it uses the colors used in Leipzig. This style works best if `showOnlyLineNumbers` is set to `true`. If it doesn’t suit your taste you can provide your own settings. See [Providing a custom css file](#providing-a-custom-css-file).</p>|
+| `customLineStyles`                | <p>A string value describing the name of a custom CSS file.</p><p>**Type:** `string`<br>**Example:** `"dresden"`<br>**Default value:** `"leipzig"`</p><p>**Note:** If the setting `showColoredLineSymbols` is `true` the module will try to use colored labels for the line name. Per default it uses the colors used in Leipzig. This style works best if `showOnlyLineNumbers` is set to `true`. If it doesn’t suit your taste you can provide your own settings. See [Providing a custom CSS file](#providing-a-custom-css-file).</p>|
 | `showOnlyLineNumbers`             | <p>A boolean value denoting whether the line name should be displayed as a number only or the full name should be used.</p><p>**Type:** `boolean`<br>**Default value:** `false`<br>**Possible values:** `true` and `false`</p><p>**Note:** If set to `true` the module will try to separate line numbers from the line name and display only these. If the line name is “STR 11” only “11” will be displayed. This only works if there are blanks present in the line name. This setting is only tested with departures in Leipzig. If you encounter problems [let me know](https://github.com/KristjanESPERANTO/MMM-PublicTransportHafas/issues).</p>|
 | `displayLastUpdate`               | <p>If true this will display the last update time at the end of the task list. See screenshot above</p><p>**Type:** `boolean`<br>**Default value:** `true`<br>**Possible values:** `true` and `false`</p>|
 | `displayLastUpdateFormat`         | <p>Format to use for the time display if displayLastUpdate:true</p><p>**Type:** `string`<br>**Example:** `'HH:mm:ss'`<br>**Default value:** `'dd - HH:mm:ss'`</p>See [Moment.js formats](http://momentjs.com/docs/#/parsing/string-format/) for the other format possibilities.</p>|
@@ -179,23 +179,23 @@ It is possible to use multiple instances of this module just by adding another e
 
 You can even use the same `stationID` in different instances. So you can display in one instance something like “main station heading eastbound” and in another instance “main station heading westbound”.
 
-## Providing a custom css file
+## Providing a custom CSS file
 
 **Note:** For some cities, separate CSS files have already been created that contain the local line colours. You can look them up in the `css` folder. If you create a file for another city, feel free to send it to us.
 
 ### Colored line labels
 
-If you set `showColoredLineSymbols` to `true` the module will try to colorize the line symbols. This is done by appending a css class to the line symbol. This class is named after the line name but blanks are left out and all letters are lower case. So if the line name is “STR 11” the appended css class name is `.str11`.
+If you set `showColoredLineSymbols` to `true` the module will try to colorize the line symbols. This is done by appending a CSS class to the line symbol. This class is named after the line name but blanks are left out and all letters are lower case. So if the line name is “STR 11” the appended CSS class name is `.str11`.
 
-To provide your own classes create a css file in the `css` directory of the module. It must be named like `<your custom name>-lines.css`, where `<your custom name>` can be any valid file name but should not contain blanks or dots. The part `<your custom name>` is then used in the config file as value for the `customLineStyles` property.
+To provide your own classes create a CSS file in the `css` directory of the module. It must be named like `<your custom name>-lines.css`, where `<your custom name>` can be any valid filename but should not contain blanks or dots. The part `<your custom name>` is then used in the config file as value for the `customLineStyles` property.
 
 In the example above “leipzig” is used as value for the `customLineStyles` property. Therefore there must be a file named `leipzig-lines.css` inside the `css` folder. If this is not the case the module won’t be started and it will not be visible. The browser’s console will show an error.
 
-Basically you can set whatever you want in the css file but it is recommended to only set the foreground and background color and the width. In some cases it is useful to change the border radius too. See the file `css/leipzig-lines.css` for reference and as a guideline.
+Basically you can set whatever you want in the CSS file but it is recommended to only set the foreground and background color and the width. In some cases it is useful to change the border radius too. See the file `css/leipzig-lines.css` for reference and as a guideline.
 
 #### Example
 
-In Leipzig the tram lines 2, 8 and 9 use a yellow color. Since the lines share the same settings the css class names are listed with commas so that the settings apply to each listed class.
+In Leipzig the tram lines 2, 8 and 9 use a yellow color. Since the lines share the same settings the CSS class names are listed with commas so that the settings apply to each listed class.
 
 ```css
 .str2, .str8, .str9 {
@@ -222,7 +222,7 @@ Alongside the departure time a small figure displays the delay as reported by th
 
 ![Time with delay](img/time_with_delay.png) ![Time without delay](img/time_without_delay.png)
 
-Delays are displayed as red. No delay or negative delays (the transport will arrive early) are displayed in green. If you want to customize that include the classes `mmm-pth-has-delay` and `mmm-pth-to-early` in your custom css file and make the appropriate settings.
+Delays are displayed as red. No delay or negative delays (the transport will arrive early) are displayed in green. If you want to customize that include the classes `mmm-pth-has-delay` and `mmm-pth-to-early` in your custom CSS file and make the appropriate settings.
 
 ## Technical background details
 
