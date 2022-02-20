@@ -23,7 +23,7 @@ jobs:
           # changed files within `super-linter`
           fetch-depth: 0
 
-     - name: install modules
+      - name: install modules
         run: |
           npm ci
 
