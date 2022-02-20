@@ -33,4 +33,5 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MARKDOWN_CONFIG_FILE: .markdownlint.json
           JAVASCRIPT_DEFAULT_STYLE: prettier
