@@ -34,6 +34,8 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LINTER_RULES_PATH: /
+          CSS_FILE_NAME: .stylelintrc.json
           MARKDOWN_CONFIG_FILE: .markdownlint.json
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
           YAML_CONFIG_FILE: .yamllint.yaml
           JAVASCRIPT_DEFAULT_STYLE: prettier
