@@ -23,12 +23,14 @@ jobs:
           # changed files within `super-linter`
           fetch-depth: 0
 
+     - name: install modules
+        run: |
+          npm ci
+
       # Runs the Super-Linter action
       - name: Run Super-Linter
         uses: github/super-linter@v4
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LINTER_RULES_PATH: .github/linters
-          MARKDOWN_CONFIG_FILE: .markdownlint.json
           JAVASCRIPT_DEFAULT_STYLE: prettier
