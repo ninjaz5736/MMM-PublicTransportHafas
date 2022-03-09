@@ -1,4 +1,4 @@
-/* global PTHAFASDomBuilder Module Log moment config */
+/* global dayjs PTHAFASDomBuilder Module Log config */
 
 // UserPresence Management (PIR sensor)
 // (This variable must currently still be declared with var, as several modules use this
@@ -22,7 +22,7 @@ Module.register("MMM-PublicTransportHafas", {
 
     // Display last update time
     displayLastUpdate: true,            // Add line after the tasks with the last server update time
-    displayLastUpdateFormat: "dd - HH:mm:ss", // Format to display the last update. See Moment.js documentation for all display possibilities
+    displayLastUpdateFormat: "dd - HH:mm:ss", // Format to display the last update. See dayjs.js documentation for all display possibilities
 
     // Departures options
     direction: "",                      // Show only departures heading to this station. (A station ID.)
@@ -91,7 +91,7 @@ Module.register("MMM-PublicTransportHafas", {
     this.sendSocketNotification("CREATE_FETCHER", fetcherOptions);
 
     // Set locale (Necessary if the default clock module is not used.)
-    moment.locale(config.language);
+    dayjs.locale(config.language);
   },
 
   suspend() {
@@ -165,7 +165,7 @@ Module.register("MMM-PublicTransportHafas", {
     if (this.config.displayLastUpdate) {
       const updateinfo = document.createElement("div");
       updateinfo.className = "xsmall light align-left";
-      updateinfo.innerText = `Update: ${moment
+      updateinfo.innerText = `Update: ${dayjs
         .unix(this.lastUpdate)
         .format(this.config.displayLastUpdateFormat)}`;
       wrapper.appendChild(updateinfo);
@@ -187,7 +187,10 @@ Module.register("MMM-PublicTransportHafas", {
 
   getScripts() {
     return [
-      "moment.js",
+      this.file("node_modules/dayjs/dayjs.min.js"),
+      this.file("node_modules/dayjs/plugin/localizedFormat.js"),
+      this.file("node_modules/dayjs/plugin/relativeTime.js"),
+      this.file(`node_modules/dayjs/locale/${config.language}.js`),
       this.file("core/PTHAFASDomBuilder.js"),
       this.file("core/PTHAFASTableBodyBuilder.js")
     ];
@@ -221,7 +224,7 @@ Module.register("MMM-PublicTransportHafas", {
         Log.log(
           `TransportHafas update OK, station : ${
             this.config.stationName
-          } at : ${+moment
+          } at : ${+dayjs
             .unix(this.lastUpdate)
             .format(this.config.displayLastUpdateFormat)}`
         );

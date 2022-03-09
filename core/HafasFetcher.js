@@ -1,9 +1,12 @@
 /* global config */
 
-const moment = require("moment");
 const createClient = require("hafas-client");
+const dayjs = require("dayjs");
+const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 const Log = require("logger");
 const pjson = require("../package.json");
+
+dayjs.extend(isSameOrAfter);
 
 /**
  * Helper function to determine the difference between two arrays.
@@ -123,14 +126,14 @@ module.exports = class HafasFetcher {
     let departureTime = this.getReachableTime();
 
     if (this.config.maxUnreachableDepartures > 0) {
-      departureTime = moment(departureTime).subtract(this.leadTime, "minutes");
+      departureTime = departureTime.subtract(this.leadTime, "minutes");
     }
 
     return departureTime;
   }
 
   getReachableTime() {
-    return moment().add(this.config.timeToStation, "minutes");
+    return dayjs().add(this.config.timeToStation, "minutes");
   }
 
   getTimeInFuture() {
@@ -237,8 +240,6 @@ module.exports = class HafasFetcher {
   }
 
   isReachable(departure) {
-    return moment(departure.when).isSameOrAfter(
-      moment(this.getReachableTime())
-    );
+    return dayjs(departure.when).isSameOrAfter(this.getReachableTime());
   }
 };
