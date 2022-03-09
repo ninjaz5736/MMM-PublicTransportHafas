@@ -234,11 +234,15 @@ class PTHAFASTableBodyBuilder {
   }
 
   getDisplayDepartureTime(when, delay) {
+    let time = dayjs(when);
+
     if (this.config.showAbsoluteTime) {
-      const time = dayjs(when).subtract(delay, "seconds");
+      time = dayjs(when).subtract(delay, "seconds");
       return time.format("LT");
     }
-    const time = dayjs(when);
+    if (dayjs(when).diff(dayjs()) > this.config.showRelativeTimeOnlyUnder) {
+      return time.format("LT");
+    }
     return time.fromNow();
   }
 
