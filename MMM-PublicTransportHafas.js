@@ -91,7 +91,7 @@ Module.register("MMM-PublicTransportHafas", {
 
     this.sendSocketNotification("CREATE_FETCHER", fetcherOptions);
 
-    // Set locale (Necessary if the default clock module is not used.)
+    // Set locale
     dayjs.locale(config.language);
   },
 
