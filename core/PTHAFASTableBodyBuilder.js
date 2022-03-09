@@ -1,4 +1,8 @@
-/* global moment */
+/* global dayjs */
+
+dayjs.extend(window.dayjs_plugin_relativeTime);
+dayjs.extend(window.dayjs_plugin_localizedFormat);
+
 // eslint-disable-next-line no-unused-vars
 class PTHAFASTableBodyBuilder {
   constructor(config) {
@@ -190,7 +194,7 @@ class PTHAFASTableBodyBuilder {
 
     const cell = document.createElement("td");
 
-    if (moment(departure).isValid()) {
+    if (dayjs(departure).isValid()) {
       cell.className = "mmm-pth-time-cell";
       cell.appendChild(document.createTextNode(time));
 
@@ -231,10 +235,10 @@ class PTHAFASTableBodyBuilder {
 
   getDisplayDepartureTime(when, delay) {
     if (this.config.showAbsoluteTime) {
-      const time = moment(when).subtract(delay, "seconds");
+      const time = dayjs(when).subtract(delay, "seconds");
       return time.format("LT");
     }
-    const time = moment(when);
+    const time = dayjs(when);
     return time.fromNow();
   }
 
