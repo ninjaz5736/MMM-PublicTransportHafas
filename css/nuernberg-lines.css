@@ -1,0 +1,248 @@
+/*
+  This stylesheet contains the css classes needed to colorize the line
+  labels in the display.
+
+  To customize this use as class name the name of the line without any
+  blanks and all lower case. For instance "Bus N9" becomes ".busn9"
+ */
+
+/*
+  S-Bahn
+ */
+
+/* For all green S-Bahn lines, comment out the lines s1 through s6, and uncomment the section "s" */
+
+/*
+.s {
+  background-color: #;
+}
+*/
+
+.s1 {
+  background-color: #92292e;
+}
+
+.s2 {
+  background-color: #4cbd38;
+}
+
+.s3 {
+  background-color: #f1471c;
+}
+
+.s4 {
+  background-color: #2d3884;
+}
+
+.s5 {
+  background-color: #0c7bc1;
+}
+
+.s6 {
+  background-color: #95af33;
+}
+
+/*
+  U-Bahn
+*/
+.u1 {
+  background-color: #005c9f;
+}
+
+.u2 {
+  background-color: #e3000f;
+}
+
+.u3 {
+  background-color: #2fb7bc;
+}
+
+/*
+  Straßenbahn
+*/
+.str4 {
+  background-color: #f08490;
+}
+
+.str5 {
+  background-color: #954a97;
+}
+
+.str6 {
+  background-color: #ffd400;
+  color: #000000;
+}
+
+.str7 {
+  background-color: #a5add8;
+  color: #000000;
+}
+
+.str8 {
+  background-color: #00b0eb;
+}
+
+/*
+  Buses
+*/
+.bus {
+  background-color: #e3000f;
+  border-radius: 1em;
+  color: white;
+  width: 3.5em;
+}
+
+/* 
+  Nightliner Buses
+*/
+
+.busn1 {
+  background-color: #f59c00;
+  color: white;
+}
+
+.busn2 {
+  background-color: #0062a4;
+  color: white;
+}
+
+.busn3 {
+  background-color: #e5007d;
+  color: white;
+}
+
+.busn4 {
+  background-color: #89b4db;
+  color: white;
+}
+
+.busn5 {
+  background-color: #ffcc00;
+  color: black;
+}
+
+.busn6 {
+  background-color: #e3000f;
+  color: white;
+}
+
+.busn7 {
+  background-color: #7f465a;
+  color: white;
+}
+
+.busn8 {
+  background-color: #7d72a3;
+  color: white;
+}
+
+.busn9 {
+  background-color: #c7d300;
+  color: black;
+}
+
+.busn10 {
+  background-color: #0099aa;
+  color: white;
+}
+
+.busn11 {
+  background-color: #95348b;
+  color: white;
+}
+
+.busn12 {
+  background-color: #00a75d;
+  color: white;
+}
+
+.busn13 {
+  background-color: #e94c0a;
+  color: white;
+}
+
+.busn14 {
+  background-color: #455924;
+  color: white;
+}
+
+.busn15 {
+  background-color: #d46aa6;
+  color: white;
+}
+
+.busn17 {
+  background-color: #ed694a;
+  color: white;
+}
+
+.busn18 {
+  background-color: #008acb;
+  color: white;
+}
+
+.busn20 {
+  background-color: #76b828;
+  color: white;
+}
+
+.busn21 {
+  background-color: #e5007d;
+  color: white;
+}
+
+.busn22 {
+  background-color: #74115e;
+  color: white;
+}
+
+.busn23 {
+  background-color: #c71252;
+  color: white;
+}
+
+.busn24 {
+  background-color: #c94b18;
+  color: white;
+}
+
+.busn27 {
+  background-color: #a8005c;
+  color: white;
+}
+
+.busn28 {
+  background-color: #2d2476;
+  color: white;
+}
+
+.busn29 {
+  background-color: #c99922;
+  color: white;
+}
+
+.busn55 {
+  background-color: #005493;
+  color: white;
+}
+
+.busn59 {
+  background-color: #9c9661;
+  color: white;
+}
+
+.busn60 {
+  background-color: #007d53;
+  color: white;
+}
+
+.busn61 {
+  background-color: #a49dc5;
+  color: white;
+}
+
+/* To add in a tram replacement bus service, follow this example */
+
+/* .buse5 {
+  background-color: #a86ead;
+} */
